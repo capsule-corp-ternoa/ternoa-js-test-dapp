@@ -1,0 +1,102 @@
+@import './base.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  font-family: $font-regular;
+  line-height: 1.3;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: $color-invertedContrast;
+  color: $color-contrast;
+  -webkit-font-smoothing: antialiased;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $color-radialGradient;
+}
+
+header {
+  width: 100%;
+}
+
+main {
+  width: 100%;
+}
+
+footer {
+  width: 100%;
+  margin-top: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: transparent;
+  border: none;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 128rem;
+  margin: 0 auto;
+  padding: 2.4rem 1.6rem;
+
+  &:first-child {
+    padding-top: 4rem;
+  }
+
+  &:last-child {
+    padding-bottom: 4.8rem;
+  }
+
+  @include md {
+    padding: 2.4rem 4rem;
+  }
+
+  @include lg {
+    padding: 3.2rem 4rem;
+
+    &:last-child {
+      padding-bottom: 6.4rem;
+    }
+  }
+
+  @include xl {
+    padding: 3.2rem 6.4rem;
+
+    &:first-child {
+      padding-top: 5.6rem;
+    }
+
+    &:last-child {
+      padding-bottom: 9.6rem;
+    }
+  }
+
+  @include xxl {
+    max-width: 1440px;
+  }
+}

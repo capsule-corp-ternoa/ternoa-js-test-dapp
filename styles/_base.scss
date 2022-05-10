@@ -1,0 +1,89 @@
+$breakpoint-xs: 480px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1440px;
+
+//Color scheme
+$color-invertedContrast: #0e0e23;
+$color-contrast: #ffffff;
+//Neutral
+$color-neutral100: #ffffff80;
+$color-neutral200: #313140;
+$color-neutral300: #313140;
+$color-neutral400: #20202e;
+$color-neutral500: #191939;
+$color-neutral700: #070714;
+$color-neutral900: #000000;
+//Primary
+$color-primary300: #a0b9ed;
+$color-primary500: #004fff;
+//Secondary
+$color-secondary200: #d0d0ed;
+$color-secondary300: #9f9fff;
+$color-secondary400: #c29fec;
+$color-secondary500: #7200fd;
+//Success
+$color-success100: #d4e4e0;
+$color-success500: #2fd6b3;
+//Warning
+$color-warning100: #e7decf;
+$color-warning500: #f2a400;
+//Danger
+$color-danger100: #e6d2cf;
+$color-danger500: #da3131;
+//Gradients
+$color-primary-gradient100: linear-gradient(
+  90deg,
+  rgba(0, 79, 255, 0.3) 0%,
+  rgba(203, 6, 237, 0.3) 33.3%,
+  rgba(255, 0, 98, 0.3) 68.16%,
+  rgba(255, 133, 0, 0.3) 99.9%
+);
+$color-primary-gradient500: linear-gradient(90deg, $color-primary500 0%, #cb06ed 33.3%, #ff0062 68.16%, #ff8500 99.9%);
+$color-secondary-gradient100: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+  linear-gradient(90deg, $color-primary500 0%, #7824f5 100%);
+$color-secondary-gradient300: linear-gradient(90deg, rgba(13, 75, 254, 0.3) 0%, rgba(120, 36, 245, 0.3) 100%);
+$color-secondary-gradient500: linear-gradient(90deg, $color-primary500 0%, #bd0def 100%);
+$color-radialGradient: radial-gradient(rgba(120, 36, 245, 0.1) 30%, $color-invertedContrast 90%);
+
+$font-light: 'Airbnb Cereal App Light';
+$font-regular: 'Airbnb Cereal App Book';
+$font-bold: 'Airbnb Cereal App Bold';
+
+@mixin xs() {
+  @media screen and (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+@mixin sm() {
+  @media screen and (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin md() {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin lg() {
+  @media screen and (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin xl() {
+  @media screen and (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin xxl() {
+  @media screen and (min-width: $breakpoint-xxl) {
+    @content;
+  }
+}
