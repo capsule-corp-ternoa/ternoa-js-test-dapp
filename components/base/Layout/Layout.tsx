@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import Analytics from '../Analytics'
 import Footer from '../Footer'
+import Header from '../Header'
 
 interface LayoutProps {
   children?: React.ReactNode
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const projectName = '' //must be completed
+  const projectName = 'toolkit' //must be completed
   return (
     <>
       <Head>
@@ -16,8 +17,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={`Ternoa Blockchain ${projectName} by Ternoa.`} />
       </Head>
+      <header className="container">
+        <Header />
+        {/*<MobileHeader /> */}
+      </header>
       {process.env.NEXT_PUBLIC_GA && process.env.NODE_ENV === 'production' && <Analytics />}
-      <div className="container">{children}</div>
+      {children}
       <Footer />
     </>
   )

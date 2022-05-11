@@ -1,7 +1,11 @@
 import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
-  return <h1 className="">Ternoa Front Toolkit</h1>
+  return (
+    <main className="container">
+      <h1 className="wrapper">Ternoa Front Toolkit</h1>
+    </main>
+  )
 }
 
 export default Home

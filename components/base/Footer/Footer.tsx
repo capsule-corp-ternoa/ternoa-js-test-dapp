@@ -6,7 +6,7 @@ import Instagram from 'assets/svg/SocialMedia/Instagram'
 import styles from './Footer.module.scss'
 
 const Footer: React.FC = () => {
-  const projectName = 'Project' //must be completed
+  const projectName = 'toolkit' //must be completed
   return (
     <footer className={`container ${styles.root}`}>
       <div className="wrapper">
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
 
         <div className={styles.bottom}>
           <div className={styles.credentials}>
-            <span>{`© ${new Date().getFullYear()} Ternoa ${projectName}. Developed and designed by `}</span>
+            <span>{`© ${new Date().getFullYear()} Ternoa ${projectName}. Developed by `}</span>
             <a href="https://www.ternoa.com/" target="_blank" rel="noreferrer noopener">
               ternoa.com
             </a>

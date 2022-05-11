@@ -1,0 +1,25 @@
+@import '../../../styles/_base.scss';
+
+.nav {
+  display: none;
+  @include lg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  //   @include xl {
+  //     padding: 6.4rem 6.4rem 4rem !important;
+  //   }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoTitle {
+  color: $color-contrast;
+  font-family: $font-bold;
+  font-size: 2rem;
+  margin-left: 0.8rem;
+}

@@ -1,0 +1,69 @@
+@import '../../../styles/_base.scss';
+
+.networkPill {
+  backdrop-filter: blur(4px);
+  border-radius: 6.4rem;
+  border: solid 2px transparent;
+  background-image: linear-gradient(90deg, rgba(13, 75, 254, 0.3) 0%, rgba(120, 36, 245, 0.3) 100%),
+    linear-gradient(90deg, rgba(13, 75, 254, 0.3) 0%, rgba(120, 36, 245, 0.3) 99.9%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px #0e0e23 inset;
+  padding: 0.8rem 2.4rem;
+  display: flex;
+  align-items: center;
+
+  .networkEnv {
+    color: $color-contrast;
+    font-family: $font-bold;
+    font-size: 1.2rem;
+  }
+}
+
+.connectIndicator {
+  margin-right: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .outterIndicator {
+    @keyframes indicatorScale {
+      0%,
+      100% {
+        transform: scale(0.8);
+        opacity: 0.2;
+      }
+      50% {
+        transform: scale(0.9);
+        opacity: 0.3;
+      }
+    }
+
+    position: absolute;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: $color-success300;
+    border-radius: 100%;
+    animation: 1.6s ease-in-out 0s infinite normal none running indicatorScale;
+  }
+
+  .innerIndicator {
+    position: absolute;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 100%;
+    background: $color-success500;
+  }
+  .Mainnet {
+    background: #004fff !important;
+  }
+
+  .Alphanet {
+    background: #ff0062 !important;
+  }
+
+  .Testnet {
+    background: #ff8500 !important;
+  }
+}
