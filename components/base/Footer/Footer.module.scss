@@ -1,0 +1,90 @@
+@import '../../../styles/_base.scss';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 3.2rem;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include sm {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid $color-neutral100;
+  }
+
+  .socials {
+    > * {
+      &:not(&:first-child) {
+        margin-left: 2.4rem;
+      }
+    }
+
+    .socialItem {
+      width: 2.4rem;
+      cursor: pointer;
+      fill: $color-contrast;
+    }
+  }
+
+  .link {
+    display: none;
+    @include sm {
+      display: flex;
+      align-items: center;
+      color: $color-contrast;
+      cursor: pointer;
+      font-family: $font-bold;
+      font-size: 1.6rem;
+
+      > * {
+        margin: 0.8rem;
+      }
+    }
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include sm {
+    padding-top: 3rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .credentials {
+    text-align: center;
+    background: $color-primary-gradient500;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.2rem;
+    padding: 2rem;
+    @include sm {
+      padding: 0rem;
+    }
+  }
+
+  .linksWrapper {
+    display: flex;
+    align-items: center;
+
+    .footerLink {
+      color: $color-contrast;
+      font-size: 1.2rem;
+    }
+
+    > * {
+      &:not(&:first-child) {
+        margin-left: 2.4rem;
+      }
+    }
+  }
+}
