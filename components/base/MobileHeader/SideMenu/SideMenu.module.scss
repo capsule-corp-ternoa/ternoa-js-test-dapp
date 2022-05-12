@@ -27,3 +27,11 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.links {
+  > * {
+    &:not(:first-child) {
+      margin-top: 1.2rem;
+    }
+  }
+}

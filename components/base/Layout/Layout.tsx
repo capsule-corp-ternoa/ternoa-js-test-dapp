@@ -10,7 +10,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const projectName = 'toolkit' //must be completed
+  const projectName = 'ternoa Toolkit' //set project name
   return (
     <>
       <Head>
@@ -20,13 +20,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <meta name="description" content={`Ternoa Blockchain ${projectName} by Ternoa.`} />
       </Head>
       <header className="container">
-        <Header />
-        <MobileHeader />
+        <Header projectName={projectName} />
+        <MobileHeader projectName={projectName} />
       </header>
       {process.env.NEXT_PUBLIC_GA && process.env.NODE_ENV === 'production' && <Analytics />}
       {children}
-      <Footer projectName="Toolkit" isSocials={true} isCredentialCustom={true} isTernoaOfficial={true} />
-      <MobileFooter projectName="Toolkit" isCredentialCustom={true} islinks={true} />
+      <Footer projectName={projectName} isSocials={true} isCredentialCustom={true} isTernoaOfficial={true} />
+      <MobileFooter projectName={projectName} isCredentialCustom={true} islinks={true} />
     </>
   )
 }

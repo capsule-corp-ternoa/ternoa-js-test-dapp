@@ -37,9 +37,10 @@ const MobileFooter: React.FC<MobileFooterProps> = ({ projectName, isTopBorder, i
             <span className={`${styles.bold} ${isCredentialCustom && styles.gradiant}`}>
               {`© ${new Date().getFullYear()} `}
               <a href="https://www.ternoa.com/" target="_blank" rel="noreferrer noopener">
-                Ternoa
+                {' '}
+                {projectName}.
               </a>{' '}
-              {projectName}. All rights reserved.
+              All rights reserved.
             </span>
           </div>
           {islinks && (

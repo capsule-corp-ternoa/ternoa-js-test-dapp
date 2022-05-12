@@ -3,12 +3,16 @@ import TernoaIcon from 'assets/svg/Components/TernoaIcon'
 import styles from './Header.module.scss'
 import NetworkPill from 'components/ui/NetworkPill'
 
-const Header: React.FC = () => (
+interface HeaderProps {
+  projectName: string
+}
+
+const Header: React.FC<HeaderProps> = ({ projectName }) => (
   <nav className={`wrapper ${styles.nav}`}>
     <Link href="/">
-      <a className={styles.logo} title="Ternoa homepage">
+      <a className={styles.logo} title={`Ternoa ${projectName}`}>
         <TernoaIcon />
-        <div className={styles.logoTitle}>ternoa Toolkit</div>
+        <div className={styles.logoTitle}>{projectName}</div>
       </a>
     </Link>
     <NetworkPill />
