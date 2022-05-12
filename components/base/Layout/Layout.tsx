@@ -24,7 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </header>
       {process.env.NEXT_PUBLIC_GA && process.env.NODE_ENV === 'production' && <Analytics />}
       {children}
-      <Footer />
+      <Footer isSocials={true} isCredentialCustoms={true} isTernoaOfficial={true} projectName="Toolkit" />
     </>
   )
 }
