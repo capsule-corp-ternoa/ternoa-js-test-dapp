@@ -50,14 +50,22 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 3rem;
+  font-size: 1.2rem;
 
   .credentials {
-    background: $color-primary-gradient500;
-    background-clip: text;
-    text-align: start;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 1.2rem;
+    .bold {
+      font-size: 1.2rem;
+      font-family: $font-bold;
+      > a {
+        font-family: $font-bold;
+      }
+    }
+    .gradiant {
+      background: $color-primary-gradient500;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
 
   .linksWrapper {
@@ -67,6 +75,10 @@
     .footerLink {
       color: $color-contrast;
       font-size: 1.2rem;
+      font-family: $font-bold;
+      &:hover {
+        color: $color-neutral100;
+      }
     }
 
     > * {

@@ -6,13 +6,13 @@ import Instagram from 'assets/svg/SocialMedia/Instagram'
 import styles from './Footer.module.scss'
 
 export interface FooterProps {
-  isSocials?: boolean
-  isCredentialCustoms?: boolean
-  isTernoaOfficial?: boolean
   projectName: string
+  isSocials?: boolean
+  isCredentialCustom?: boolean
+  isTernoaOfficial?: boolean
 }
 
-const Footer: React.FC<FooterProps> = ({ isSocials, isCredentialCustoms, isTernoaOfficial, projectName }) => {
+const Footer: React.FC<FooterProps> = ({ isSocials, isCredentialCustom, isTernoaOfficial, projectName }) => {
   return (
     <footer className={`container ${styles.root}`}>
       <div className="wrapper">
@@ -44,12 +44,14 @@ const Footer: React.FC<FooterProps> = ({ isSocials, isCredentialCustoms, isTerno
         )}
 
         <div className={styles.bottom}>
-          <div className={`${isCredentialCustoms && styles.credentials}`}>
-            <span>{`© ${new Date().getFullYear()} Ternoa ${projectName}. Developed and designed by `}</span>
-            <a href="https://www.ternoa.com/" target="_blank" rel="noreferrer noopener">
-              ternoa
-            </a>
-            <span>. All rights reserved.</span>
+          <div className={styles.credentials}>
+            <span className={`${styles.bold} ${isCredentialCustom && styles.gradiant}`}>
+              {`© ${new Date().getFullYear()} Ternoa ${projectName}. Developed and designed by `}
+              <a href="https://www.ternoa.com/" target="_blank" rel="noreferrer noopener">
+                Ternoa
+              </a>
+              . All rights reserved.
+            </span>
           </div>
           <div className={styles.linksWrapper}>
             <a
