@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
             </a>
           </div>
           <a className={styles.link} href="https://www.ternoa.com" target="_blank" rel="noopener noreferrer" title="Ternoa official website">
-            Ternoa.com
+            ternoa.com
             <ArrowRight />
           </a>
         </div>
@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
           <div className={styles.credentials}>
             <span>{`© ${new Date().getFullYear()} Ternoa ${projectName}. Developed by `}</span>
             <a href="https://www.ternoa.com/" target="_blank" rel="noreferrer noopener">
-              ternoa.com
+              ternoa
             </a>
             <span>. All rights reserved.</span>
           </div>

@@ -1,5 +1,5 @@
 import { toUpperCase } from 'utils/strings'
-import style from './NetworkPill.module.scss'
+import styles from './NetworkPill.module.scss'
 
 const NetworkPill: React.FC = () => {
   const network = process.env.NEXT_PUBLIC_TERNOA_WSS_CHAIN_ENDPOINT
@@ -13,12 +13,12 @@ const NetworkPill: React.FC = () => {
     : 'Mainnet'
 
   return (
-    <a href="https://ternoa.com/" className={style.networkPill} target="_blank" rel="noreferrer noopener">
-      <div className={style.connectIndicator}>
-        <div className={`${style.outterIndicator} ${style[network]}`} />
-        <div className={`${style.innerIndicator} ${style[network]}`} />
+    <a href="https://ternoa.com/" className={styles.networkPill} target="_blank" rel="noreferrer noopener">
+      <div className={styles.connectIndicator}>
+        <div className={`${styles.outterIndicator} ${styles[network]}`} />
+        <div className={`${styles.innerIndicator} ${styles[network]}`} />
       </div>
-      <small className={style.networkEnv}>{network}</small>
+      <small className={styles.networkEnv}>{network}</small>
     </a>
   )
 }

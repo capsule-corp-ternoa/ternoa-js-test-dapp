@@ -1,0 +1,30 @@
+@import '../../../styles/_base.scss';
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include lg {
+    display: none;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoTitle {
+  color: $color-contrast;
+  font-family: $font-bold;
+  font-size: 2rem;
+  margin-left: 0.8rem;
+}
+.button {
+  color: $color-contrast;
+  cursor: pointer;
+  &:hover {
+    color: $color-secondary300;
+  }
+}

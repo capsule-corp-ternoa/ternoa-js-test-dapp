@@ -1,0 +1,29 @@
+@import '../../../../styles/_base.scss';
+
+.root {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 100%;
+  background: $color-invertedContrast;
+  z-index: 1000;
+  transition: transform 0.5s ease;
+
+  &.expanded {
+    transform: translateX(-100%);
+  }
+
+  @include lg {
+    display: none;
+  }
+}
+
+.radialGradientBg {
+  height: 100%;
+  width: 100%;
+  background: $color-radialGradient;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
