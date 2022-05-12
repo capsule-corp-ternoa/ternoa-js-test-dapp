@@ -12,7 +12,7 @@ export interface FooterProps {
   isTernoaOfficial?: boolean
 }
 
-const Footer: React.FC<FooterProps> = ({ isSocials, isCredentialCustom, isTernoaOfficial, projectName }) => {
+const Footer: React.FC<FooterProps> = ({ projectName, isSocials, isCredentialCustom, isTernoaOfficial }) => {
   return (
     <footer className={`container ${styles.root}`}>
       <div className="wrapper">

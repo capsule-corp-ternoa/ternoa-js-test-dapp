@@ -9,9 +9,10 @@ export interface MobileFooterProps {
   isTopBorder?: boolean
   isSocials?: boolean
   isCredentialCustom?: boolean
+  islinks?: boolean
 }
 
-const MobileFooter: React.FC<MobileFooterProps> = ({ isTopBorder, isSocials, isCredentialCustom, projectName }) => {
+const MobileFooter: React.FC<MobileFooterProps> = ({ projectName, isTopBorder, isSocials, isCredentialCustom, islinks }) => {
   return (
     <footer className={`container ${styles.root}`}>
       <div className="wrapper">
@@ -41,26 +42,28 @@ const MobileFooter: React.FC<MobileFooterProps> = ({ isTopBorder, isSocials, isC
               {projectName}. All rights reserved.
             </span>
           </div>
-          <div className={styles.linksWrapper}>
-            <a
-              className={styles.footerLink}
-              href="https://ternoahelp.zendesk.com/hc/fr/articles/360019045538-Terms-of-Use"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Terms"
-            >
-              Terms
-            </a>
-            <a
-              className={styles.footerLink}
-              href="https://ternoahelp.zendesk.com/hc/fr/articles/360018925097-Privacy-Policy"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Privacy"
-            >
-              Privacy
-            </a>
-          </div>
+          {islinks && (
+            <div className={styles.linksWrapper}>
+              <a
+                className={styles.footerLink}
+                href="https://ternoahelp.zendesk.com/hc/fr/articles/360019045538-Terms-of-Use"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Terms"
+              >
+                Terms
+              </a>
+              <a
+                className={styles.footerLink}
+                href="https://ternoahelp.zendesk.com/hc/fr/articles/360018925097-Privacy-Policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Privacy"
+              >
+                Privacy
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </footer>

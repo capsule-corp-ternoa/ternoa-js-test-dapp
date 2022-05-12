@@ -16,7 +16,8 @@
   align-items: center;
 
   .socials {
-    margin: 1.5rem 0;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
     > * {
       &:not(&:first-child) {
         margin-left: 2.4rem;
