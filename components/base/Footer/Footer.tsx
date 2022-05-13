@@ -5,39 +5,53 @@ import Twitter from 'assets/svg/SocialMedia/Twitter'
 import Instagram from 'assets/svg/SocialMedia/Instagram'
 import styles from './Footer.module.scss'
 
-const Footer: React.FC = () => {
-  const projectName = 'toolkit' //must be completed
+export interface FooterProps {
+  projectName: string
+  isSocials?: boolean
+  isCredentialCustom?: boolean
+  isTernoaOfficial?: boolean
+}
+
+const Footer: React.FC<FooterProps> = ({ projectName, isSocials, isCredentialCustom, isTernoaOfficial }) => {
   return (
     <footer className={`container ${styles.root}`}>
       <div className="wrapper">
-        <div className={styles.top}>
-          <div className={styles.socials}>
-            <a href="https://discord.gg/cNZTGtGJNR" target="_blank" rel="noopener noreferrer" title="Ternoa Discord">
-              <Discord className={styles.socialItem} />
-            </a>
-            <a href="https://t.me/ternoadiscussions" target="_blank" rel="noopener noreferrer" title="Ternoa Telegram">
-              <Telegram className={styles.socialItem} />
-            </a>
-            <a href="https://twitter.com/ternoa_" target="_blank" rel="noopener noreferrer" title="Ternoa Twitter">
-              <Twitter className={styles.socialItem} />
-            </a>
-            <a href="https://www.instagram.com/ternoa_/" target="_blank" rel="noopener noreferrer" title="Ternoa Instagram">
-              <Instagram className={styles.socialItem} />
-            </a>
+        {(isSocials || isTernoaOfficial) && (
+          <div className={styles.top}>
+            {isSocials && (
+              <div className={styles.socials}>
+                <a href="https://discord.gg/cNZTGtGJNR" target="_blank" rel="noopener noreferrer" title="Ternoa Discord">
+                  <Discord className={styles.socialItem} />
+                </a>
+                <a href="https://t.me/ternoadiscussions" target="_blank" rel="noopener noreferrer" title="Ternoa Telegram">
+                  <Telegram className={styles.socialItem} />
+                </a>
+                <a href="https://twitter.com/ternoa_" target="_blank" rel="noopener noreferrer" title="Ternoa Twitter">
+                  <Twitter className={styles.socialItem} />
+                </a>
+                <a href="https://www.instagram.com/ternoa_/" target="_blank" rel="noopener noreferrer" title="Ternoa Instagram">
+                  <Instagram className={styles.socialItem} />
+                </a>
+              </div>
+            )}
+            {isTernoaOfficial && (
+              <a className={styles.link} href="https://www.ternoa.com" target="_blank" rel="noopener noreferrer" title="Ternoa official website">
+                ternoa.com
+                <ArrowRight />
+              </a>
+            )}
           </div>
-          <a className={styles.link} href="https://www.ternoa.com" target="_blank" rel="noopener noreferrer" title="Ternoa official website">
-            ternoa.com
-            <ArrowRight />
-          </a>
-        </div>
+        )}
 
         <div className={styles.bottom}>
           <div className={styles.credentials}>
-            <span>{`© ${new Date().getFullYear()} Ternoa ${projectName}. Developed by `}</span>
-            <a href="https://www.ternoa.com/" target="_blank" rel="noreferrer noopener">
-              ternoa
-            </a>
-            <span>. All rights reserved.</span>
+            <span className={`${styles.bold} ${isCredentialCustom && styles.gradiant}`}>
+              {`© ${new Date().getFullYear()} ${projectName}. Developed and designed by `}
+              <a href="https://www.ternoa.com/" target="_blank" rel="noreferrer noopener">
+                Ternoa
+              </a>
+              . All rights reserved.
+            </span>
           </div>
           <div className={styles.linksWrapper}>
             <a

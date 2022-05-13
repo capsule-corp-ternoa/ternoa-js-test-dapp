@@ -18,6 +18,8 @@ $color-neutral700: #070714;
 $color-neutral900: #000000;
 //Primary
 $color-primary300: #a0b9ed;
+$color-primary400: #26264c;
+$color-primary450: #262794;
 $color-primary500: #004fff;
 //Secondary
 $color-secondary200: #d0d0ed;
@@ -34,6 +36,8 @@ $color-warning500: #f2a400;
 //Danger
 $color-danger100: #e6d2cf;
 $color-danger500: #da3131;
+$color-danger600: #de136d;
+$color-danger700: #b51b62;
 //Gradients
 $color-primary-gradient100: linear-gradient(
   90deg,
@@ -47,6 +51,7 @@ $color-secondary-gradient100: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rg
   linear-gradient(90deg, $color-primary500 0%, #7824f5 100%);
 $color-secondary-gradient300: linear-gradient(90deg, rgba(13, 75, 254, 0.3) 0%, rgba(120, 36, 245, 0.3) 100%);
 $color-secondary-gradient500: linear-gradient(90deg, $color-primary500 0%, #bd0def 100%);
+$color-secondary-gradient700: linear-gradient(90deg, $color-primary500 0%, #7824f5 100%);
 $color-radialGradient: radial-gradient(rgba(120, 36, 245, 0.1) 30%, $color-invertedContrast 90%);
 
 $font-light: 'Airbnb Cereal App Light';

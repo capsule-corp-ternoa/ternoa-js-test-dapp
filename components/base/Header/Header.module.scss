@@ -23,3 +23,35 @@
   font-size: 2rem;
   margin-left: 0.8rem;
 }
+
+.navItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  > * {
+    &:not(:first-child) {
+      margin-left: 2rem;
+    }
+  }
+
+  .links {
+    display: flex;
+    > * {
+      font-size: 1.2rem;
+      font-family: $font-regular;
+      list-style: none;
+      &:not(:first-child) {
+        margin-left: 2rem;
+      }
+      & a {
+        font-family: $font-bold;
+        &:hover {
+          color: $color-secondary300;
+        }
+        @include xl {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}

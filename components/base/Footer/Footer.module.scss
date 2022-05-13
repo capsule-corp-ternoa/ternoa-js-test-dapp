@@ -1,22 +1,20 @@
 @import '../../../styles/_base.scss';
 
 .root {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-bottom: 3.2rem;
+  display: none;
+
+  @include lg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .top {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  @include sm {
-    flex-direction: row;
-    justify-content: space-between;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid $color-neutral100;
-  }
+  justify-content: space-between;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid $color-neutral100;
 
   .socials {
     > * {
@@ -33,43 +31,40 @@
   }
 
   .link {
-    display: none;
-    @include sm {
-      display: flex;
-      align-items: center;
-      color: $color-contrast;
-      cursor: pointer;
-      font-family: $font-bold;
-      font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    color: $color-contrast;
+    font-family: $font-bold;
+    font-size: 1.6rem;
+    cursor: pointer;
 
-      > * {
-        margin: 0.8rem;
-      }
+    > * {
+      margin: 0.8rem;
     }
   }
 }
 
 .bottom {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  @include sm {
-    padding-top: 3rem;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  padding-top: 3rem;
+  font-size: 1.2rem;
 
   .credentials {
-    text-align: center;
-    background: $color-primary-gradient500;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 1.2rem;
-    padding: 2rem;
-    @include sm {
-      text-align: start;
-      padding: 0rem;
+    .bold {
+      font-size: 1.2rem;
+      font-family: $font-bold;
+      > a {
+        font-family: $font-bold;
+      }
+    }
+    .gradiant {
+      background: $color-primary-gradient500;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 
@@ -80,6 +75,10 @@
     .footerLink {
       color: $color-contrast;
       font-size: 1.2rem;
+      font-family: $font-bold;
+      &:hover {
+        color: $color-neutral100;
+      }
     }
 
     > * {
