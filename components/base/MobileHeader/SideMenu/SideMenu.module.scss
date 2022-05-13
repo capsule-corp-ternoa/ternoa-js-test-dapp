@@ -28,10 +28,17 @@
   justify-content: space-between;
 }
 
-.links {
+.links,
+.providers {
   > * {
     &:not(:first-child) {
       margin-top: 1.2rem;
     }
   }
+}
+
+.providers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

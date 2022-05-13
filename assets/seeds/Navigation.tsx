@@ -1,3 +1,6 @@
+import Metamask from 'assets/svg/Providers/Metamask'
+import WalletConnect from 'assets/svg/Providers/WalletConnect'
+
 export default function Navigation() {
   const navItems = [
     {
@@ -16,5 +19,22 @@ export default function Navigation() {
       title: 'Ternoa Bridge',
     },
   ]
-  return { navItems }
+
+  const web3Providers = [
+    {
+      color: 'dark',
+      icon: <Metamask />,
+      size: 'medium',
+      text: 'Metamask',
+      variant: 'rounded',
+    },
+    {
+      color: 'dark',
+      icon: <WalletConnect />,
+      size: 'medium',
+      text: 'Wallet Connect',
+      variant: 'rounded',
+    },
+  ]
+  return { navItems, web3Providers }
 }

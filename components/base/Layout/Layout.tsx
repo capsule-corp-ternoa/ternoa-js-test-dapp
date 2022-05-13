@@ -4,6 +4,7 @@ import Footer from '../Footer'
 import Header from '../Header'
 import MobileFooter from '../MobileFooter'
 import MobileHeader from '../MobileHeader'
+import TernoaIcon from 'assets/svg/Components/TernoaIcon'
 
 interface LayoutProps {
   children?: React.ReactNode
@@ -20,8 +21,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <meta name="description" content={`Ternoa Blockchain ${projectName} by Ternoa.`} />
       </Head>
       <header className="container">
-        <Header projectName={projectName} />
-        <MobileHeader projectName={projectName} />
+        <Header ternoaLogo={<TernoaIcon />} projectName={projectName} />
+        <MobileHeader ternoaLogo={<TernoaIcon />} projectName={projectName} />
       </header>
       {process.env.NEXT_PUBLIC_GA && process.env.NODE_ENV === 'production' && <Analytics />}
       {children}

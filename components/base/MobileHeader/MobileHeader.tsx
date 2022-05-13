@@ -1,24 +1,24 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import SideMenu from './SideMenu'
-import TernoaIcon from 'assets/svg/Components/TernoaIcon'
 import Hamburger from 'assets/svg/Components/Hamburger'
 import styles from './MobileHeader.module.scss'
 import Navigation from 'assets/seeds/Navigation'
 
 interface MobileHeaderProps {
   projectName: string
+  ternoaLogo: any
 }
 
-const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName }) => {
+const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo }) => {
   const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
-  const { navItems } = Navigation()
+  const { navItems, web3Providers } = Navigation()
   return (
     <>
       <nav className={`wrapper ${styles.nav}`}>
         <Link href="/">
-          <a className={styles.logo} title="Ternoa homepage">
-            <TernoaIcon />
+          <a className={styles.logo} title={`Ternoa ${projectName}`}>
+            {ternoaLogo}
             <div className={styles.logoTitle}>{projectName}</div>
           </a>
         </Link>
@@ -26,7 +26,15 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName }) => {
           <Hamburger className={styles.button} />
         </button>
       </nav>
-      <SideMenu projectName={projectName} isExpanded={isMenuExpanded} setIsExpanded={setIsMenuExpanded} links={navItems} />
+
+      <SideMenu
+        ternoaLogo={ternoaLogo}
+        projectName={projectName}
+        isExpanded={isMenuExpanded}
+        setIsExpanded={setIsMenuExpanded}
+        isWeb3Providers={web3Providers}
+        links={navItems}
+      />
     </>
   )
 }

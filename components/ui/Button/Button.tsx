@@ -16,6 +16,13 @@ interface AnchorButtonProps extends IButton {
   text?: string
   title?: string
 }
+interface ButtonProps extends IButton {
+  className?: string
+  disabled?: boolean
+  icon?: React.ReactNode
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  text?: string
+}
 
 export const AnchorButton = ({ className, color = 'primary500', href, size = 'medium', text, title, variant = 'rounded' }: AnchorButtonProps) => {
   if (href.charAt(0) === '/')
@@ -44,3 +51,17 @@ export const AnchorButton = ({ className, color = 'primary500', href, size = 'me
     </a>
   )
 }
+
+const Button = ({ className, color = 'primary500', disabled, icon, isLoading = false, onClick, size = 'medium', text, variant = 'rounded' }: ButtonProps) => (
+  <button
+    className={[`${styles.root}`, `${styles[color]}`, `${styles[size]}`, `${styles[variant]}`, `${isLoading ? styles.loading : ''}`, className].join(' ')}
+    disabled={disabled}
+    onClick={onClick}
+  >
+    {icon && <div className={styles.icon}>{icon}</div>}
+    {text && <>{text}</>}
+    {/* {isLoading ? <Loader className={styles.loader} size={size} /> : <>{text}</>} */}
+  </button>
+)
+
+export default Button
