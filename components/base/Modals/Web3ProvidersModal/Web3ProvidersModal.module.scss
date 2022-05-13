@@ -1,0 +1,26 @@
+@import '../../../../styles/_base.scss';
+
+.root {
+  width: 100%;
+}
+
+.title {
+  color: $color-contrast;
+  font-family: $font-bold;
+  font-size: 1.6rem;
+  margin: 0;
+  text-align: center;
+
+  @include lg {
+    font-size: 2.4rem;
+  }
+}
+
+.providers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  > * {
+    margin-top: 1.2rem;
+  }
+}

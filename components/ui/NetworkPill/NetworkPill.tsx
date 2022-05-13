@@ -22,6 +22,6 @@ const NetworkPill: React.FC = ({}) => {
     )
   }
 
-  return <Button iconUnsized={indicator()} color="network" size="small" text={network} variant="rounded" />
+  return <Button iconUnsized={indicator()} color="network" size="medium" text={network} variant="rounded" />
 }
 export default NetworkPill
