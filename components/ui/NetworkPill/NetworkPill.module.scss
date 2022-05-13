@@ -1,22 +1,6 @@
 @import '../../../styles/_base.scss';
 
-.networkPill {
-  display: flex;
-  align-items: center;
-  backdrop-filter: blur(4px);
-  border-radius: 5rem;
-  border: 2px solid #0d4bfe4d;
-  background: $color-secondary-gradient300;
-  padding: 0.8rem 2.4rem;
-  .networkEnv {
-    color: $color-contrast;
-    font-family: $font-bold;
-    font-size: 1.2rem;
-  }
-}
-
 .connectIndicator {
-  margin-right: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;

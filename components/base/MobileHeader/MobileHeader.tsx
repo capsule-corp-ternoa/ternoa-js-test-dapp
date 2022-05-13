@@ -3,21 +3,21 @@ import Link from 'next/link'
 import SideMenu from './SideMenu'
 import Hamburger from 'assets/svg/Components/Hamburger'
 import styles from './MobileHeader.module.scss'
-import Navigation from 'assets/seeds/Navigation'
 
 interface MobileHeaderProps {
   projectName: string
   ternoaLogo: any
+  links?: any[]
+  web3Providers?: any[]
 }
 
-const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo }) => {
+const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, links, web3Providers }) => {
   const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
-  const { navItems, web3Providers } = Navigation()
   return (
     <>
       <nav className={`wrapper ${styles.nav}`}>
         <Link href="/">
-          <a className={styles.logo} title={`Ternoa ${projectName}`}>
+          <a className={styles.logo} title={projectName}>
             {ternoaLogo}
             <div className={styles.logoTitle}>{projectName}</div>
           </a>
@@ -32,8 +32,8 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo }) 
         projectName={projectName}
         isExpanded={isMenuExpanded}
         setIsExpanded={setIsMenuExpanded}
-        isWeb3Providers={web3Providers}
-        links={navItems}
+        web3Providers={web3Providers}
+        links={links}
       />
     </>
   )

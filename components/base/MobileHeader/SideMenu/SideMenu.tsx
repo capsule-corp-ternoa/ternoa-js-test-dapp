@@ -13,17 +13,17 @@ interface Props {
   isExpanded: boolean
   setIsExpanded: ExpandedNominalSetState
   links?: any[]
-  isWeb3Providers?: any[]
+  web3Providers?: any[]
 }
 
-const SideMenu = ({ ternoaLogo, projectName, isWeb3Providers, isExpanded, setIsExpanded, links }: Props) => {
+const SideMenu = ({ ternoaLogo, projectName, web3Providers, isExpanded, setIsExpanded, links }: Props) => {
   return (
     <aside className={`container ${styles.root} ${isExpanded && styles.expanded}`}>
       <div className={styles.radialGradientBg}>
         <div>
           <div className={`wrapper ${mainStyles.nav}`}>
             <Link href="/">
-              <a className={mainStyles.logo} title={`Ternoa ${projectName}`}>
+              <a className={mainStyles.logo} title={projectName}>
                 {ternoaLogo}
                 <div className={mainStyles.logoTitle}>{projectName}</div>
               </a>
@@ -36,16 +36,16 @@ const SideMenu = ({ ternoaLogo, projectName, isWeb3Providers, isExpanded, setIsE
             <div className={`wrapper ${styles.links}`}>
               {links.map(
                 (
-                  item: { src: string; text: string | undefined; title: string | undefined } // besoin de typer ou pas ? Any
+                  item: { src: string; label: string | undefined } // besoin de typer ou pas ? Any
                 ) => (
-                  <AnchorButton color="dark" href={item.src} size="medium" variant="rectangle" text={item.text} title={item.title} key={item.title} />
+                  <AnchorButton color="dark" href={item.src} size="medium" variant="rectangle" text={item.label} title={item.label} key={item.label} />
                 )
               )}
             </div>
           )}
-          {isWeb3Providers && (
+          {web3Providers && (
             <div className={styles.providers}>
-              {isWeb3Providers.map((item) => (
+              {web3Providers.map((item) => (
                 <Button color={item.color} icon={item.icon} size={item.size} text={item.text} variant={item.variant} key={item.text} />
               ))}
             </div>
