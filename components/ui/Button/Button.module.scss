@@ -28,11 +28,15 @@
     }
     .iconUnsized {
       margin-right: 1.2rem;
+      margin-left: 0.6rem;
     }
 
     @include xl {
       font-size: 1.4rem;
       padding: 0.8rem 2.4rem;
+      .iconUnsized {
+        margin-left: 0;
+      }
     }
   }
 
@@ -48,6 +52,7 @@
     }
     .iconUnsized {
       margin-right: 1.2rem;
+      margin-left: 0.6rem;
     }
   }
 
@@ -78,6 +83,9 @@
     background: $color-invertedContrast;
     color: $color-contrast;
     border-color: $color-neutral500;
+    &:hover {
+      color: $color-secondary300;
+    }
   }
 
   &.primary100 {
