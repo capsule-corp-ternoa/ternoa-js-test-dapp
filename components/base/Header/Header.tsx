@@ -8,7 +8,7 @@ import styles from './Header.module.scss'
 
 interface HeaderProps {
   projectName: string
-  ternoaLogo: any
+  ternoaLogo: React.ReactNode
   children?: React.ReactElement<any, string | React.JSXElementConstructor<any>> & React.ReactNode
   isNetworkPill?: boolean
   links?: ILinks[]
@@ -48,11 +48,15 @@ const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, isNe
           {web3Providers && (
             <Button color="dark" size="small" text="Connect Wallet" variant="rounded" onClick={() => setIsWeb3ProvidersModalOpen(!isWeb3ProvidersModalOpen)} />
           )}
-          {isNetworkPill && <NetworkPill />}
+          {isNetworkPill && <NetworkPill href={'https://status.ternoa.network/'} />}
         </div>
       </nav>
       {web3Providers && isWeb3ProvidersModalOpen && (
-        <Web3ProvidersModal web3Providers={web3Providers} isOpen={isWeb3ProvidersModalOpen} isClickAwayCloseAllowed={true} isClosable={true} />
+        <Web3ProvidersModal
+          web3Providers={web3Providers}
+          isOpen={isWeb3ProvidersModalOpen}
+          closeModal={() => setIsWeb3ProvidersModalOpen(!isWeb3ProvidersModalOpen)}
+        />
       )}
     </>
   )

@@ -17,9 +17,9 @@
   }
 
   &.small {
-    border: 2px solid;
-    font-size: 1rem;
-    padding: 0.4rem 0.8rem;
+    border: 0.2rem solid;
+    font-size: 1.4rem;
+    padding: 0.6rem 1rem;
 
     .icon {
       width: 2.4rem;
@@ -32,7 +32,7 @@
     }
 
     @include xl {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       padding: 0.8rem 2.4rem;
       .iconUnsized {
         margin-left: 0;

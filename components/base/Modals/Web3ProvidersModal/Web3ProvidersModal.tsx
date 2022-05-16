@@ -1,17 +1,17 @@
+import { IWeb3Providers } from 'components/base/Header/interfaces'
 import Button from 'components/ui/Button/Button'
 import Modal from 'components/ui/Modal'
 import styles from './Web3providersModal.module.scss'
 
-export interface Web3Props {
-  web3Providers: any[]
+interface Web3Props {
   isOpen: boolean
-  isClickAwayCloseAllowed?: boolean
-  isClosable?: boolean
+  closeModal: () => void
+  web3Providers?: IWeb3Providers[]
 }
 
-const Web3ProvidersModal: React.FC<Web3Props> = ({ web3Providers, isOpen }) => {
+const Web3ProvidersModal: React.FC<Web3Props> = ({ web3Providers, isOpen, closeModal }) => {
   return (
-    <Modal isOpen={isOpen}>
+    <Modal handleClose={closeModal} isOpen={isOpen} isClickAwayCloseAllowed={true} isClosable={true}>
       <div className={styles.root}>
         <h4 className={styles.title}>Connect your wallet</h4>
         {web3Providers && (

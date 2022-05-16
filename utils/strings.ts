@@ -1,3 +1,3 @@
-export const toUpperCase = (word: any) => {
+export const toUpperCase = (word: string) => {
   return word.charAt(0).toUpperCase() + word.slice(1)
 }

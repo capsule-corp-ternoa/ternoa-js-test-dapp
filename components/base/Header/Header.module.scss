@@ -7,9 +7,6 @@
     align-items: center;
     justify-content: space-between;
   }
-  //   @include xl {
-  //     padding: 6.4rem 6.4rem 4rem !important;
-  //   }
 }
 
 .logo {
@@ -37,7 +34,7 @@
   .links {
     display: flex;
     > * {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-family: $font-regular;
       list-style: none;
       &:not(:first-child) {
@@ -49,7 +46,7 @@
           color: $color-secondary300;
         }
         @include xl {
-          font-size: 1.6rem;
+          font-size: 1.5rem;
         }
       }
     }
