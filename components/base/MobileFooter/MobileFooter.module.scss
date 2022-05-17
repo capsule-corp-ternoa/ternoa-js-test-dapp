@@ -1,4 +1,4 @@
-@import '../../../styles/_base.scss';
+@import 'styles/base.scss';
 
 .root {
   @include lg {
@@ -40,7 +40,7 @@
       font-family: $font-bold;
     }
   }
-  .gradiant {
+  .gradient {
     background: $color-primary-gradient500;
     background-clip: text;
     -webkit-background-clip: text;

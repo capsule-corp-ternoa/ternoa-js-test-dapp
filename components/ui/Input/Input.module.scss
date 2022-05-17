@@ -1,0 +1,107 @@
+@import 'styles/base.scss';
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+
+  .label {
+    color: $color-contrast;
+    font-family: $font-bold;
+    font-size: 1.6rem;
+  }
+
+  .insight {
+    color: $color-neutral100;
+    font-size: 1.2rem;
+    text-align: right;
+  }
+}
+
+.inputLabel {
+  position: relative;
+  display: flex;
+  margin-top: 1.2rem;
+}
+
+.input {
+  width: 100%;
+  border: solid 0.2rem transparent;
+  border-radius: 1.2rem;
+  background: $color-neutral500;
+  background-origin: border-box;
+  box-shadow: 0 10rem $color-invertedContrast inset;
+  color: $color-contrast;
+  font-size: 1.6rem;
+  outline: none;
+  padding: 1.6rem;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  @include xl {
+    padding: 2.4rem;
+  }
+
+  &:focus {
+    background: $color-primary-gradient500;
+    background-origin: border-box;
+  }
+
+  &::placeholder {
+    color: $color-neutral100;
+  }
+
+  &.error {
+    border-color: $color-danger500;
+  }
+
+  &.isEndComponent {
+    padding: 1.6rem 10rem 1.6rem 1.6rem;
+
+    @include xl {
+      padding: 2.4rem 10rem 2.4rem 2.4rem;
+    }
+  }
+}
+
+.gradient {
+  box-shadow: 0 10rem 1rem $color-invertedContrast inset;
+  border: solid 0.2rem transparent;
+  background: $color-primary-gradient500;
+  background-origin: border-box;
+  &:focus {
+    border-color: $color-primary500;
+  }
+}
+
+.endComponent {
+  position: absolute;
+  right: 1.6rem;
+  top: 1.6rem;
+
+  @include xl {
+    right: 2.4rem;
+    top: 2.4rem;
+  }
+}
+
+.adviseMessage {
+  color: $color-neutral100;
+  font-size: 1.2rem;
+  text-align: left;
+  margin-top: 0.8rem;
+}
+
+.errorMessage {
+  color: $color-danger500;
+  font-size: 1.2rem;
+  text-align: left;
+  margin-top: 0.8rem;
+}
