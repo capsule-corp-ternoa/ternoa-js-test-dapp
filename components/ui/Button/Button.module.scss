@@ -144,6 +144,22 @@
     color: $color-contrast;
     border: none;
   }
+
+  &.outlineGradient500 {
+    color: $color-contrast;
+    border: solid 0.2rem transparent;
+    background: $color-primary-gradient500;
+    background-origin: border-box;
+    box-shadow: 0 10rem 1rem $color-invertedContrast inset;
+    transition: 0s;
+    &:hover {
+      box-shadow: none;
+      background: $color-primary-gradient100;
+      background-origin: border-box;
+      border: solid 2px transparent;
+    }
+  }
+
   &.network {
     background: $color-secondary-gradient300;
     color: $color-contrast;

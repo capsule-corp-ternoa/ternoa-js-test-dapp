@@ -49,6 +49,9 @@
     padding: 2.4rem;
   }
 
+  &:hover {
+    background: $color-primary400;
+  }
   &:focus {
     background: $color-primary-gradient500;
     background-origin: border-box;
@@ -63,10 +66,10 @@
   }
 
   &.isEndComponent {
-    padding: 1.6rem 10rem 1.6rem 1.6rem;
+    padding: 1.6rem;
 
     @include xl {
-      padding: 2.4rem 10rem 2.4rem 2.4rem;
+      padding: 2.4rem;
     }
   }
 }
@@ -83,12 +86,11 @@
 
 .endComponent {
   position: absolute;
+  top: 50%;
   right: 1.6rem;
-  top: 1.6rem;
-
+  transform: translate(0%, -50%);
   @include xl {
     right: 2.4rem;
-    top: 2.4rem;
   }
 }
 
