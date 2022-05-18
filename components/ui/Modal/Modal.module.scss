@@ -14,7 +14,7 @@
 }
 
 .modalContainer {
-  width: 340px;
+  width: 340rem;
   border-radius: 2.4rem;
   background-color: $color-invertedContrast;
   display: flex;
@@ -24,7 +24,7 @@
   position: relative;
 
   @include lg {
-    width: 560px;
+    width: 56rem;
     padding: 4.8rem 4rem;
   }
 }

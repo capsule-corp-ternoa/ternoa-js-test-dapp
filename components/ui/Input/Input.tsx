@@ -48,7 +48,7 @@ const TextInput = ({
   }
 
   return (
-    <div className={`${styles.root} ${className}`}>
+    <div className={` ${className}`}>
       {label && (
         <div className={styles.top}>
           <span className={styles.label}>{label}</span>
@@ -64,7 +64,7 @@ const TextInput = ({
           pattern={type === 'number' ? '[0-9]+([.,][0-9]+)?' : undefined}
           placeholder={placeholder}
           onChange={onChange}
-          onWheel={numberInputOnWheelPreventChange}
+          onWheel={type === 'number' ? numberInputOnWheelPreventChange : undefined}
           name={name}
           value={value}
           onKeyDown={(evt) => {

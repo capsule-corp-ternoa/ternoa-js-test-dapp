@@ -41,7 +41,7 @@
   }
 
   &.medium {
-    border: 3px solid;
+    border: 0.3rem solid;
     font-size: 1.6rem;
     padding: 1.2rem 2rem;
 
@@ -156,7 +156,7 @@
       box-shadow: none;
       background: $color-primary-gradient100;
       background-origin: border-box;
-      border: solid 2px transparent;
+      border: solid 0.2rem transparent;
     }
   }
 

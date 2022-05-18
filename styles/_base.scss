@@ -41,12 +41,12 @@ $color-danger700: #b51b62;
 //Gradients
 $color-primary-gradient100: linear-gradient(
   90deg,
-  rgba(0, 79, 255, 0.3) 0%,
-  rgba(203, 6, 237, 0.3) 33.3%,
-  rgba(255, 0, 98, 0.3) 68.16%,
-  rgba(255, 133, 0, 0.3) 99.9%
+  rgba(255, 133, 0, 0.3) 0%,
+  rgba(255, 0, 98, 0.3) 33.3%,
+  rgba(203, 6, 237, 0.3) 68.16%,
+  rgba(0, 79, 255, 0.3) 99.9%
 );
-$color-primary-gradient500: linear-gradient(90deg, $color-primary500 0%, #cb06ed 33.3%, #ff0062 68.16%, #ff8500 99.9%);
+$color-primary-gradient500: linear-gradient(90deg, #ff8500 0%, #ff0062 33.3%, #cb06ed 68.16%, $color-primary500 99.9%);
 $color-secondary-gradient100: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
   linear-gradient(90deg, $color-primary500 0%, #7824f5 100%);
 $color-secondary-gradient300: linear-gradient(90deg, rgba(13, 75, 254, 0.3) 0%, rgba(120, 36, 245, 0.3) 100%);
