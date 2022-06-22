@@ -1,0 +1,102 @@
+@import 'styles/base.scss';
+
+.root {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $color-neutral100;
+  font-family: $font-light;
+  padding: 0;
+
+  &.small {
+    margin-right: 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  &.medium {
+    margin-right: 1.6rem;
+    font-size: 1.6rem;
+  }
+
+  &.neutral300 {
+    &:hover {
+      //   color: $color-primary500;
+      svg {
+        fill: $color-primary500;
+      }
+    }
+  }
+
+  &.primary500 {
+    &:hover {
+      color: $color-neutral100;
+      svg {
+        fill: $color-neutral100;
+      }
+    }
+  }
+}
+
+.checkMarkIcon,
+.copyPasteIcon {
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-left: 0.8rem;
+  fill: $color-neutral100;
+
+  &.small {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-left: 0.8rem;
+    top: 0.2rem;
+  }
+
+  &.medium {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-left: 1.2rem;
+    top: 0.2rem;
+  }
+
+  &.neutral300 {
+    fill: $color-primary300;
+
+    &:hover {
+      fill: $color-primary500;
+    }
+
+    &:active {
+      fill: $color-primary500;
+    }
+  }
+
+  &.primary500 {
+    fill: $color-primary500;
+
+    &:hover {
+      fill: #051d5b;
+    }
+
+    &:active {
+      fill: #051d5b;
+    }
+  }
+}
+
+.checkMarkIcon {
+  &.neutral300 {
+    fill: $color-success500 !important;
+  }
+
+  &.primary500 {
+    fill: $color-success500 !important;
+  }
+}
+
+.identIcon {
+  display: flex;
+  align-items: center;
+  margin-right: 0.8rem;
+}
