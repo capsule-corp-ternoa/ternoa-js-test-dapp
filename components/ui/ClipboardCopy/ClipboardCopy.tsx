@@ -58,7 +58,7 @@ const Clipboard = ({ content, className, color = 'neutral300', identIcon, placeh
       }}
     >
       {identIcon !== undefined && <div className={styles.identIcon}>{identIcon}</div>}
-      {placeholder ?? <small>{placeholder}</small>}
+      {placeholder ?? placeholder}
       <div>
         {isCopyIndicator ? (
           <CheckMark className={`${styles.checkMarkIcon} ${styles[color]} ${styles[size]}`} />

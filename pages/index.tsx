@@ -1,4 +1,4 @@
-import ClipboardCopy from 'components/ui/ClipboardCopy'
+import CodeSnippet from 'components/ui/CodeSnippet'
 import Input from 'components/ui/Input'
 import Loader from 'components/ui/Loader/Loader'
 import SearchBar from 'components/ui/SearchBar'
@@ -13,7 +13,9 @@ const Home: NextPage = () => {
       <div className="wrapper">
         <SearchBar placeholder={'Hello Ternoa'} />
       </div>
-      <ClipboardCopy content="hello" placeholder="Placeholder to copy" />
+      <div className="wrapper">
+        <CodeSnippet title="Javasciprt SDK" placeholder="copy" />
+      </div>
     </main>
   )
 }
