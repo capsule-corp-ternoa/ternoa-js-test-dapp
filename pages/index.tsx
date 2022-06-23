@@ -1,5 +1,6 @@
 import { burnNft, createNft, delegateNft, setRoyalty } from 'ternoa-js/nft'
 import { getKeyringFromSeed } from 'ternoa-js/account'
+import CodeSnippet from 'components/ui/CodeSnippet'
 import type { NextPage } from 'next'
 import { signTx, submitTx } from 'ternoa-js'
 
@@ -88,6 +89,9 @@ const Home: NextPage = () => {
         <button onClick={undelegateNFT} style={{ color: 'white' }}>
           undelegate NFT
         </button>
+      </div>
+      <div className="wrapper">
+        <CodeSnippet title="Javasciprt SDK" placeholder="copy" />
       </div>
     </main>
   )
