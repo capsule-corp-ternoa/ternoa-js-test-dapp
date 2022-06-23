@@ -1,6 +1,6 @@
-# 🦦 Ternoa Front Toolkit
+# 🦦 Ternoa JS Test Dapp
 
-The easiest and fastest way to setup a ternoa dApp.
+The easiest and fastest way to test Ternoa JS SDK.
 
 ## Getting Started
 
