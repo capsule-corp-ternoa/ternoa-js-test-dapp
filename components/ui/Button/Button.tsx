@@ -1,13 +1,15 @@
 import ArrowRight from 'assets/svg/Components/ArrowRight'
+import { Colors, Sizes, Variants } from 'components/ui/types'
 import Link from 'next/link'
+import Loader from '../Loader/Loader'
 
 import styles from './Button.module.scss'
 
 interface IButton {
-  color?: 'danger' | 'dark' | 'primary100' | 'primary500' | 'success' | 'gradient500' | 'gradient700' | 'network'
+  color?: Colors
   isLoading?: boolean
-  size?: 'small' | 'medium'
-  variant?: 'rounded' | 'rectangle'
+  size?: Sizes
+  variant?: Variants
 }
 
 interface AnchorButtonProps extends IButton {
@@ -29,10 +31,7 @@ export const AnchorButton = ({ className, color = 'primary500', href, size = 'me
   if (href.charAt(0) === '/')
     return (
       <Link href={href}>
-        <a
-          className={[`${styles.root}`, `${styles.rootAnchor}`, `${styles[color]}`, `${styles[size]}`, `${styles[variant]}`, className].join(' ')}
-          title={title}
-        >
+        <a className={`${styles.root} ${styles.rootAnchor} ${styles[color]} ${styles[size]} ${styles[variant]} ${className}`} title={title}>
           {text}
           <ArrowRight />
         </a>
@@ -41,7 +40,7 @@ export const AnchorButton = ({ className, color = 'primary500', href, size = 'me
 
   return (
     <a
-      className={[`${styles.root}`, `${styles.rootAnchor}`, `${styles[color]}`, `${styles[size]}`, `${styles[variant]}`, className].join(' ')}
+      className={`${styles.root} ${styles.rootAnchor} ${styles[color]} ${styles[size]} ${styles[variant]} ${className}`}
       href={href}
       title={title}
       target="_blank"
@@ -66,14 +65,13 @@ const Button = ({
   variant = 'rounded',
 }: ButtonProps) => (
   <button
-    className={[`${styles.root}`, `${styles[color]}`, `${styles[size]}`, `${styles[variant]}`, `${isLoading ? styles.loading : ''}`, className].join(' ')}
+    className={`${styles.root} ${styles[color]} ${styles[size]} ${styles[variant]} ${isLoading && styles.loading} ${className}`}
     disabled={disabled}
     onClick={onClick}
   >
     {icon && <div className={styles.icon}>{icon}</div>}
     {iconUnsized && <div className={styles.iconUnsized}>{iconUnsized}</div>}
-    {text && <>{text}</>}
-    {/* {isLoading ? <Loader className={styles.loader} size={size} /> : <>{text}</>} */}
+    {isLoading ? <Loader className={styles.loader} size={size} useLottie /> : <>{text && text}</>}
   </button>
 )
 

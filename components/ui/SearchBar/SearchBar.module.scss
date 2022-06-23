@@ -1,0 +1,56 @@
+@import 'styles/base.scss';
+
+.root {
+  position: relative;
+  display: flex;
+  @include lg {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+.input {
+  width: 100%;
+  border: solid 0.2rem transparent;
+  border-radius: 6.4rem;
+  background: $color-primary-gradient500;
+  background-origin: border-box;
+  box-shadow: 0 10rem 1rem $color-invertedContrast inset;
+  outline: none;
+  color: $color-contrast;
+  font-size: 1.4rem;
+  padding: 1.6rem;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  &::placeholder {
+    color: $color-neutral100;
+  }
+  &:focus {
+    border-color: $color-primary500;
+  }
+
+  @include xl {
+    padding: 2.4rem;
+  }
+}
+
+.searchButton {
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  right: 0.4rem;
+  transform: translate(0%, -50%);
+  color: $color-contrast;
+  font-family: $font-bold;
+  font-size: 1.6rem;
+  background-color: $color-primary500;
+  border-radius: 6.4rem;
+  height: 85%;
+  padding: 0 3.5rem;
+  @include lg {
+    font-size: 1.6rem;
+    padding: 0 5rem;
+  }
+  @include xl {
+    padding: 0 6rem;
+    right: 0.5rem;
+  }
+}

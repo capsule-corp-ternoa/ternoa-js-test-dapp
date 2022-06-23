@@ -34,7 +34,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({ projectName, isTopBorder, i
             </div>
           )}
           <div className={styles.credentials}>
-            <span className={`${styles.bold} ${isCredentialCustom && styles.gradiant}`}>
+            <span className={`${styles.bold} ${isCredentialCustom && styles.gradient}`}>
               {`© ${new Date().getFullYear()} `}
               <a href="https://www.ternoa.com/" target="_blank" rel="noreferrer noopener">
                 {' '}

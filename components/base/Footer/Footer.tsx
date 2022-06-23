@@ -45,7 +45,7 @@ const Footer: React.FC<FooterProps> = ({ projectName, isSocials, isCredentialCus
 
         <div className={styles.bottom}>
           <div className={styles.credentials}>
-            <span className={`${styles.bold} ${isCredentialCustom && styles.gradiant}`}>
+            <span className={`${styles.bold} ${isCredentialCustom && styles.gradient}`}>
               {`© ${new Date().getFullYear()} ${projectName}. Developed and designed by `}
               <a href="https://www.ternoa.com/" target="_blank" rel="noreferrer noopener">
                 Ternoa

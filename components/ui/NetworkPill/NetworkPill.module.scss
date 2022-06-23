@@ -1,4 +1,4 @@
-@import '../../../styles/_base.scss';
+@import 'styles/base.scss';
 
 .connectIndicator {
   display: flex;
@@ -43,4 +43,8 @@
   .Testnet {
     background: #ff8500 !important;
   }
+}
+
+.pill {
+  cursor: default !important;
 }

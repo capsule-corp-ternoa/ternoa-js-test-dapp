@@ -1,4 +1,4 @@
-@import './base.scss';
+@import 'styles/base.scss';
 
 *,
 *::before,
@@ -21,8 +21,8 @@ body {
   margin: 0;
   background: $color-invertedContrast;
   color: $color-contrast;
-  min-height: 100vh;
-  height: 100%;
+  // min-height: 100vh;
+  // height: 100%;
   -webkit-font-smoothing: antialiased;
 }
 

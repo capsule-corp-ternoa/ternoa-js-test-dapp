@@ -2,18 +2,18 @@ import Metamask from 'assets/svg/Providers/Metamask'
 import WalletConnect from 'assets/svg/Providers/WalletConnect'
 
 export default function HeaderNavigation() {
-  const projectName = 'ternoa Toolkit'
+  const projectName = 'ternoa toolkit'
   const navItems = [
     {
-      src: 'https://www.ternoa.com',
+      href: 'https://www.ternoa.com',
       label: 'Ternoa.com',
     },
     {
-      src: 'https://explorer.ternoa.com/',
+      href: 'https://explorer.ternoa.com/',
       label: 'Ternoa Explorer',
     },
     {
-      src: 'https://bridge.ternoa.network/',
+      href: 'https://bridge.ternoa.network/',
       label: 'Ternoa Bridge',
     },
   ]

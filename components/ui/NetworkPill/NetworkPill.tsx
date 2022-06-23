@@ -2,7 +2,11 @@ import { toUpperCase } from 'utils/strings'
 import Button from '../Button/Button'
 import styles from './NetworkPill.module.scss'
 
-const NetworkPill: React.FC = ({}) => {
+interface NetworkProps {
+  href?: string
+}
+
+const NetworkPill: React.FC<NetworkProps> = ({ href }) => {
   const network = process.env.NEXT_PUBLIC_TERNOA_WSS_CHAIN_ENDPOINT
     ? process.env.NEXT_PUBLIC_TERNOA_WSS_CHAIN_ENDPOINT.includes('alphanet')
       ? 'Alphanet'
@@ -22,6 +26,12 @@ const NetworkPill: React.FC = ({}) => {
     )
   }
 
-  return <Button iconUnsized={indicator()} color="network" size="small" text={network} variant="rounded" />
+  return href ? (
+    <a href={`${href}`} title={`Explore Ternoa ${network}`} target="_blank" rel="noopener noreferrer">
+      <Button iconUnsized={indicator()} color="network" size="small" text={network} variant="rounded" />
+    </a>
+  ) : (
+    <Button className={styles.pill} iconUnsized={indicator()} color="network" size="small" text={network} variant="rounded" />
+  )
 }
 export default NetworkPill

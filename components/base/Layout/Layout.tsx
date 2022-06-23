@@ -3,9 +3,9 @@ import Analytics from '../Analytics'
 import Footer from '../Footer'
 import Header from '../Header'
 import MobileFooter from '../MobileFooter'
-import MobileHeader from '../MobileHeader'
+import MobileHeader from '../Header/MobileHeader'
 import TernoaIcon from 'assets/svg/Components/TernoaIcon'
-import HeaderNavigation from 'components/base/Seeds/Header'
+import HeaderNavigation from 'utils/_mocks/Header'
 
 interface LayoutProps {
   children?: React.ReactNode

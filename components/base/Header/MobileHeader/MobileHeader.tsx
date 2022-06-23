@@ -3,12 +3,13 @@ import Link from 'next/link'
 import SideMenu from './SideMenu'
 import Hamburger from 'assets/svg/Components/Hamburger'
 import styles from './MobileHeader.module.scss'
+import { ILinks, IWeb3Providers } from '../interfaces'
 
 interface MobileHeaderProps {
   projectName: string
-  ternoaLogo: any
-  links?: any[]
-  web3Providers?: any[]
+  ternoaLogo: React.ReactNode
+  links?: ILinks[]
+  web3Providers?: IWeb3Providers[]
 }
 
 const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, links, web3Providers }) => {
