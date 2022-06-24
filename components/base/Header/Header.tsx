@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useAppSelector } from 'redux/hooks'
-import { getApiEndpoint } from 'ternoa-js'
 import dynamic from 'next/dynamic'
 const Identicon = dynamic(() => import('@polkadot/react-identicon'), { ssr: false })
 
