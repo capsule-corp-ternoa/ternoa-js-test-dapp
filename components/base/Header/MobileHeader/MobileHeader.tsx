@@ -3,16 +3,15 @@ import Link from 'next/link'
 import SideMenu from './SideMenu'
 import Hamburger from 'assets/svg/Components/Hamburger'
 import styles from './MobileHeader.module.scss'
-import { ILinks, IWeb3Providers } from '../interfaces'
+import { ILinks } from '../interfaces'
 
 interface MobileHeaderProps {
   projectName: string
   ternoaLogo: React.ReactNode
   links?: ILinks[]
-  web3Providers?: IWeb3Providers[]
 }
 
-const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, links, web3Providers }) => {
+const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, links }) => {
   const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
   return (
     <>
@@ -28,14 +27,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, li
         </button>
       </nav>
 
-      <SideMenu
-        ternoaLogo={ternoaLogo}
-        projectName={projectName}
-        isExpanded={isMenuExpanded}
-        setIsExpanded={setIsMenuExpanded}
-        web3Providers={web3Providers}
-        links={links}
-      />
+      <SideMenu ternoaLogo={ternoaLogo} projectName={projectName} isExpanded={isMenuExpanded} setIsExpanded={setIsMenuExpanded} links={links} />
     </>
   )
 }

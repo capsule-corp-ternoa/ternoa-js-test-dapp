@@ -12,7 +12,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const { projectName, navItems, web3Providers } = HeaderNavigation()
+  const { projectName, navItems } = HeaderNavigation()
   return (
     <>
       <Head>
@@ -22,8 +22,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <meta name="description" content={`${projectName} by Ternoa Blockchain.`} />
       </Head>
       <header className="container">
-        <Header ternoaLogo={<TernoaIcon />} projectName={projectName} isNetworkPill={true} links={navItems} web3Providers={web3Providers} />
-        <MobileHeader ternoaLogo={<TernoaIcon />} projectName={projectName} links={navItems} web3Providers={web3Providers} />
+        <Header ternoaLogo={<TernoaIcon />} projectName={projectName} isNetworkPill={true} links={navItems} />
+        <MobileHeader ternoaLogo={<TernoaIcon />} projectName={projectName} links={navItems} />
       </header>
       {process.env.NEXT_PUBLIC_GA && process.env.NODE_ENV === 'production' && <Analytics />}
       {children}

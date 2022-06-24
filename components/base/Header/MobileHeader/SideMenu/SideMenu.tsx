@@ -4,9 +4,12 @@ import styles from './SideMenu.module.scss'
 import Close from 'assets/svg/Components/Close'
 import MobileFooter from 'components/base/MobileFooter'
 import Button, { AnchorButton } from 'components/ui/Button/Button'
-import { ILinks, IWeb3Providers } from '../../interfaces'
+import { ILinks } from '../../interfaces'
 import { useState } from 'react'
-import Web3ProvidersModal from 'components/base/Modals/Web3ProvidersModal'
+import Polkadot from 'assets/svg/Providers/Polkadot'
+import PolkadotModal from 'components/base/Modals/PolkadotModal'
+import { useAppSelector } from 'redux/hooks'
+import { middleEllipsis } from 'utils/strings'
 
 type ExpandedNominalSetState = React.Dispatch<React.SetStateAction<boolean>>
 
@@ -16,11 +19,11 @@ interface Props {
   isExpanded: boolean
   setIsExpanded: ExpandedNominalSetState
   links?: ILinks[]
-  web3Providers?: IWeb3Providers[]
 }
 
-const SideMenu = ({ ternoaLogo, projectName, web3Providers, isExpanded, setIsExpanded, links }: Props) => {
-  const [isWeb3ProvidersModalOpen, setIsWeb3ProvidersModalOpen] = useState<boolean>(false)
+const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }: Props) => {
+  const [isPolkadotModalOpen, setIsPolkadotModalOpen] = useState<boolean>(false)
+  const { user } = useAppSelector((state) => state.user)
   return (
     <aside className={`container ${styles.root} ${isExpanded && styles.expanded}`}>
       <div className={styles.radialGradientBg}>
@@ -43,29 +46,31 @@ const SideMenu = ({ ternoaLogo, projectName, web3Providers, isExpanded, setIsExp
               ))}
             </div>
           )}
-          {web3Providers && (
-            <div className={styles.providers}>
-              {web3Providers && (
-                <Button
-                  color="dark"
-                  size="medium"
-                  text="Connect Wallet"
-                  variant="rounded"
-                  onClick={() => setIsWeb3ProvidersModalOpen(!isWeb3ProvidersModalOpen)}
-                />
-              )}
-            </div>
-          )}
+          <div className={styles.provider}>
+            {user && user.polkadotWallet ? (
+              <Button
+                color="dark"
+                icon={<Polkadot />}
+                size="small"
+                text={user.polkadotWallet && middleEllipsis(user.polkadotWallet?.address)}
+                variant="rounded"
+                onClick={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)}
+              />
+            ) : (
+              <Button
+                color="dark"
+                icon={<Polkadot />}
+                size="small"
+                text="Connect"
+                variant="rounded"
+                onClick={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)}
+              />
+            )}
+          </div>
         </div>
         <MobileFooter projectName={projectName} isTopBorder={true} isSocials={true} />
       </div>
-      {web3Providers && isWeb3ProvidersModalOpen && (
-        <Web3ProvidersModal
-          web3Providers={web3Providers}
-          isOpen={isWeb3ProvidersModalOpen}
-          closeModal={() => setIsWeb3ProvidersModalOpen(!isWeb3ProvidersModalOpen)}
-        />
-      )}
+      {isPolkadotModalOpen && <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />}
     </aside>
   )
 }

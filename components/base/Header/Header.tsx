@@ -2,9 +2,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import NetworkPill from 'components/ui/NetworkPill'
 import Button from 'components/ui/Button/Button'
-import Web3ProvidersModal from '../Modals/Web3ProvidersModal'
-import { ILinks, IWeb3Providers } from './interfaces'
+import PolkadotModal from '../Modals/PolkadotModal'
+import { ILinks } from './interfaces'
 import styles from './Header.module.scss'
+import Polkadot from 'assets/svg/Providers/Polkadot'
+import { useAppSelector } from 'redux/hooks'
+import { middleEllipsis } from 'utils/strings'
 
 interface HeaderProps {
   projectName: string
@@ -12,11 +15,12 @@ interface HeaderProps {
   children?: React.ReactElement<any, string | React.JSXElementConstructor<any>> & React.ReactNode
   isNetworkPill?: boolean
   links?: ILinks[]
-  web3Providers?: IWeb3Providers[]
 }
 
-const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, isNetworkPill, links, web3Providers }) => {
-  const [isWeb3ProvidersModalOpen, setIsWeb3ProvidersModalOpen] = useState<boolean>(false)
+const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, isNetworkPill, links }) => {
+  const [isPolkadotModalOpen, setIsPolkadotModalOpen] = useState<boolean>(false)
+  const { user } = useAppSelector((state) => state.user)
+
   return (
     <>
       <nav className={`wrapper ${styles.nav}`}>
@@ -45,19 +49,29 @@ const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, isNe
               ))}
             </ul>
           )}
-          {web3Providers && (
-            <Button color="dark" size="small" text="Connect Wallet" variant="rounded" onClick={() => setIsWeb3ProvidersModalOpen(!isWeb3ProvidersModalOpen)} />
+          {user && user.polkadotWallet ? (
+            <Button
+              color="dark"
+              icon={<Polkadot />}
+              size="small"
+              text={user.polkadotWallet && middleEllipsis(user.polkadotWallet?.address)}
+              variant="rounded"
+              onClick={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)}
+            />
+          ) : (
+            <Button
+              color="dark"
+              icon={<Polkadot />}
+              size="small"
+              text="Connect"
+              variant="rounded"
+              onClick={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)}
+            />
           )}
           {isNetworkPill && <NetworkPill href={'https://status.ternoa.network/'} />}
         </div>
       </nav>
-      {web3Providers && isWeb3ProvidersModalOpen && (
-        <Web3ProvidersModal
-          web3Providers={web3Providers}
-          isOpen={isWeb3ProvidersModalOpen}
-          closeModal={() => setIsWeb3ProvidersModalOpen(!isWeb3ProvidersModalOpen)}
-        />
-      )}
+      {isPolkadotModalOpen && <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />}
     </>
   )
 }

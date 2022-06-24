@@ -1,1 +1,1 @@
-export { default } from './web3ProvidersModal'
+export { default } from './Web3ProvidersModal'

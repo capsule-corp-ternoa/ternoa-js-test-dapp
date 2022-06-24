@@ -1,0 +1,121 @@
+@import 'styles/base.scss';
+
+.root {
+  width: 100%;
+}
+
+.title {
+  color: $color-contrast;
+  font-family: $font-bold;
+  font-size: 1.6rem;
+  margin: 0;
+  text-align: center;
+
+  @include lg {
+    font-size: 2.4rem;
+  }
+}
+
+.errorWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.8rem;
+  .errorMessage {
+    color: $color-contrast;
+    font-family: $font-bold;
+    font-size: 1.6rem;
+    margin-top: 3.2rem;
+    text-align: center;
+    white-space: pre-line;
+  }
+}
+
+.accounts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3.2rem;
+  max-height: 32rem;
+  overflow-y: auto;
+  padding-right: 1.6rem;
+  scrollbar-color: $color-primary300 $color-neutral100;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 1.2rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color-neutral100;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-primary400;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $color-primary300;
+  }
+
+  > * {
+    &:not(&:first-child) {
+      margin-top: 1.6rem;
+    }
+  }
+
+  .account {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: rgba(12, 12, 24, 1);
+    color: $color-contrast;
+    cursor: pointer;
+    border-radius: 1.2rem;
+    padding: 1.2rem 2rem;
+    border: solid 2px transparent;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), linear-gradient(101deg, #004fff4d, #cb06ed4d, #ff00624d, #ff85004d);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 2px 1000px 1px $color-neutral900 inset;
+
+    &:hover {
+      background-image: linear-gradient(rgba(255, 255, 255), rgba(255, 255, 255)), linear-gradient(101deg, #004fff, #cb06ed, #ff0062, #ff8500);
+    }
+
+    .accountIdentIcon {
+      background: $color-contrast;
+      border-radius: 50%;
+
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .accountData {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-left: 1.6rem;
+      text-align: left;
+
+      .accountName {
+        font-family: $font-bold;
+        font-size: 1.6rem;
+      }
+
+      .accountAddress {
+        font-size: 1.6rem;
+      }
+
+      > * {
+        &:not(&:first-child) {
+          margin-top: 0.8rem;
+        }
+      }
+    }
+  }
+}
