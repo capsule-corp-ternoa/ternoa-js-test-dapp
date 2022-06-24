@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "@polkadot/extension-dapp": "^0.44.1",
+    "@polkadot/react-identicon": "^2.6.1",
+    "bn.js": "^5.2.1",
     "highlight.js": "^11.5.1",
     "lottie-web": "^5.9.4",
     "next": "12.1.6",

@@ -1,15 +1,19 @@
+import { useState } from 'react'
 import Link from 'next/link'
-import mainStyles from '../MobileHeader.module.scss'
-import styles from './SideMenu.module.scss'
+import { useAppSelector } from 'redux/hooks'
+import dynamic from 'next/dynamic'
+const Identicon = dynamic(() => import('@polkadot/react-identicon'), { ssr: false })
+
+import { ILinks } from '../../interfaces'
+import { middleEllipsis } from 'utils/strings'
+import PolkadotModal from 'components/base/Modals/PolkadotModal'
 import Close from 'assets/svg/Components/Close'
 import MobileFooter from 'components/base/MobileFooter'
 import Button, { AnchorButton } from 'components/ui/Button/Button'
-import { ILinks } from '../../interfaces'
-import { useState } from 'react'
+
 import Polkadot from 'assets/svg/Providers/Polkadot'
-import PolkadotModal from 'components/base/Modals/PolkadotModal'
-import { useAppSelector } from 'redux/hooks'
-import { middleEllipsis } from 'utils/strings'
+import mainStyles from '../MobileHeader.module.scss'
+import styles from './SideMenu.module.scss'
 
 type ExpandedNominalSetState = React.Dispatch<React.SetStateAction<boolean>>
 
@@ -50,7 +54,7 @@ const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }:
             {user && user.polkadotWallet ? (
               <Button
                 color="dark"
-                icon={<Polkadot />}
+                icon={user.polkadotWallet && <Identicon value={user.polkadotWallet?.address} size={24} theme="polkadot" />}
                 size="small"
                 text={user.polkadotWallet && middleEllipsis(user.polkadotWallet?.address)}
                 variant="rounded"

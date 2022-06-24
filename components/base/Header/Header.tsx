@@ -1,25 +1,42 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useAppSelector } from 'redux/hooks'
+import { getApiEndpoint } from 'ternoa-js'
+import dynamic from 'next/dynamic'
+const Identicon = dynamic(() => import('@polkadot/react-identicon'), { ssr: false })
+
+import { ILinks } from './interfaces'
+import { middleEllipsis } from 'utils/strings'
+import PolkadotModal from '../Modals/PolkadotModal'
 import NetworkPill from 'components/ui/NetworkPill'
 import Button from 'components/ui/Button/Button'
-import PolkadotModal from '../Modals/PolkadotModal'
-import { ILinks } from './interfaces'
-import styles from './Header.module.scss'
+
 import Polkadot from 'assets/svg/Providers/Polkadot'
-import { useAppSelector } from 'redux/hooks'
-import { middleEllipsis } from 'utils/strings'
+import styles from './Header.module.scss'
 
 interface HeaderProps {
   projectName: string
   ternoaLogo: React.ReactNode
   children?: React.ReactElement<any, string | React.JSXElementConstructor<any>> & React.ReactNode
-  isNetworkPill?: boolean
   links?: ILinks[]
 }
 
-const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, isNetworkPill, links }) => {
+const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, links }) => {
   const [isPolkadotModalOpen, setIsPolkadotModalOpen] = useState<boolean>(false)
+  const [wssEndpoint, setWssEndpoint] = useState<string>('')
   const { user } = useAppSelector((state) => state.user)
+
+  const getEndpoint = async () => {
+    try {
+      const endpoint = await getApiEndpoint()
+      setWssEndpoint(endpoint)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    getEndpoint()
+  }, [])
 
   return (
     <>
@@ -52,7 +69,7 @@ const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, isNe
           {user && user.polkadotWallet ? (
             <Button
               color="dark"
-              icon={<Polkadot />}
+              icon={user.polkadotWallet && <Identicon value={user.polkadotWallet?.address} size={24} theme="polkadot" />}
               size="small"
               text={user.polkadotWallet && middleEllipsis(user.polkadotWallet?.address)}
               variant="rounded"
@@ -68,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, isNe
               onClick={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)}
             />
           )}
-          {isNetworkPill && <NetworkPill href={'https://status.ternoa.network/'} />}
+          {wssEndpoint && <NetworkPill wss={wssEndpoint} href={'https://status.ternoa.network/'} />}
         </div>
       </nav>
       {isPolkadotModalOpen && <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />}

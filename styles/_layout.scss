@@ -21,8 +21,8 @@ body {
   margin: 0;
   background: $color-invertedContrast;
   color: $color-contrast;
-  // min-height: 100vh;
-  // height: 100%;
+  min-height: 100vh;
+  height: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -70,10 +70,6 @@ button {
   margin: 0 auto;
   padding: 2.4rem 1.6rem;
 
-  &:first-child {
-    padding-top: 4rem;
-  }
-
   &:last-child {
     padding-bottom: 4.8rem;
   }
@@ -83,23 +79,15 @@ button {
   }
 
   @include lg {
-    padding: 3.2rem 4rem;
+    padding: 2.4rem 4rem;
 
     &:last-child {
-      padding-bottom: 6.4rem;
+      padding-bottom: 4.8rem;
     }
   }
 
   @include xl {
-    padding: 3.2rem 6.4rem;
-
-    &:first-child {
-      padding-top: 5.6rem;
-    }
-
-    &:last-child {
-      padding-bottom: 9.6rem;
-    }
+    padding: 2.4rem 6.4rem;
   }
 
   @include xxl {

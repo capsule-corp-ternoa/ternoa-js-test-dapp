@@ -1,7 +1,7 @@
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 import { AnyAction } from 'redux'
 import { actions } from 'redux/user/actions'
-import { formatBalance, getBalances } from 'ternoa-js'
+import { getBalances } from 'ternoa-js'
 
 export const getAccounts = async () => {
   const { web3Accounts, web3Enable } = await import('@polkadot/extension-dapp')
@@ -17,10 +17,12 @@ export const getAccounts = async () => {
 export const connect = async (account: InjectedAccountWithMeta, dispatch: (action: AnyAction) => void) => {
   const { web3FromSource } = await import('@polkadot/extension-dapp')
   const injector = await web3FromSource(account.meta.source)
+  const balances = await getBalances(account.address)
+  const { free } = balances
   const data = {
     address: account.address,
     injector,
-    capsBalance: +(await formatBalance((await getBalances(account.address)).free, false)),
+    capsBalance: free, // verify if free include bonded token
   }
   dispatch(actions.loginPolkadot(data))
 }

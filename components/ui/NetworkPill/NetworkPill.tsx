@@ -1,21 +1,13 @@
-import { toUpperCase } from 'utils/strings'
 import Button from '../Button/Button'
 import styles from './NetworkPill.module.scss'
 
 interface NetworkProps {
+  wss?: string
   href?: string
 }
 
-const NetworkPill: React.FC<NetworkProps> = ({ href }) => {
-  const network = process.env.NEXT_PUBLIC_TERNOA_WSS_CHAIN_ENDPOINT
-    ? process.env.NEXT_PUBLIC_TERNOA_WSS_CHAIN_ENDPOINT.includes('alphanet')
-      ? 'Alphanet'
-      : process.env.NEXT_PUBLIC_TERNOA_WSS_CHAIN_ENDPOINT.includes('testnet')
-      ? 'Testnet'
-      : 'Mainnet'
-    : process.env.NEXT_PUBLIC_ENV
-    ? toUpperCase(process.env.NEXT_PUBLIC_ENV)
-    : 'Mainnet'
+const NetworkPill: React.FC<NetworkProps> = ({ wss, href }) => {
+  const network = wss && wss.includes('alphanet') ? 'Alphanet' : wss && wss.includes('dev') ? 'dev-0' : 'Mainnet'
 
   const indicator = () => {
     return (
