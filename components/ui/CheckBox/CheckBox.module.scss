@@ -1,0 +1,62 @@
+@import 'styles/base.scss';
+
+.root {
+  display: flex;
+  align-items: center;
+  color: $color-contrast;
+  cursor: pointer;
+  gap: 0.8rem;
+  font-family: $font-bold;
+  font-size: 1.2rem;
+
+  @include lg {
+    font-size: 1.6rem;
+  }
+}
+
+.input {
+  width: 1.6rem;
+  height: 1.6rem;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 0.2rem solid $color-primary500;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  display: grid;
+  margin: 0;
+  place-content: center;
+
+  &::before {
+    content: '';
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.2rem;
+    background: $color-primary500;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1.2rem 1.2rem var(--form-control-color);
+  }
+
+  &:checked::before {
+    transform: scale(1);
+  }
+
+  @include lg {
+    width: 2.4rem;
+    height: 2.4rem;
+
+    &::before {
+      content: '';
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+}
+
+.errorMessage {
+  color: $color-danger500;
+  font-size: 1.2rem;
+  text-align: left;
+  margin-top: 0.8rem;
+}

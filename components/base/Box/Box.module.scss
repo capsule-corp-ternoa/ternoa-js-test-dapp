@@ -1,0 +1,59 @@
+@import 'styles/base.scss';
+
+.outterContainer {
+  background: linear-gradient(90deg, rgba(11, 75, 254, 0.1) 0%, rgba(184, 13, 239, 0.1) 99.9%);
+  backdrop-filter: blur(4px);
+  border-radius: 1.6rem;
+  padding: 1.6rem;
+}
+
+.mainContainer {
+  background: $color-invertedContrast;
+  border-radius: 1.6rem;
+  padding: 2.4rem 1.6rem;
+
+  @include lg {
+    padding: 3.2rem 4rem;
+  }
+}
+
+.title {
+  color: $color-contrast;
+  font-family: $font-bold;
+  font-size: 1.6rem;
+
+  @include xl {
+    font-size: 2rem;
+  }
+}
+
+.summary {
+  color: $color-contrast;
+  font-size: 1.2rem;
+
+  @include xl {
+    font-size: 1.6rem;
+  }
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6.4rem;
+}
+
+.formContainer {
+  flex: 1 1 50%;
+
+  form {
+    > * {
+      &:not(:first-child) {
+        margin-top: 3.2rem;
+      }
+    }
+  }
+}
+
+.codeSnippet {
+  margin-left: 8rem;
+}

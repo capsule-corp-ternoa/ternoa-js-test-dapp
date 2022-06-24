@@ -25,6 +25,7 @@ interface ButtonProps extends IButton {
   iconUnsized?: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   text?: string
+  type?: 'submit' | 'button'
 }
 
 export const AnchorButton = ({ className, color = 'primary500', href, size = 'medium', text, title, variant = 'rounded' }: AnchorButtonProps) => {
@@ -62,12 +63,14 @@ const Button = ({
   onClick,
   size = 'medium',
   text,
+  type,
   variant = 'rounded',
 }: ButtonProps) => (
   <button
     className={`${styles.root} ${styles[color]} ${styles[size]} ${styles[variant]} ${isLoading && styles.loading} ${className}`}
     disabled={disabled}
     onClick={onClick}
+    type={type}
   >
     {icon && <div className={styles.icon}>{icon}</div>}
     {iconUnsized && <div className={styles.iconUnsized}>{iconUnsized}</div>}
