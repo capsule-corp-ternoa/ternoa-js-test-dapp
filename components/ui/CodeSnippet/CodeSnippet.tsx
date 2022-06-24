@@ -3,43 +3,36 @@ import hljs from 'highlight.js'
 import javascript from 'highlight.js/lib/languages/javascript'
 hljs.registerLanguage('javascript', javascript)
 import 'highlight.js/styles/night-owl.css'
+
+import LinkArrow from 'assets/svg/Components/LinkArrow'
 import ClipboardCopy from 'components/ui/ClipboardCopy'
 
 import styles from './CodeSnippet.module.scss'
 
 interface ICodeSnippetProps {
+  link?: string
+  snippet: string
   title: string
-  placeholder: string
 }
-export default function CodeSnippet({ title, placeholder }: ICodeSnippetProps) {
+export default function CodeSnippet({ link, snippet, title }: ICodeSnippetProps) {
   useEffect(() => {
     hljs.highlightAll()
     hljs.configure({ ignoreUnescapedHTML: true })
   }, [])
 
-  const snippet = `
-  import { createNft } from "ternoa-js/nft";
-  import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
-  const createMyFirstNFT = async () => {
-      try {
-          const account = await generateSeed()
-          const keyring = await getKeyringFromSeed(account.seed)
-          const address = keyring.address
-          await createNft(address, "My first NFT", 10, null, false, keyring)
-      } catch(e) {
-          console.log(e)
-      }
-  }
-  `
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <a href="https://ternoa-js.ternoa.dev/" className={styles.title} target="_blank" rel="noreferrer noopener">
-          {title}
-        </a>
+        {link ? (
+          <a href={link} className={styles.title} target="_blank" rel="noreferrer noopener">
+            {title}
+            <LinkArrow className={styles.linkArrow} />
+          </a>
+        ) : (
+          title
+        )}
         <div className={styles.clipboard}>
-          <ClipboardCopy content={snippet} placeholder={placeholder} />
+          <ClipboardCopy content={snippet} placeholder="copy" />
         </div>
       </div>
       <pre className={styles.snippet}>

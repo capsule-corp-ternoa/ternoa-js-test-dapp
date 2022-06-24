@@ -19,6 +19,27 @@
       display: flex;
       align-items: center;
     }
+
+    .title {
+      position: relative;
+      .linkArrow {
+        margin-left: 1.2rem;
+        position: relative;
+        top: 0.3rem;
+
+        path {
+          fill: $color-neutral100;
+        }
+      }
+
+      &:hover {
+        color: $color-primary500;
+
+        path {
+          fill: $color-primary500;
+        }
+      }
+    }
   }
   .snippet {
     border-radius: 2rem;

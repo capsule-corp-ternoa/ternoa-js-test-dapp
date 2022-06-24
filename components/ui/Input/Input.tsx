@@ -1,6 +1,8 @@
+import { Path, UseFormRegister } from 'react-hook-form'
+
 import styles from './Input.module.scss'
 
-interface Props {
+interface Props<T> {
   label?: string | React.ReactNode
   insight?: string
   className?: string
@@ -9,16 +11,22 @@ interface Props {
   endComponent?: React.ReactNode
   error?: string
   isError?: boolean
-  name?: string
+  max?: string | number
+  min?: string | number
+  maxLength?: number
+  minLength?: number
+  name: Path<T>
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   placeholder?: string
+  register: UseFormRegister<T>
+  required?: boolean
   startIcon?: string
   type?: React.HTMLInputTypeAttribute
   value?: string | number | readonly string[]
   advise?: string
 }
 
-const TextInput = ({
+function TextInput<T>({
   advise,
   className,
   isGradient = false,
@@ -28,12 +36,17 @@ const TextInput = ({
   insight,
   isError,
   label,
+  max,
+  min,
+  maxLength,
+  minLength,
   name,
-  onChange,
   placeholder,
+  register,
+  required = false,
   type = 'text',
   value,
-}: Props) => {
+}: Props<T>) {
   const numberInputOnWheelPreventChange = (e: any) => {
     // Prevent the input value change
     e.target.blur()
@@ -63,9 +76,9 @@ const TextInput = ({
           inputMode={type === 'number' ? 'numeric' : undefined}
           pattern={type === 'number' ? '[0-9]+([.,][0-9]+)?' : undefined}
           placeholder={placeholder}
-          onChange={onChange}
           onWheel={type === 'number' ? numberInputOnWheelPreventChange : undefined}
-          name={name}
+          max={max}
+          min={min}
           value={value}
           onKeyDown={(evt) => {
             evt.key
@@ -74,6 +87,7 @@ const TextInput = ({
               evt.preventDefault()
             }
           }}
+          {...register(name, { disabled, max, min, maxLength, minLength, required })}
         />
         <div className={styles.endComponent}>{endComponent}</div>
       </label>
