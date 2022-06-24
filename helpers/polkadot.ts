@@ -2,6 +2,7 @@ import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 import { AnyAction } from 'redux'
 import { actions } from 'redux/user/actions'
 import { getBalances } from 'ternoa-js'
+import { clear, get, USER_POLKADOT_ADDRESS } from './storage'
 
 export const getAccounts = async () => {
   const { web3Accounts, web3Enable } = await import('@polkadot/extension-dapp')
@@ -25,4 +26,19 @@ export const connect = async (account: InjectedAccountWithMeta, dispatch: (actio
     capsBalance: free, // verify if free include bonded token
   }
   dispatch(actions.loginPolkadot(data))
+}
+
+export const reconnect = async (dispatch: (action: AnyAction) => void) => {
+  try {
+    const polkadotAddress = get(USER_POLKADOT_ADDRESS)
+    if (polkadotAddress) {
+      const accounts = await getAccounts()
+      const account = accounts.find((x) => x.address === polkadotAddress)
+      if (!account) throw new Error('Account not found in extenstion')
+      connect(account, dispatch)
+    }
+  } catch (err) {
+    console.error(err)
+    clear(USER_POLKADOT_ADDRESS)
+  }
 }

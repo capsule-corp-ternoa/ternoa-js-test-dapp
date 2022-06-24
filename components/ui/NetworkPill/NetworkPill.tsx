@@ -7,7 +7,7 @@ interface NetworkProps {
 }
 
 const NetworkPill: React.FC<NetworkProps> = ({ wss, href }) => {
-  const network = wss && wss.includes('alphanet') ? 'Alphanet' : wss && wss.includes('dev') ? 'dev-0' : 'Mainnet'
+  const network = wss && wss.includes('mainnet') ? 'Mainnet' : wss && wss.includes('alphanet') ? 'Alphanet' : 'Dev'
 
   const indicator = () => {
     return (

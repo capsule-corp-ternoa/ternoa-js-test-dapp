@@ -19,24 +19,12 @@ interface HeaderProps {
   ternoaLogo: React.ReactNode
   children?: React.ReactElement<any, string | React.JSXElementConstructor<any>> & React.ReactNode
   links?: ILinks[]
+  wss?: string
 }
 
-const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, links }) => {
+const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, links, wss }) => {
   const [isPolkadotModalOpen, setIsPolkadotModalOpen] = useState<boolean>(false)
-  const [wssEndpoint, setWssEndpoint] = useState<string>('')
   const { user } = useAppSelector((state) => state.user)
-
-  const getEndpoint = async () => {
-    try {
-      const endpoint = await getApiEndpoint()
-      setWssEndpoint(endpoint)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  useEffect(() => {
-    getEndpoint()
-  }, [])
 
   return (
     <>
@@ -85,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, link
               onClick={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)}
             />
           )}
-          {wssEndpoint && <NetworkPill wss={wssEndpoint} href={'https://status.ternoa.network/'} />}
+          <NetworkPill wss={wss} href={'https://status.ternoa.network/'} />
         </div>
       </nav>
       {isPolkadotModalOpen && <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />}

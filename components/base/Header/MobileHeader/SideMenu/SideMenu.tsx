@@ -14,6 +14,7 @@ import Button, { AnchorButton } from 'components/ui/Button/Button'
 import Polkadot from 'assets/svg/Providers/Polkadot'
 import mainStyles from '../MobileHeader.module.scss'
 import styles from './SideMenu.module.scss'
+import NetworkPill from 'components/ui/NetworkPill'
 
 type ExpandedNominalSetState = React.Dispatch<React.SetStateAction<boolean>>
 
@@ -23,9 +24,10 @@ interface Props {
   isExpanded: boolean
   setIsExpanded: ExpandedNominalSetState
   links?: ILinks[]
+  wss?: string
 }
 
-const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }: Props) => {
+const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links, wss }: Props) => {
   const [isPolkadotModalOpen, setIsPolkadotModalOpen] = useState<boolean>(false)
   const { user } = useAppSelector((state) => state.user)
   return (
@@ -70,6 +72,9 @@ const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }:
                 onClick={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)}
               />
             )}
+            <div className={styles.network}>
+              <NetworkPill wss={wss} href={'https://status.ternoa.network/'} />
+            </div>
           </div>
         </div>
         <MobileFooter projectName={projectName} isTopBorder={true} isSocials={true} />
