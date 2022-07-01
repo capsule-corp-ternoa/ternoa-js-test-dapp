@@ -1,15 +1,17 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useAppSelector } from 'redux/hooks'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-
+import type { ISubmittableResult } from '@polkadot/types/types'
 import { createNft } from 'ternoa-js/nft'
 
 import Box from 'components/base/Box/Box'
-import Input from 'components/ui/Input'
-
-import styles from './CreateNFTBlock.module.scss'
 import Button from 'components/ui/Button/Button'
 import CheckBox from 'components/ui/CheckBox'
+import Input from 'components/ui/Input'
+import { runTx, signTx } from 'helpers/ternoa'
+
+import styles from './CreateNFTBlock.module.scss'
 
 type IForm = {
   collectionId: number | null
@@ -18,7 +20,11 @@ type IForm = {
   royalty: number
 }
 
-const CreateNFTBlock = () => {
+interface Props {
+  callback: (res: ISubmittableResult) => void
+}
+
+const CreateNFTBlock = ({ callback }: Props) => {
   const {
     register,
     handleSubmit,
@@ -31,7 +37,17 @@ const CreateNFTBlock = () => {
       royalty: 0,
     },
   })
-  const onSubmit: SubmitHandler<IForm> = ({ collectionId, isSoulbond, offchainData, royalty }) => createNft(offchainData, royalty, collectionId, isSoulbond)
+  const { user } = useAppSelector((state) => state.user)
+
+  const onSubmit: SubmitHandler<IForm> = async ({ collectionId, isSoulbond, offchainData, royalty }) => {
+    const createNftTxHex = await createNft(offchainData, royalty, collectionId, isSoulbond, undefined, callback)
+    const { isConnectedPolkadot, polkadotWallet } = user
+    if (isConnectedPolkadot && polkadotWallet) {
+      const { address, injector } = polkadotWallet
+      const signedTx = await signTx(createNftTxHex, address, injector.signer)
+      await runTx(signedTx, callback)
+    }
+  }
 
   return (
     <Box

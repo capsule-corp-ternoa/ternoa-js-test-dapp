@@ -38,7 +38,7 @@
     "redux": "^4.2.0",
     "react-hook-form": "^7.32.2",
     "sass": "^1.51.0",
-    "ternoa-js": "^1.1.0-alpha1",
+    "ternoa-js": "^1.1.0-alpha2",
     "yup": "^0.32.11"
   },
   "devDependencies": {
