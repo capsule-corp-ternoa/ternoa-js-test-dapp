@@ -1,0 +1,61 @@
+@import 'styles/base.scss';
+
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.status {
+  font-family: $font-bold;
+  font-size: 3.2rem;
+  margin-top: 3.2rem;
+}
+
+.warning {
+  path {
+    fill: $color-contrast;
+  }
+}
+
+.coinIcon {
+  width: 8rem;
+  height: 8rem;
+}
+
+.info {
+  font-size: 1.6rem;
+  margin-top: 0.8rem;
+}
+
+.hash {
+  display: flex;
+  align-items: center;
+  font-family: $font-bold;
+  font-size: 1.6rem;
+  margin-top: 3.2rem;
+
+  .txHash {
+    margin-left: 0.8rem;
+  }
+}
+
+.link {
+  font-size: 1.6rem;
+  margin-top: 0.8rem;
+  text-decoration: underline;
+
+  &:hover {
+    color: $color-primary500;
+  }
+}
+
+.body {
+  color: $color-contrast;
+  font-family: $font-bold;
+  font-size: 1.6rem;
+  margin-top: 4rem;
+  text-align: center;
+}
