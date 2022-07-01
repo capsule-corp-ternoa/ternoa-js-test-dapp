@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import { getApiEndpoint } from 'ternoa-js'
 
@@ -12,6 +12,7 @@ import MobileHeader from '../Header/MobileHeader'
 import Footer from '../Footer'
 import MobileFooter from '../MobileFooter'
 import TernoaIcon from 'assets/svg/Components/TernoaIcon'
+import { actions } from 'redux/app/actions'
 
 interface LayoutProps {
   children?: React.ReactNode
@@ -19,25 +20,18 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { projectName, navItems } = HeaderNavigation()
-  const [wssEndpoint, setWssEndpoint] = useState<string>('')
   const dispatch = useAppDispatch()
-
-  const getEndpoint = async () => {
-    try {
-      const endpoint = await getApiEndpoint()
-      setWssEndpoint(endpoint)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   useEffect(() => {
     reconnect(dispatch)
-  }, [dispatch])
 
-  useEffect(() => {
-    getEndpoint()
-  }, [])
+    try {
+      const endpoint = getApiEndpoint()
+      dispatch(actions.setWssEndpoint(endpoint))
+    } catch (error) {
+      console.log(error)
+    }
+  }, [dispatch])
 
   return (
     <>
@@ -48,8 +42,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <meta name="description" content={`${projectName} by Ternoa Blockchain.`} />
       </Head>
       <header className="container">
-        <Header ternoaLogo={<TernoaIcon />} projectName={projectName} links={navItems} wss={wssEndpoint} />
-        <MobileHeader ternoaLogo={<TernoaIcon />} projectName={projectName} links={navItems} wss={wssEndpoint} />
+        <Header ternoaLogo={<TernoaIcon />} projectName={projectName} links={navItems} />
+        <MobileHeader ternoaLogo={<TernoaIcon />} projectName={projectName} links={navItems} />
       </header>
       {process.env.NEXT_PUBLIC_GA && process.env.NODE_ENV === 'production' && <Analytics />}
       {children}

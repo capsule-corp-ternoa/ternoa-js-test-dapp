@@ -24,10 +24,9 @@ interface Props {
   isExpanded: boolean
   setIsExpanded: ExpandedNominalSetState
   links?: ILinks[]
-  wss?: string
 }
 
-const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links, wss }: Props) => {
+const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }: Props) => {
   const [isPolkadotModalOpen, setIsPolkadotModalOpen] = useState<boolean>(false)
   const { user } = useAppSelector((state) => state.user)
   return (
@@ -73,7 +72,7 @@ const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links, w
               />
             )}
             <div className={styles.network}>
-              <NetworkPill wss={wss} href={'https://status.ternoa.network/'} />
+              <NetworkPill href={'https://status.ternoa.network/'} />
             </div>
           </div>
         </div>

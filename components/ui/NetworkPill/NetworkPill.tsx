@@ -1,13 +1,16 @@
+import { useAppSelector } from 'redux/hooks'
+
 import Button from '../Button/Button'
 import styles from './NetworkPill.module.scss'
 
 interface NetworkProps {
-  wss?: string
   href?: string
 }
 
-const NetworkPill: React.FC<NetworkProps> = ({ wss, href }) => {
-  const network = wss && wss.includes('mainnet') ? 'Mainnet' : wss && wss.includes('alphanet') ? 'Alphanet' : 'Dev'
+const NetworkPill: React.FC<NetworkProps> = ({ href }) => {
+  const { app } = useAppSelector((state) => state.app)
+  const { wssEndpoint } = app
+  const network = wssEndpoint && wssEndpoint.includes('mainnet') ? 'Mainnet' : wssEndpoint && wssEndpoint.includes('alphanet') ? 'Alphanet' : 'Dev'
 
   const indicator = () => {
     return (

@@ -9,10 +9,9 @@ interface MobileHeaderProps {
   projectName: string
   ternoaLogo: React.ReactNode
   links?: ILinks[]
-  wss?: string
 }
 
-const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, links, wss }) => {
+const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, links }) => {
   const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
   return (
     <>
@@ -28,7 +27,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, li
         </button>
       </nav>
 
-      <SideMenu ternoaLogo={ternoaLogo} projectName={projectName} isExpanded={isMenuExpanded} setIsExpanded={setIsMenuExpanded} links={links} wss={wss} />
+      <SideMenu ternoaLogo={ternoaLogo} projectName={projectName} isExpanded={isMenuExpanded} setIsExpanded={setIsMenuExpanded} links={links} />
     </>
   )
 }
