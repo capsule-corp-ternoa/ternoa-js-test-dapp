@@ -71,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, link
               onClick={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)}
             />
           )}
-          <NetworkPill href={'https://status.ternoa.network/'} />
+          <NetworkPill />
         </div>
       </nav>
       {isPolkadotModalOpen && <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />}

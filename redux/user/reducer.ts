@@ -1,4 +1,4 @@
-import { store, USER_POLKADOT_ADDRESS } from 'helpers/storage'
+import { clear, store, USER_POLKADOT_ADDRESS } from 'helpers/storage'
 import { User } from 'interfaces'
 import { AnyAction, Reducer } from 'redux'
 
@@ -19,6 +19,17 @@ export const userReducer: Reducer<{ user: User }, AnyAction> = (state = initialS
           ...state.user,
           isConnectedPolkadot: true,
           polkadotWallet: value,
+        },
+      }
+    }
+    case 'USER_LOGOUT_POLKADOT': {
+      clear(USER_POLKADOT_ADDRESS)
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          isConnectedPolkadot: false,
+          polkadotWallet: undefined,
         },
       }
     }

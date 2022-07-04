@@ -5,4 +5,7 @@ export const actions = {
     type: 'USER_LOGIN_POLKADOT',
     value: value,
   }),
+  logoutPolkadot: () => ({
+    type: 'USER_LOGOUT_POLKADOT',
+  }),
 }

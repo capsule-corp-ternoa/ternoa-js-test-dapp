@@ -25,13 +25,19 @@ export const RESPONSE_DEFAULT_STATE = {
   status: TransactionLifeCycleStatus.TX_PENDING,
 }
 
+export type MethodType = {
+  method: never
+  section: keyof typeof TxTranslations
+  args: any
+}
+
+export type DecodedMethodType = {
+  method: MethodType
+}
+
 export type IExtrinsic = {
   isSigned: boolean
-  method: {
-    args: any
-    section: keyof typeof TxTranslations
-    method: never
-  }
+  method: MethodType
   nonce: string
   signature: string
   signer: { Id: string }

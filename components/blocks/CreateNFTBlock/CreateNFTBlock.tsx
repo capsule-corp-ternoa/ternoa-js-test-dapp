@@ -21,10 +21,11 @@ type IForm = {
 }
 
 interface Props {
-  callback: (res: ISubmittableResult) => void
+  signableCallback: (txHashHex: `0x${string}`) => void
+  submittableCallback: (res: ISubmittableResult) => void
 }
 
-const CreateNFTBlock = ({ callback }: Props) => {
+const CreateNFTBlock = ({ signableCallback, submittableCallback }: Props) => {
   const {
     register,
     handleSubmit,
@@ -40,12 +41,14 @@ const CreateNFTBlock = ({ callback }: Props) => {
   const { user } = useAppSelector((state) => state.user)
 
   const onSubmit: SubmitHandler<IForm> = async ({ collectionId, isSoulbond, offchainData, royalty }) => {
-    const createNftTxHex = await createNft(offchainData, royalty, collectionId, isSoulbond, undefined, callback)
+    const createNftTxHex = await createNft(offchainData, royalty, collectionId, isSoulbond)
     const { isConnectedPolkadot, polkadotWallet } = user
     if (isConnectedPolkadot && polkadotWallet) {
       const { address, injector } = polkadotWallet
       const signedTx = await signTx(createNftTxHex, address, injector.signer)
-      await runTx(signedTx, callback)
+      await runTx(signedTx, submittableCallback)
+    } else {
+      signableCallback(createNftTxHex)
     }
   }
 

@@ -12,14 +12,24 @@ const Home: NextPage = () => {
   const [isProgressModalOpen, setIsProgressModalOpen] = useState(false)
   const [isSigningModalOpen, setIsSigningModalOpen] = useState(false)
   const [response, setResponse] = useState<IResponse>(RESPONSE_DEFAULT_STATE)
+  const [unsignedTx, setUnsignedTx] = useState<`0x${string}` | undefined>(undefined)
 
   const handleProgressModalClose = () => {
     setIsProgressModalOpen(false)
     setResponse(RESPONSE_DEFAULT_STATE)
   }
-  const handleSigningModalClose = () => setIsSigningModalOpen(false)
+  const handleSigningModalClose = () => {
+    setIsSigningModalOpen(false)
+    setUnsignedTx(undefined)
+  }
 
-  const callbackResponse = async (res: ISubmittableResult) => {
+  const signableCallback = (txHashHex: `0x${string}`) => {
+    setUnsignedTx(txHashHex)
+    setIsSigningModalOpen(true)
+  }
+
+  const submittableCallback = async (res: ISubmittableResult) => {
+    handleSigningModalClose()
     setIsProgressModalOpen(true)
     try {
       const api = await getRawApi()
@@ -57,11 +67,13 @@ const Home: NextPage = () => {
     <>
       <main className="container">
         <div className="wrapper">
-          <CreateNFTBlock callback={callbackResponse} />
+          <CreateNFTBlock signableCallback={signableCallback} submittableCallback={submittableCallback} />
         </div>
       </main>
+      {unsignedTx && (
+        <SigningModal handleClose={handleSigningModalClose} isOpen={isSigningModalOpen} submittableCallback={submittableCallback} txHashHex={unsignedTx} />
+      )}
       <ProgressModal handleClose={handleProgressModalClose} isOpen={isProgressModalOpen} response={response} />
-      <SigningModal handleClose={handleSigningModalClose} isOpen={isSigningModalOpen} />
     </>
   )
 }

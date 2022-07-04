@@ -1,16 +1,22 @@
-import { useAppSelector } from 'redux/hooks'
+import { changeEndpoint } from 'ternoa-js'
+
+import { actions } from 'redux/app/actions'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
 
 import Button from '../Button/Button'
 import styles from './NetworkPill.module.scss'
 
-interface NetworkProps {
-  href?: string
-}
-
-const NetworkPill: React.FC<NetworkProps> = ({ href }) => {
+const NetworkPill = () => {
   const { app } = useAppSelector((state) => state.app)
+  const dispatch = useAppDispatch()
   const { wssEndpoint } = app
-  const network = wssEndpoint && wssEndpoint.includes('mainnet') ? 'Mainnet' : wssEndpoint && wssEndpoint.includes('alphanet') ? 'Alphanet' : 'Dev'
+  const network = wssEndpoint && wssEndpoint.includes('mainnet') ? 'Mainnet' : 'Alphanet'
+
+  const changeApiEndpoint = async () => {
+    const newEndpoint = network === 'Mainnet' ? 'wss://alphanet.ternoa.com' : 'wss://mainnet.ternoa.network'
+    changeEndpoint(newEndpoint)
+    dispatch(actions.setWssEndpoint(newEndpoint))
+  }
 
   const indicator = () => {
     return (
@@ -21,12 +27,6 @@ const NetworkPill: React.FC<NetworkProps> = ({ href }) => {
     )
   }
 
-  return href ? (
-    <a href={`${href}`} title={`Explore Ternoa ${network}`} target="_blank" rel="noopener noreferrer">
-      <Button iconUnsized={indicator()} color="network" size="small" text={network} variant="rounded" />
-    </a>
-  ) : (
-    <Button className={styles.pill} iconUnsized={indicator()} color="network" size="small" text={network} variant="rounded" />
-  )
+  return <Button className={styles.pill} iconUnsized={indicator()} color="network" onClick={changeApiEndpoint} size="small" text={network} variant="rounded" />
 }
 export default NetworkPill

@@ -16,6 +16,10 @@
   }
 }
 
+.logout {
+  margin: 3.2rem auto 0;
+}
+
 .errorWrapper {
   display: flex;
   flex-direction: column;
@@ -40,7 +44,7 @@
   max-height: 32rem;
   overflow-y: auto;
   padding-right: 1.6rem;
-  scrollbar-color: $color-primary300 $color-neutral100;
+  scrollbar-color: #9f9fff66 #ffffff26;
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
@@ -48,15 +52,15 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: $color-neutral100;
+    background: #ffffff26;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: $color-primary400;
+    background: #9c9cba;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: $color-primary300;
+    background: #9f9fff66;
   }
 
   > * {

@@ -1,7 +1,54 @@
+@import 'styles/base.scss';
+
 .root {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.method {
+  font-family: $font-bold;
+  font-size: 3.2rem;
+}
+
+.hash {
+  display: flex;
+  align-items: center;
+  font-family: $font-bold;
+  font-size: 1.6rem;
+  margin-top: 0.8rem;
+
+  .txHash {
+    margin-left: 0.8rem;
+  }
+}
+
+.body {
+  font-size: 1.6rem;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.optionsContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 3.2rem;
+
+  .polkaExtOption {
+    margin-left: 12rem;
+
+    .connectedPolkaExt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      > * {
+        &:not(&:first-child) {
+          margin-top: 1.6rem;
+        }
+      }
+    }
+  }
 }
