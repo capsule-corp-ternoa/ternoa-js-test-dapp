@@ -6,7 +6,7 @@ import Warning from 'assets/svg/Components/Warning'
 import Button from 'components/ui/Button/Button'
 import Modal from 'components/ui/Modal'
 import { connect, getAccounts } from 'helpers/polkadot'
-import { useAppDispatch } from 'redux/hooks'
+import { useAppSelector, useAppDispatch } from 'redux/hooks'
 import { actions } from 'redux/user/actions'
 import { middleEllipsis } from 'utils/strings'
 
@@ -18,6 +18,8 @@ interface PolkadotProps {
 }
 
 const PolkadotModal: React.FC<PolkadotProps> = ({ isOpen, closeModal }) => {
+  const { user } = useAppSelector((state) => state.user)
+  const { isConnectedPolkadot } = user
   const dispatch = useAppDispatch()
   const [accounts, setAccounts] = useState<InjectedAccountWithMeta[]>([])
   const [error, setError] = useState<string>('')
@@ -58,17 +60,19 @@ const PolkadotModal: React.FC<PolkadotProps> = ({ isOpen, closeModal }) => {
     <Modal handleClose={closeModal} isOpen={isOpen} isClickAwayCloseAllowed={true} isClosable={true}>
       <div className={styles.root}>
         <h4 className={styles.title}>{error !== '' ? 'Something went wrong !' : 'Select your account'}</h4>
-        <Button
-          className={styles.logout}
-          icon={<PowerOff />}
-          size="small"
-          text="Logout"
-          variant="rounded"
-          onClick={() => {
-            dispatch(actions.logoutPolkadot())
-            closeModal()
-          }}
-        />
+        {isConnectedPolkadot && (
+          <Button
+            className={styles.logout}
+            icon={<PowerOff />}
+            size="small"
+            text="Logout"
+            variant="rounded"
+            onClick={() => {
+              dispatch(actions.logoutPolkadot())
+              closeModal()
+            }}
+          />
+        )}
         {error !== '' ? (
           <div className={styles.errorWrapper}>
             <Warning />
