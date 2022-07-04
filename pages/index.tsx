@@ -67,7 +67,7 @@ const Home: NextPage = () => {
     <>
       <main className="container">
         <div className="wrapper">
-          <CreateNFTBlock signableCallback={signableCallback} submittableCallback={submittableCallback} />
+          <CreateNFTBlock signableCallback={signableCallback} />
         </div>
       </main>
       {unsignedTx && (
