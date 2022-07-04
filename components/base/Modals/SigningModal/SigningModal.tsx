@@ -2,6 +2,7 @@ import type { ISubmittableResult } from '@polkadot/types/types'
 import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { getRawApi } from 'ternoa-js'
+import QRCode from 'qrcode.react'
 
 import Polkadot from 'assets/svg/Providers/Polkadot'
 import ClipboardCopy from 'components/ui/ClipboardCopy'
@@ -82,7 +83,13 @@ const SigningModal = ({ handleClose, isOpen, submittableCallback, txHashHex }: S
             <div>You can use your Ternoa Wallet or the Polkadot extension</div>
           </div>
           <div className={styles.optionsContainer}>
-            <div>TERNOA WALLET QR (WIP)</div>
+            <div className={styles.ternoaWalletOption}>
+              <QRCode className={styles.qrCode} value={JSON.stringify({ txHashHex })} includeMargin={true} renderAs={'svg'} size={180} />
+              <div className={styles.soonContainer}>
+                <div className={styles.soon}>SOON</div>
+              </div>
+              <div>Scan me with your Ternoa Wallet</div>
+            </div>
             <div className={styles.polkaExtOption}>
               {user && user.polkadotWallet ? (
                 <div className={styles.connectedPolkaExt}>

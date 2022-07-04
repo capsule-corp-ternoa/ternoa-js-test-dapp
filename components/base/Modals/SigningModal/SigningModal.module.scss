@@ -37,7 +37,7 @@
   margin-top: 3.2rem;
 
   .polkaExtOption {
-    margin-left: 12rem;
+    margin-left: 11.2rem;
 
     .connectedPolkaExt {
       display: flex;
@@ -49,6 +49,30 @@
           margin-top: 1.6rem;
         }
       }
+    }
+  }
+}
+
+.ternoaWalletOption {
+  position: relative;
+
+  .soonContainer {
+    position: absolute;
+    background: #ffffff88;
+    height: 180px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+
+    .soon {
+      background: $color-neutral500;
+      border-radius: 0.8rem;
+      font-size: 1.6rem;
+      font-family: $font-bold;
+      padding: 1.6rem;
     }
   }
 }
