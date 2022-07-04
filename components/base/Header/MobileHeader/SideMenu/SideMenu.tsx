@@ -72,7 +72,7 @@ const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }:
               />
             )}
             <div className={styles.network}>
-              <NetworkPill href={'https://status.ternoa.network/'} />
+              <NetworkPill />
             </div>
           </div>
         </div>
