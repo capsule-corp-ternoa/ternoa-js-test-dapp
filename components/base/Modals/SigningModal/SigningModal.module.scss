@@ -33,11 +33,20 @@
 
 .optionsContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-top: 3.2rem;
 
+  @include xs {
+    flex-direction: row;
+  }
+
   .polkaExtOption {
-    margin-left: 11.2rem;
+    margin-top: 3.2rem;
+    @include xs {
+      margin-top: 0;
+      margin-left: 11.2rem;
+    }
 
     .connectedPolkaExt {
       display: flex;

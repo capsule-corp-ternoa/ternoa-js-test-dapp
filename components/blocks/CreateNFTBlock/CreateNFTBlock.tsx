@@ -43,17 +43,23 @@ const CreateNFTBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-    import { createNft } from "ternoa-js/nft";
+    import { createNft } from "ternoa-js/nft"
     import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
-  
+
     const createMyFirstNFT = async () => {
-        try {
-            const account = await generateSeed()
-            const keyring = await getKeyringFromSeed(account.seed)
-            await createNft("My first NFT", 10, null, false, keyring)
-        } catch(error) {
-            console.error(error)
-        }
+      try {
+        // We initialize an API instance connected to the Alphanet chain
+        await initializeApi()
+
+        // We will need a keyring to sign and submit the transaction
+        const account = await generateSeed()
+        const keyring = await getKeyringFromSeed(account.seed)
+
+        // Here we create, sign and submit the transaction
+        await createNft("My first NFT", 10, 1, false, keyring, WaitUntil.BlockInclusion)
+      } catch (e) {
+        console.log(e)
+      }
     }
     `}
       codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#createNft"
