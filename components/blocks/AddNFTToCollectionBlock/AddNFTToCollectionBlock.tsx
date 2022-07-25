@@ -1,0 +1,94 @@
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import { addNftToCollection } from 'ternoa-js/nft'
+
+import Box from 'components/base/Box/Box'
+import Button from 'components/ui/Button/Button'
+import Input from 'components/ui/Input'
+
+import styles from './AddNFTToCollectionBlock.module.scss'
+
+type IForm = {
+  nft_id: number
+  collectin_id: number
+}
+
+interface Props {
+  signableCallback: (txHashHex: `0x${string}`) => void
+}
+
+const AddNftToCollection = ({ signableCallback }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IForm>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      nft_id: 0,
+      collectin_id: 0,
+    },
+  })
+
+  const onSubmit: SubmitHandler<IForm> = async ({ nft_id, collectin_id }) => {
+    const addNftToCollectionTxHex = await addNftToCollection(nft_id, collectin_id)
+    signableCallback(addNftToCollectionTxHex)
+  }
+
+  return (
+    <Box
+      codeSnippet={`
+    import { createNft } from "ternoa-js/nft";
+    import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
+    const createMyFirstNFT = async () => {
+        try {
+            const account = await generateSeed()
+            const keyring = await getKeyringFromSeed(account.seed)
+            await createNft("My first NFT", 10, null, false, keyring)
+            
+        } catch(error) {
+            console.error(error)
+        }
+    }
+    `}
+      codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#addNftToCollection"
+      codeSnippetTitle="Ternoa-JS: addNFTToCollection"
+      summary="Adds an NFT to an existing collection."
+      title="Add NFT to collection"
+    >
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          className={styles.field}
+          error={errors.nft_id?.message}
+          isError={Boolean(errors.nft_id)}
+          label="NFT ID"
+          min={0}
+          name="nft_id"
+          placeholder="Enter id of NFT"
+          register={register}
+          required
+        />
+        <Input
+          className={styles.field}
+          error={errors.collectin_id?.message}
+          isError={Boolean(errors.collectin_id)}
+          label="Collection ID"
+          min={0}
+          name="collectin_id"
+          placeholder="Enter id of Collection"
+          register={register}
+          required
+        />
+        <Button text="Add NFT to collection" type="submit" />
+      </form>
+    </Box>
+  )
+}
+
+export default AddNftToCollection
+
+const schema = yup.object({
+  nft_id: yup.number().nullable().min(0, 'NFT ID must be greater than or equal to 0'),
+  collection_id: yup.number().nullable().min(0, 'NFT ID must be greater than or equal to 0'),
+})

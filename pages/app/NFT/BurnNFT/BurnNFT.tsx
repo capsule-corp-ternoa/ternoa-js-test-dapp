@@ -2,13 +2,13 @@ import { useState } from 'react'
 import type { NextPage } from 'next'
 import type { ISubmittableResult } from '@polkadot/types/types'
 
-import CreateNFTBlock from 'components/blocks/CreateNFTBlock/CreateNFTBlock'
+import BurnNFTBlock from 'components/blocks/BurnNFTBlock/BurnNFTBlock'
 import ProgressModal from 'components/base/Modals/ProgressModal'
 import SigningModal from 'components/base/Modals/SigningModal'
 import { getRawApi, isTransactionSuccess } from 'ternoa-js'
 import { IExtrinsic, IResponse, RESPONSE_DEFAULT_STATE, TransactionLifeCycleStatus } from 'interfaces'
 
-const Home: NextPage = () => {
+const BurnNFT: NextPage = () => {
   const [isProgressModalOpen, setIsProgressModalOpen] = useState(false)
   const [isSigningModalOpen, setIsSigningModalOpen] = useState(false)
   const [response, setResponse] = useState<IResponse>(RESPONSE_DEFAULT_STATE)
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <CreateNFTBlock signableCallback={signableCallback} />
+      <BurnNFTBlock signableCallback={signableCallback} />
       {unsignedTx && (
         <SigningModal handleClose={handleSigningModalClose} isOpen={isSigningModalOpen} submittableCallback={submittableCallback} txHashHex={unsignedTx} />
       )}
@@ -74,4 +74,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default BurnNFT

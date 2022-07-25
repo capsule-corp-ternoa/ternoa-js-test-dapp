@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
-import { getApiEndpoint } from 'ternoa-js'
+import { Row, Col } from 'react-bootstrap'
 
+import { getApiEndpoint } from 'ternoa-js'
 import { useAppDispatch } from 'redux/hooks'
 import { reconnect } from 'helpers/polkadot'
 import Analytics from '../Analytics'
@@ -13,6 +14,8 @@ import Footer from '../Footer'
 import MobileFooter from '../MobileFooter'
 import TernoaIcon from 'assets/svg/Components/TernoaIcon'
 import { actions } from 'redux/app/actions'
+
+import Sidebar from '../Sidebar/Sidebar'
 
 interface LayoutProps {
   children?: React.ReactNode
@@ -45,8 +48,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Header ternoaLogo={<TernoaIcon />} projectName={projectName} links={navItems} />
         <MobileHeader ternoaLogo={<TernoaIcon />} projectName={projectName} links={navItems} />
       </header>
+
       {process.env.NEXT_PUBLIC_GA && process.env.NODE_ENV === 'production' && <Analytics />}
-      {children}
+
+      <main className="container">
+        <div className="wrapper">
+          <div style={{ display: 'flex' }}>
+            <div>
+              <Sidebar />
+            </div>
+            <div className="main-container">{children}</div>
+          </div>
+        </div>
+      </main>
+
       <Footer projectName={projectName} isSocials={true} isCredentialCustom={true} isTernoaOfficial={true} />
       <MobileFooter projectName={projectName} isCredentialCustom={true} islinks={true} />
     </>

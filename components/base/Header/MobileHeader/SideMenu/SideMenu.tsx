@@ -16,6 +16,8 @@ import mainStyles from '../MobileHeader.module.scss'
 import styles from './SideMenu.module.scss'
 import NetworkPill from 'components/ui/NetworkPill'
 
+import { Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
+
 type ExpandedNominalSetState = React.Dispatch<React.SetStateAction<boolean>>
 
 interface Props {
@@ -73,6 +75,67 @@ const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }:
             )}
             <div className={styles.network}>
               <NetworkPill />
+            </div>
+
+            <div className="sidebar-wrapper">
+              <div style={{ minWidth: '300px' }}>
+                <Menu>
+                  <SubMenu title="NFT">
+                    <Link href="/app/NFT/CreateNFT">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Create NFT</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/app/NFT/BurnNFT">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Burn NFT</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/app/NFT/DelegateNFT">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Delegate NFT</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/app/NFT/SetRoyalty">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Set Royalty</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/app/NFT/TransferNFT">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Transfer NFT</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/app/NFT/AddNftToCollection">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Add NFT To Collection</MenuItem>
+                      </a>
+                    </Link>
+                  </SubMenu>
+                  <SubMenu title="Collection">
+                    <Link href="/app/Collection/CreateCollection">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Create Collection</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/app/Collection/LimitCollection">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Limit Collection</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/app/Collection/CloseCollection">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Close Collection</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/app/Collection/BurnCollection">
+                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
+                        <MenuItem>Burn Collection</MenuItem>
+                      </a>
+                    </Link>
+                  </SubMenu>
+                </Menu>
+              </div>
             </div>
           </div>
         </div>
