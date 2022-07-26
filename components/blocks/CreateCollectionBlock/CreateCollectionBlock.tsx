@@ -88,5 +88,5 @@ export default CreateCollectionBlock
 
 const schema = yup.object({
   offchainData: yup.string().required('Please provide offchain data.').max(150, 'Only 150 characters are allowed'),
-  limit: yup.number().min(0, 'Limit must be greater or equal to 0').max(0, 'Limit must be lower or equal to 0'),
+  limit: yup.number().min(0, 'Limit must be greater or equal to 0').max(0, 'Limit must be lower or equal to 1 million'),
 })

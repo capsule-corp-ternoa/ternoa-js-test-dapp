@@ -74,5 +74,5 @@ const CloseCollectionBlock = ({ signableCallback }: Props) => {
 export default CloseCollectionBlock
 
 const schema = yup.object({
-  id: yup.number().nullable().min(0, 'NFT ID must be greater than or equal to 0'),
+  id: yup.number().required().min(0, 'Collection ID must be greater than or equal to 0'),
 })

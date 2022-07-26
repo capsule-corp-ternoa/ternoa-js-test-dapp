@@ -89,6 +89,6 @@ const SetRoyaltyBlock = ({ signableCallback }: Props) => {
 export default SetRoyaltyBlock
 
 const schema = yup.object({
-  id: yup.number().nullable().min(0, 'NFT ID must be greater than or equal to 0'),
-  amount: yup.number().min(0, 'Royalty must be greater or equal to 0').max(0, 'Royalty must be lower or equal to 0'),
+  id: yup.number().required('Please provide an NFT ID.').min(0, 'NFT ID must be greater than or equal to 0'),
+  amount: yup.number().min(0, 'Royalty must be greater or equal to 0').max(0, 'Royalty must be lower or equal to 100'),
 })

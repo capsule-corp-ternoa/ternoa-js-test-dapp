@@ -89,5 +89,5 @@ export default LimitCollectionBlock
 
 const schema = yup.object({
   id: yup.number().nullable().min(0, 'NFT ID must be greater than or equal to 0'),
-  limit: yup.number().min(0, 'Limit must be greater or equal to 0').max(0, 'Limit must be lower or equal to 0'),
+  limit: yup.number().min(0, 'Limit must be greater or equal to 0').max(0, 'Limit must be lower or equal to 1 million'),
 })

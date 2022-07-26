@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
-import { Row, Col } from 'react-bootstrap'
-
 import { getApiEndpoint } from 'ternoa-js'
 import { useAppDispatch } from 'redux/hooks'
 import { reconnect } from 'helpers/polkadot'
@@ -53,7 +51,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       <main className="container">
         <div className="wrapper">
-          <div style={{ display: 'flex' }}>
+          <div className="flex-container">
             <div>
               <Sidebar />
             </div>

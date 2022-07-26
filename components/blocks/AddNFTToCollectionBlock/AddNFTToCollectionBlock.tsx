@@ -11,7 +11,7 @@ import styles from './AddNFTToCollectionBlock.module.scss'
 
 type IForm = {
   nft_id: number
-  collectin_id: number
+  collection_id: number
 }
 
 interface Props {
@@ -27,12 +27,12 @@ const AddNftToCollection = ({ signableCallback }: Props) => {
     resolver: yupResolver(schema),
     defaultValues: {
       nft_id: 0,
-      collectin_id: 0,
+      collection_id: 0,
     },
   })
 
-  const onSubmit: SubmitHandler<IForm> = async ({ nft_id, collectin_id }) => {
-    const addNftToCollectionTxHex = await addNftToCollection(nft_id, collectin_id)
+  const onSubmit: SubmitHandler<IForm> = async ({ nft_id, collection_id }) => {
+    const addNftToCollectionTxHex = await addNftToCollection(nft_id, collection_id)
     signableCallback(addNftToCollectionTxHex)
   }
 
@@ -71,11 +71,11 @@ const AddNftToCollection = ({ signableCallback }: Props) => {
         />
         <Input
           className={styles.field}
-          error={errors.collectin_id?.message}
-          isError={Boolean(errors.collectin_id)}
+          error={errors.collection_id?.message}
+          isError={Boolean(errors.collection_id)}
           label="Collection ID"
           min={0}
-          name="collectin_id"
+          name="collection_id"
           placeholder="Enter id of Collection"
           register={register}
           required
@@ -89,6 +89,6 @@ const AddNftToCollection = ({ signableCallback }: Props) => {
 export default AddNftToCollection
 
 const schema = yup.object({
-  nft_id: yup.number().nullable().min(0, 'NFT ID must be greater than or equal to 0'),
-  collection_id: yup.number().nullable().min(0, 'NFT ID must be greater than or equal to 0'),
+  nft_id: yup.number().required('Please provide an NFT ID.').min(0, 'NFT ID must be greater than or equal to 0'),
+  collection_id: yup.number().required().min(0, 'Collection ID must be greater than or equal to 0'),
 })

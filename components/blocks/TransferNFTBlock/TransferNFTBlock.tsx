@@ -88,6 +88,6 @@ const TransferNFTBlock = ({ signableCallback }: Props) => {
 export default TransferNFTBlock
 
 const schema = yup.object({
-  id: yup.number().nullable().min(0, 'NFT ID must be greater than or equal to 0'),
-  recipient: yup.string().required('PLease set destination account').max(150, 'Only 150 characters are allowed'),
+  id: yup.number().required('Please provide an NFT ID.').min(0, 'NFT ID must be greater than or equal to 0'),
+  recipient: yup.string().required('Please set destination account'),
 })

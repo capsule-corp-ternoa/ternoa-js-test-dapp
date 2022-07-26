@@ -97,7 +97,9 @@ button {
     max-width: 1440px;
   }
 }
-
+.flex-container {
+  display: flex;
+}
 .main-container {
   margin-left: 10px;
 
@@ -117,6 +119,19 @@ button {
       margin-left: 0;
     }
   }
+}
+
+.css-qhdtym-MuiList-root {
+  width: 200px;
+  background-color: #0e0e23;
+}
+
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+  font-size: 18px;
+}
+
+.css-13eg511-MuiButtonBase-root-MuiListItemButton-root {
+  font-size: 14px;
 }
 
 .pro-sidebar {
