@@ -52,7 +52,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="container">
         <div className="wrapper">
           <div className="flex-container">
-            <div>
+            <div className="sidebar-container">
               <Sidebar />
             </div>
             <div className="main-container">{children}</div>

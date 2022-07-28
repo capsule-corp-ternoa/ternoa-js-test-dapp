@@ -2,19 +2,19 @@ import * as React from 'react'
 import ListSubheader from '@mui/material/ListSubheader'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
 import Collapse from '@mui/material/Collapse'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Link from 'next/link'
 
-type TTestMode = 'NFT' | 'collection' | 'marketplace'
-
 export default function NestedList() {
-  const [open, setOpen] = React.useState(true)
-  const [mode, setMode] = React.useState<TTestMode>('NFT')
-  const handleClick = (id: TTestMode) => {
-    setMode(id)
+  const [NFT, setNFT] = React.useState(false)
+  const [collection, setCollection] = React.useState(false)
+  const [marketplace, setMarketplace] = React.useState(false)
+  const handleClick = (id: string) => {
+    if (id == 'NFT') setNFT(!NFT)
+    else if (id == 'collection') setCollection(!collection)
+    else setMarketplace(!marketplace)
   }
 
   return (
@@ -22,66 +22,80 @@ export default function NestedList() {
       sx={{ width: '100%', bgcolor: 'background.paper' }}
       component="nav"
       aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Test Show-cases
-        </ListSubheader>
-      }
+      subheader={<ListSubheader component="div" id="nested-list-subheader"></ListSubheader>}
     >
-      <ListItemButton onClick={() => handleClick('NFT')}>
+      <ListItemButton className="list-title-btn" onClick={() => handleClick('NFT')}>
         NFT
-        {mode == 'NFT' ? <ExpandLess /> : <ExpandMore />}
+        {NFT ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={mode == 'NFT'} timeout="auto" unmountOnExit>
+      <Collapse in={NFT} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/NFT/CreateNFT">Create NFT</Link>
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/NFT/BurnNFT">Burn NFT</Link>
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/NFT/DelegateNFT">Delegate NFT</Link>
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/NFT/SetRoyalty">Set Royalty</Link>
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/NFT/TransferNFT">Transfer NFT</Link>
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/NFT/AddNftToCollection">Add NFT To Collection</Link>
           </ListItemButton>
         </List>
       </Collapse>
-      <ListItemButton onClick={() => handleClick('collection')}>
+      <ListItemButton className="list-title-btn" onClick={() => handleClick('collection')}>
         Collection
-        {mode == 'collection' ? <ExpandLess /> : <ExpandMore />}
+        {collection ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={mode == 'collection'} timeout="auto" unmountOnExit>
+      <Collapse in={collection} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/Collection/CreateCollection">Create Collection</Link>
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/Collection/LimitCollection">Limit Collection</Link>
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/Collection/CloseCollection">Close Collection</Link>
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
             <Link href="/app/Collection/BurnCollection">Burn Collection</Link>
           </ListItemButton>
         </List>
       </Collapse>
-      <ListItemButton onClick={() => handleClick('marketplace')}>
+      <ListItemButton className="list-title-btn" onClick={() => handleClick('marketplace')}>
         Marketplace
-        {mode == 'marketplace' ? <ExpandLess /> : <ExpandMore />}
+        {marketplace ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={mode == 'marketplace'} timeout="auto" unmountOnExit>
+      <Collapse in={marketplace} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
-            <ListItemText primary="Starred" />
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+            <Link href="#">Create Marketplace </Link>
+          </ListItemButton>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+            <Link href="#">Set Marketplace Configuration </Link>
+          </ListItemButton>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+            <Link href="#">Set Marketplace Owner </Link>
+          </ListItemButton>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+            <Link href="#">Set Marketplace Kind </Link>
+          </ListItemButton>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+            <Link href="#">List NFT</Link>
+          </ListItemButton>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+            <Link href="#">Unlist NFT</Link>
+          </ListItemButton>
+          <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+            <Link href="#">Buy NFT</Link>
           </ListItemButton>
         </List>
       </Collapse>

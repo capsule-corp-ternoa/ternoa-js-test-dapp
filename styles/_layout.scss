@@ -120,63 +120,30 @@ button {
     }
   }
 }
+.sidemenu-container {
+  overflow: auto;
+}
 
 .css-qhdtym-MuiList-root {
   width: 200px;
   background-color: #0e0e23;
+  @media (max-width: 992px) {
+    margin: auto;
+  }
 }
 
-.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+.list-title-btn {
   font-size: 18px;
 }
 
-.css-13eg511-MuiButtonBase-root-MuiListItemButton-root {
+.list-section-btn {
   font-size: 14px;
 }
 
-.pro-sidebar {
-  z-index: 0 !important;
-  min-width: 0px !important;
-  @media (max-width: 1260px) {
-    width: 180px !important;
-  }
-
+.sidebar-container {
   @media (max-width: 992px) {
     display: none;
   }
-}
-
-.pro-sidebar-inner {
-  background: #0e0e23 !important;
-  height: 100% !important;
-  position: relative !important;
-  z-index: 0 !important;
-  border-radius: 10px !important;
-  border-color: #0e0e23 !important;
-}
-
-.pro-inner-item {
-  @media (max-width: 992px) {
-    margin: 10px 0;
-    font-size: 18px !important;
-  }
-}
-
-.pro-menu-item {
-  font-size: 1.5rem !important;
-  font-family: 'Airbnb Cereal App Bold' !important;
-  color: #ffffff;
-  @media (max-width: 992px) {
-    line-height: 35px;
-  }
-}
-
-.pro-inner-list-item {
-  background: #0e0e23 !important;
-}
-
-.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover {
-  background-color: #de136d;
 }
 
 .sidebar-wrapper {

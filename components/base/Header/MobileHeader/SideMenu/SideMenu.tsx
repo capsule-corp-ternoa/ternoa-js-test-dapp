@@ -15,8 +15,12 @@ import Polkadot from 'assets/svg/Providers/Polkadot'
 import mainStyles from '../MobileHeader.module.scss'
 import styles from './SideMenu.module.scss'
 import NetworkPill from 'components/ui/NetworkPill'
-
-import { Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
+import ListSubheader from '@mui/material/ListSubheader'
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
+import Collapse from '@mui/material/Collapse'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
 
 type ExpandedNominalSetState = React.Dispatch<React.SetStateAction<boolean>>
 
@@ -31,9 +35,17 @@ interface Props {
 const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }: Props) => {
   const [isPolkadotModalOpen, setIsPolkadotModalOpen] = useState<boolean>(false)
   const { user } = useAppSelector((state) => state.user)
+  const [NFT, setNFT] = useState(false)
+  const [collection, setCollection] = useState(false)
+  const [marketplace, setMarketplace] = useState(false)
+  const handleClick = (id: string) => {
+    if (id == 'NFT') setNFT(!NFT)
+    else if (id == 'collection') setCollection(!collection)
+    else setMarketplace(!marketplace)
+  }
   return (
     <aside className={`container ${styles.root} ${isExpanded && styles.expanded}`}>
-      <div className={styles.radialGradientBg}>
+      <div className={`sidemenu-container ${styles.radialGradientBg}`}>
         <div>
           <div className={`wrapper ${mainStyles.nav}`}>
             <Link href="/">
@@ -79,62 +91,122 @@ const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }:
 
             <div className="sidebar-wrapper">
               <div style={{ minWidth: '300px' }}>
-                <Menu>
-                  <SubMenu title="NFT">
-                    <Link href="/app/NFT/CreateNFT">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Create NFT</MenuItem>
-                      </a>
-                    </Link>
-                    <Link href="/app/NFT/BurnNFT">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Burn NFT</MenuItem>
-                      </a>
-                    </Link>
-                    <Link href="/app/NFT/DelegateNFT">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Delegate NFT</MenuItem>
-                      </a>
-                    </Link>
-                    <Link href="/app/NFT/SetRoyalty">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Set Royalty</MenuItem>
-                      </a>
-                    </Link>
-                    <Link href="/app/NFT/TransferNFT">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Transfer NFT</MenuItem>
-                      </a>
-                    </Link>
-                    <Link href="/app/NFT/AddNftToCollection">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Add NFT To Collection</MenuItem>
-                      </a>
-                    </Link>
-                  </SubMenu>
-                  <SubMenu title="Collection">
-                    <Link href="/app/Collection/CreateCollection">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Create Collection</MenuItem>
-                      </a>
-                    </Link>
-                    <Link href="/app/Collection/LimitCollection">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Limit Collection</MenuItem>
-                      </a>
-                    </Link>
-                    <Link href="/app/Collection/CloseCollection">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Close Collection</MenuItem>
-                      </a>
-                    </Link>
-                    <Link href="/app/Collection/BurnCollection">
-                      <a onClick={() => setIsExpanded((prevState) => !prevState)}>
-                        <MenuItem>Burn Collection</MenuItem>
-                      </a>
-                    </Link>
-                  </SubMenu>
-                </Menu>
+                <List
+                  sx={{ width: '100%', bgcolor: 'background.paper' }}
+                  component="nav"
+                  aria-labelledby="nested-list-subheader"
+                  subheader={<ListSubheader component="div" id="nested-list-subheader"></ListSubheader>}
+                >
+                  <ListItemButton className="list-title-btn" onClick={() => handleClick('NFT')}>
+                    NFT
+                    {NFT ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                  <Collapse in={NFT} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/NFT/CreateNFT">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Create NFT</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/NFT/BurnNFT">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Burn NFT</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/NFT/DelegateNFT">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Delegate NFT</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/NFT/SetRoyalty">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Set Royalty</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/NFT/TransferNFT">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Transfer NFT</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/NFT/AddNftToCollection">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Add NFT To Collection</a>
+                        </Link>
+                      </ListItemButton>
+                    </List>
+                  </Collapse>
+                  <ListItemButton className="list-title-btn" onClick={() => handleClick('collection')}>
+                    Collection
+                    {collection ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                  <Collapse in={collection} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/Collection/CreateCollection">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Create Collection</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/Collection/LimitCollection">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Limit Collection</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/Collection/CloseCollection">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Close Collection</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="/app/Collection/BurnCollection">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Burn Collection</a>
+                        </Link>
+                      </ListItemButton>
+                    </List>
+                  </Collapse>
+                  <ListItemButton className="list-title-btn" onClick={() => handleClick('marketplace')}>
+                    Marketplace
+                    {marketplace ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                  <Collapse in={marketplace} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="#">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Create Marketplace </a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="#">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Set Marketplace Configuration </a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="#">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Set Marketplace Owner </a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="#">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Set Marketplace Kind </a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="#">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>List NFT</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="#">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Unlist NFT</a>
+                        </Link>
+                      </ListItemButton>
+                      <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
+                        <Link href="#">
+                          <a onClick={() => setIsExpanded((prevState) => !prevState)}>Buy NFT</a>
+                        </Link>
+                      </ListItemButton>
+                    </List>
+                  </Collapse>
+                </List>
               </div>
             </div>
           </div>
