@@ -1,4 +1,4 @@
-import { changeEndpoint } from 'ternoa-js'
+import { initializeApi } from 'ternoa-js'
 
 import { actions } from 'redux/app/actions'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
@@ -14,7 +14,7 @@ const NetworkPill = () => {
 
   const changeApiEndpoint = async () => {
     const newEndpoint = network === 'Mainnet' ? 'wss://alphanet.ternoa.com' : 'wss://mainnet.ternoa.network'
-    changeEndpoint(newEndpoint)
+    await initializeApi(newEndpoint)
     dispatch(actions.setWssEndpoint(newEndpoint))
   }
 
