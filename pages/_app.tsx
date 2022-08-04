@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { store } from 'redux/store'
+import { ThemeProvider } from '@mui/material/styles'
 import { initializeApi } from 'ternoa-js'
 
 import Layout from 'components/base/Layout'
 import Loader from 'components/ui/Loader'
+import { appTheme } from 'theme'
 
 import 'styles/main.scss'
 
@@ -35,9 +37,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
+      <ThemeProvider theme={appTheme}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      </ThemeProvider>
     </Provider>
   )
 }
