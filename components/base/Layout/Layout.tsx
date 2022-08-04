@@ -1,19 +1,20 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
 import { getApiEndpoint } from 'ternoa-js'
-import { useAppDispatch } from 'redux/hooks'
-import { reconnect } from 'helpers/polkadot'
-import Analytics from '../Analytics'
 
-import Header from '../Header'
-import HeaderNavigation from 'utils/_mocks/Header'
-import MobileHeader from '../Header/MobileHeader'
-import Footer from '../Footer'
-import MobileFooter from '../MobileFooter'
 import TernoaIcon from 'assets/svg/Components/TernoaIcon'
+import Analytics from 'components/base/Analytics'
+import Footer from 'components/base/Footer'
+import MobileFooter from 'components/base/MobileFooter'
+import Header from 'components/base/Header'
+import MobileHeader from 'components/base/Header/MobileHeader'
+import Sidebar from 'components/base/Sidebar/Sidebar'
+import { reconnect } from 'helpers/polkadot'
 import { actions } from 'redux/app/actions'
+import { useAppDispatch } from 'redux/hooks'
+import HeaderNavigation from 'utils/_mocks/Header'
 
-import Sidebar from '../Sidebar/Sidebar'
+import styles from './Layout.module.scss'
 
 interface LayoutProps {
   children?: React.ReactNode
@@ -51,11 +52,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       <main className="container">
         <div className="wrapper">
-          <div className="flex-container">
-            <div className="sidebar-container">
+          <div className={styles.root}>
+            <div className={styles.sidebarContainer}>
               <Sidebar />
             </div>
-            <div className="main-container">{children}</div>
+            <div className={styles.mainContainer}>{children}</div>
           </div>
         </div>
       </main>

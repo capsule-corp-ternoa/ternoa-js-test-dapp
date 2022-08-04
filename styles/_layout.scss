@@ -69,7 +69,7 @@ button {
 
 .wrapper {
   width: 100%;
-  max-width: 128rem;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 2.4rem 1.6rem;
 
@@ -82,71 +82,14 @@ button {
   }
 
   @include lg {
-    padding: 2.4rem 4rem;
+    padding: 2.4rem 1.6rem;
 
     &:last-child {
       padding-bottom: 4.8rem;
     }
   }
 
-  @include xl {
-    padding: 2.4rem 6.4rem;
-  }
-
   @include xxl {
     max-width: 1440px;
   }
-}
-.flex-container {
-  display: flex;
-}
-.main-container {
-  margin-left: 10px;
-
-  @media (max-width: 992px) {
-    width: 100%;
-    margin-left: 0px;
-    .Box_codeSnippet__LLj2X {
-      display: none;
-    }
-    .Box_summary__FTtVo {
-      font-size: 1.4rem;
-    }
-    .Box_body__Ks2WN {
-      flex-direction: column;
-    }
-    .Box_codeSnippet__LLj2X {
-      margin-left: 0;
-    }
-  }
-}
-.sidemenu-container {
-  overflow: auto;
-}
-
-.css-qhdtym-MuiList-root {
-  width: 200px;
-  background-color: #0e0e23;
-  @media (max-width: 992px) {
-    margin: auto;
-  }
-}
-
-.list-title-btn {
-  font-size: 18px;
-}
-
-.list-section-btn {
-  font-size: 14px;
-}
-
-.sidebar-container {
-  @media (max-width: 992px) {
-    display: none;
-  }
-}
-
-.sidebar-wrapper {
-  display: flex;
-  justify-content: center;
 }

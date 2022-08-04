@@ -19,12 +19,12 @@ export default function NestedList() {
 
   return (
     <List
-      sx={{ width: '100%', bgcolor: 'background.paper' }}
+      sx={{ width: '200px', backgroundColor: '#0e0e23' }}
       component="nav"
       aria-labelledby="nested-list-subheader"
       subheader={<ListSubheader component="div" id="nested-list-subheader"></ListSubheader>}
     >
-      <ListItemButton className="list-title-btn" onClick={() => handleClick('NFT')}>
+      <ListItemButton onClick={() => handleClick('NFT')}>
         NFT
         {NFT ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
