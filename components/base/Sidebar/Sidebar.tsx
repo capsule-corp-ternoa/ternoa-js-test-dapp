@@ -111,37 +111,37 @@ export default function NestedList() {
       <Collapse in={marketplace} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItemButton sx={{ pl: 4 }}>
-            <Link href="#">
+            <Link href="/app/Marketplace/CreateNftMarketplace">
               <Typography>Create Marketplace</Typography>
             </Link>
           </ListItemButton>
           <ListItemButton sx={{ pl: 4 }}>
-            <Link href="#">
+            <Link href="/app/Marketplace/SetNftMarketplaceConfiguration">
               <Typography>Set Marketplace Configuration</Typography>
             </Link>
           </ListItemButton>
           <ListItemButton sx={{ pl: 4 }}>
-            <Link href="#">
+            <Link href="/app/Marketplace/SetNftMarketplaceOwner">
               <Typography>Set Marketplace Owner</Typography>
             </Link>
           </ListItemButton>
           <ListItemButton sx={{ pl: 4 }}>
-            <Link href="#">
+            <Link href="/app/Marketplace/SetNftMarketplaceKind">
               <Typography>Set Marketplace Kind</Typography>
             </Link>
           </ListItemButton>
           <ListItemButton sx={{ pl: 4 }}>
-            <Link href="#">
+            <Link href="/app/Marketplace/ListNft">
               <Typography>List NFT</Typography>
             </Link>
           </ListItemButton>
           <ListItemButton sx={{ pl: 4 }}>
-            <Link href="#">
+            <Link href="/app/Marketplace/UnlistNft">
               <Typography>Unlist NFT</Typography>
             </Link>
           </ListItemButton>
           <ListItemButton sx={{ pl: 4 }}>
-            <Link href="#">
+            <Link href="/app/Marketplace/BuyNft">
               <Typography>Buy NFT</Typography>
             </Link>
           </ListItemButton>

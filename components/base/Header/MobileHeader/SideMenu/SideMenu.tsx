@@ -170,37 +170,37 @@ const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }:
                   <Collapse in={marketplace} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
-                        <Link href="#">
+                        <Link href="/app/Marketplace/CreateNftMarketplace">
                           <a onClick={() => setIsExpanded((prevState) => !prevState)}>Create Marketplace </a>
                         </Link>
                       </ListItemButton>
                       <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
-                        <Link href="#">
+                        <Link href="/app/Marketplace/SetNftMarketplaceConfiguration">
                           <a onClick={() => setIsExpanded((prevState) => !prevState)}>Set Marketplace Configuration </a>
                         </Link>
                       </ListItemButton>
                       <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
-                        <Link href="#">
+                        <Link href="/app/Marketplace/SetNftMarketplaceOwner">
                           <a onClick={() => setIsExpanded((prevState) => !prevState)}>Set Marketplace Owner </a>
                         </Link>
                       </ListItemButton>
                       <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
-                        <Link href="#">
+                        <Link href="/app/Marketplace/SetNftMarketplaceKind">
                           <a onClick={() => setIsExpanded((prevState) => !prevState)}>Set Marketplace Kind </a>
                         </Link>
                       </ListItemButton>
                       <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
-                        <Link href="#">
+                        <Link href="/app/Marketplace/ListNft">
                           <a onClick={() => setIsExpanded((prevState) => !prevState)}>List NFT</a>
                         </Link>
                       </ListItemButton>
                       <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
-                        <Link href="#">
+                        <Link href="/app/Marketplace/UnlistNft">
                           <a onClick={() => setIsExpanded((prevState) => !prevState)}>Unlist NFT</a>
                         </Link>
                       </ListItemButton>
                       <ListItemButton className="list-section-btn" sx={{ pl: 4 }}>
-                        <Link href="#">
+                        <Link href="/app/Marketplace/BuyNft">
                           <a onClick={() => setIsExpanded((prevState) => !prevState)}>Buy NFT</a>
                         </Link>
                       </ListItemButton>

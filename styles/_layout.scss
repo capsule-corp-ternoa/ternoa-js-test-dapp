@@ -93,3 +93,89 @@ button {
     max-width: 1440px;
   }
 }
+
+.flex-container {
+  display: flex;
+}
+.main-container {
+  margin-left: 10px;
+
+  @media (max-width: 992px) {
+    width: 100%;
+    margin-left: 0px;
+    .Box_codeSnippet__LLj2X {
+      display: none;
+    }
+    .Box_summary__FTtVo {
+      font-size: 1.4rem;
+    }
+    .Box_body__Ks2WN {
+      flex-direction: column;
+    }
+    .Box_codeSnippet__LLj2X {
+      margin-left: 0;
+    }
+  }
+}
+.sidemenu-container {
+  overflow: auto;
+}
+
+.css-qhdtym-MuiList-root {
+  width: 200px;
+  background-color: #0e0e23;
+  @media (max-width: 992px) {
+    margin: auto;
+  }
+}
+
+.list-title-btn {
+  font-size: 18px;
+}
+
+.list-section-btn {
+  font-size: 14px;
+}
+
+.sidebar-container {
+  @media (max-width: 992px) {
+    display: none;
+  }
+}
+
+.sidebar-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+
+  .label {
+    color: $color-contrast;
+    font-family: $font-bold;
+    font-size: 1.6rem;
+  }
+
+  .insight {
+    color: $color-neutral100;
+    font-size: 1.2rem;
+    text-align: right;
+  }
+}
+
+.select_sheet {
+  border: solid 0.2rem transparent;
+  border-radius: 1.2rem;
+  background: #191939;
+  background-origin: border-box;
+  box-shadow: 0 10rem #0e0e23 inset;
+  outline: none;
+  margin: 10px 0;
+  color: #ffffff;
+  font-size: 1.6rem;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
