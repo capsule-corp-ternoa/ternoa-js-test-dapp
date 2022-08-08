@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { getApiEndpoint } from 'ternoa-js'
 
 import TernoaIcon from 'assets/svg/Components/TernoaIcon'
@@ -23,6 +24,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { projectName, navItems } = HeaderNavigation()
   const dispatch = useAppDispatch()
+  const router = useRouter()
 
   useEffect(() => {
     reconnect(dispatch)
@@ -53,9 +55,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="container">
         <div className="wrapper">
           <div className={styles.root}>
-            <div className={styles.sidebarContainer}>
-              <HelperList />
-            </div>
+            {router.pathname.includes('/app/') && (
+              <div className={styles.sidebarContainer}>
+                <HelperList />
+              </div>
+            )}
             <div className={styles.mainContainer}>{children}</div>
           </div>
         </div>
