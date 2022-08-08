@@ -118,7 +118,7 @@ const SigningModal = ({ handleClose, isOpen, submittableCallback, txHashHex }: S
           </div>
         </div>
       </Modal>
-      {isPolkadotModalOpen && <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />}
+      <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />
     </>
   )
 }

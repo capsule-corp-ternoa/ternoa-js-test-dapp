@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, link
           <NetworkPill />
         </div>
       </nav>
-      {isPolkadotModalOpen && <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />}
+      <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />
     </>
   )
 }

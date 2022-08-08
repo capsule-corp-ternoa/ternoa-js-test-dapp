@@ -8,7 +8,7 @@ import SigningModal from 'components/base/Modals/SigningModal'
 import { getRawApi, isTransactionSuccess } from 'ternoa-js'
 import { IExtrinsic, IResponse, RESPONSE_DEFAULT_STATE, TransactionLifeCycleStatus } from 'interfaces'
 
-const Home: NextPage = () => {
+const CreateNFT: NextPage = () => {
   const [isProgressModalOpen, setIsProgressModalOpen] = useState(false)
   const [isSigningModalOpen, setIsSigningModalOpen] = useState(false)
   const [response, setResponse] = useState<IResponse>(RESPONSE_DEFAULT_STATE)
@@ -74,4 +74,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default CreateNFT

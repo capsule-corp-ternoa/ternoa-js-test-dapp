@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useAppSelector } from 'redux/hooks'
 import dynamic from 'next/dynamic'
@@ -8,6 +8,7 @@ import { ILinks } from '../../interfaces'
 import { middleEllipsis } from 'utils/strings'
 import PolkadotModal from 'components/base/Modals/PolkadotModal'
 import Close from 'assets/svg/Components/Close'
+import HelperList from 'components/base/HelperList/HelperList'
 import MobileFooter from 'components/base/MobileFooter'
 import Button, { AnchorButton } from 'components/ui/Button/Button'
 
@@ -29,9 +30,20 @@ interface Props {
 const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }: Props) => {
   const [isPolkadotModalOpen, setIsPolkadotModalOpen] = useState<boolean>(false)
   const { user } = useAppSelector((state) => state.user)
+
+  const hancleClose = () => setIsExpanded((prevState) => !prevState)
+
+  useEffect(() => {
+    const body = document.querySelector('body')
+    if (body) {
+      if (isExpanded) body.style.overflow = 'hidden'
+      else body.style.overflow = 'auto'
+    }
+  }, [isExpanded])
+
   return (
     <aside className={`container ${styles.root} ${isExpanded && styles.expanded}`}>
-      <div className={styles.radialGradientBg}>
+      <div className={`sidemenu-container ${styles.radialGradientBg}`}>
         <div>
           <div className={`wrapper ${mainStyles.nav}`}>
             <Link href="/">
@@ -40,7 +52,7 @@ const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }:
                 <div className={mainStyles.logoTitle}>{projectName}</div>
               </a>
             </Link>
-            <button onClick={() => setIsExpanded((prevState) => !prevState)} title="Close menu">
+            <button onClick={hancleClose} title="Close menu">
               <Close className={mainStyles.button} />
             </button>
           </div>
@@ -74,11 +86,15 @@ const SideMenu = ({ ternoaLogo, projectName, isExpanded, setIsExpanded, links }:
             <div className={styles.network}>
               <NetworkPill />
             </div>
+
+            <div className={styles.helperListContainer}>
+              <HelperList onClick={hancleClose} width="100%" />
+            </div>
           </div>
         </div>
         <MobileFooter projectName={projectName} isTopBorder={true} isSocials={true} />
       </div>
-      {isPolkadotModalOpen && <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />}
+      <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />
     </aside>
   )
 }
