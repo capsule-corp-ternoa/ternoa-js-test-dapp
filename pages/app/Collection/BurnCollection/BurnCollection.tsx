@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { NextPage } from 'next'
 import type { ISubmittableResult } from '@polkadot/types/types'
+import { TransactionHashType } from 'ternoa-js'
 
 import BurnCollectionBlock from 'components/blocks/Collection/BurnCollectionBlock/BurnCollectionBlock'
 import ProgressModal from 'components/base/Modals/ProgressModal'
@@ -12,7 +13,7 @@ const BurnCollection: NextPage = () => {
   const [isProgressModalOpen, setIsProgressModalOpen] = useState(false)
   const [isSigningModalOpen, setIsSigningModalOpen] = useState(false)
   const [response, setResponse] = useState<IResponse>(RESPONSE_DEFAULT_STATE)
-  const [unsignedTx, setUnsignedTx] = useState<`0x${string}` | undefined>(undefined)
+  const [unsignedTx, setUnsignedTx] = useState<TransactionHashType | undefined>(undefined)
 
   const handleProgressModalClose = () => {
     setIsProgressModalOpen(false)
@@ -23,7 +24,7 @@ const BurnCollection: NextPage = () => {
     setUnsignedTx(undefined)
   }
 
-  const signableCallback = (txHashHex: `0x${string}`) => {
+  const signableCallback = (txHashHex: TransactionHashType) => {
     setUnsignedTx(txHashHex)
     setIsSigningModalOpen(true)
   }

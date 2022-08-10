@@ -6,6 +6,7 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
+import { TransactionHashType } from 'ternoa-js'
 import { setMarketplaceKindTx } from 'ternoa-js/marketplace'
 import { MarketplaceKind } from 'ternoa-js/marketplace/enum'
 
@@ -19,7 +20,7 @@ type IForm = {
 }
 
 interface Props {
-  signableCallback: (txHashHex: `0x${string}`) => void
+  signableCallback: (txHashHex: TransactionHashType) => void
 }
 
 const SetNFTMarketplaceKindBlock = ({ signableCallback }: Props) => {

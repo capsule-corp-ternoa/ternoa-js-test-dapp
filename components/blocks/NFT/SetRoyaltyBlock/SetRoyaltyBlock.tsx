@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { TransactionHashType } from 'ternoa-js'
 import { setRoyaltyTx } from 'ternoa-js/nft'
 
 import Box from 'components/base/Box/Box'
@@ -13,7 +14,7 @@ type IForm = {
 }
 
 interface Props {
-  signableCallback: (txHashHex: `0x${string}`) => void
+  signableCallback: (txHashHex: TransactionHashType) => void
 }
 
 const SetRoyaltyBlock = ({ signableCallback }: Props) => {
