@@ -7,15 +7,15 @@ interface BoxProps {
   codeSnippet?: string
   codeSnippetLink?: string
   codeSnippetTitle?: string
-  summary: string
+  summary?: string
   title: string
 }
 
 const Box: React.FC<BoxProps> = ({ children, codeSnippet, codeSnippetLink, codeSnippetTitle = 'Javascript SDK', title, summary }) => (
   <div className={styles.outterContainer}>
     <div className={styles.mainContainer}>
-      <div className={styles.title}>{title}</div>
-      <div className={styles.summary}>{summary}</div>
+      <h2 className={styles.title}>{title}</h2>
+      {summary && <div className={styles.summary}>{summary}</div>}
       <div className={styles.body}>
         <div className={styles.formContainer}>{children}</div>
         {codeSnippet && (

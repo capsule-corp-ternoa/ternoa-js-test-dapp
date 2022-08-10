@@ -21,6 +21,7 @@
   color: $color-contrast;
   font-family: $font-bold;
   font-size: 1.6rem;
+  margin: 0;
 
   @include xl {
     font-size: 2rem;
