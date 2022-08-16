@@ -34,6 +34,8 @@
     "@polkadot/react-identicon": "^2.6.1",
     "@polkadot/types": "8.14.1",
     "bn.js": "^5.2.1",
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.3.0",
     "highlight.js": "^11.5.1",
     "lottie-web": "^5.9.4",
     "next": "12.1.6",

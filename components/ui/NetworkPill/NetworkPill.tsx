@@ -1,7 +1,8 @@
-import { changeEndpoint } from 'ternoa-js'
+import { initializeApi } from 'ternoa-js'
 
 import { actions } from 'redux/app/actions'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { ALPHANET_CHAIN_WSS, MAINNET_CHAIN_WSS } from 'utils/constants'
 
 import Button from '../Button/Button'
 import styles from './NetworkPill.module.scss'
@@ -13,8 +14,8 @@ const NetworkPill = () => {
   const network = wssEndpoint && wssEndpoint.includes('mainnet') ? 'Mainnet' : 'Alphanet'
 
   const changeApiEndpoint = async () => {
-    const newEndpoint = network === 'Mainnet' ? 'wss://alphanet.ternoa.com' : 'wss://mainnet.ternoa.network'
-    changeEndpoint(newEndpoint)
+    const newEndpoint = network === 'Mainnet' ? ALPHANET_CHAIN_WSS : MAINNET_CHAIN_WSS
+    initializeApi(newEndpoint)
     dispatch(actions.setWssEndpoint(newEndpoint))
   }
 

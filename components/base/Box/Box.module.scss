@@ -19,12 +19,20 @@
 
 .title {
   color: $color-contrast;
+  display: flex;
+  align-items: center;
   font-family: $font-bold;
   font-size: 1.6rem;
   margin: 0;
 
   @include xl {
     font-size: 2rem;
+  }
+
+  .tooltip {
+    display: flex;
+    align-items: center;
+    margin-left: 0.8rem;
   }
 }
 

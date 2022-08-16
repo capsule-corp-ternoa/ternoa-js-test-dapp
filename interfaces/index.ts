@@ -35,6 +35,10 @@ export type DecodedMethodType = {
   method: MethodType
 }
 
+export interface ICustomResponse<DataType> {
+  data: DataType[]
+}
+
 export type IExtrinsic = {
   isSigned: boolean
   method: MethodType
@@ -54,3 +58,22 @@ export interface IResponse {
 }
 
 export type ResponseNominalSetState = React.Dispatch<React.SetStateAction<IResponse>>
+
+export type CollectionMetadataType = {
+  name: string
+  description: string
+  profile_image: string
+  banner_image: string
+  profile_image_file: {
+    name: string
+    hash: string
+    size: string
+    type: string
+  }
+  banner_image_file: {
+    name: string
+    hash: string
+    size: string
+    type: string
+  }
+}

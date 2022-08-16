@@ -1,5 +1,7 @@
+import React, { ReactNode } from 'react'
+
 import CodeSnippet from 'components/ui/CodeSnippet'
-import React from 'react'
+
 import styles from './Box.module.scss'
 
 interface BoxProps {
@@ -9,12 +11,16 @@ interface BoxProps {
   codeSnippetTitle?: string
   summary?: string
   title: string
+  tooltip?: ReactNode
 }
 
-const Box: React.FC<BoxProps> = ({ children, codeSnippet, codeSnippetLink, codeSnippetTitle = 'Javascript SDK', title, summary }) => (
+const Box: React.FC<BoxProps> = ({ children, codeSnippet, codeSnippetLink, codeSnippetTitle = 'Javascript SDK', summary, title, tooltip }) => (
   <div className={styles.outterContainer}>
     <div className={styles.mainContainer}>
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className={styles.title}>
+        {title}
+        <div className={styles.tooltip}>{tooltip}</div>
+      </h2>
       {summary && <div className={styles.summary}>{summary}</div>}
       <div className={styles.body}>
         <div className={styles.formContainer}>{children}</div>

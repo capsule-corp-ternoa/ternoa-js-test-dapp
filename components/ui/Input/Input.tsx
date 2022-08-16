@@ -61,7 +61,7 @@ function TextInput<T>({
   }
 
   return (
-    <div className={` ${className}`}>
+    <div className={className}>
       {label && (
         <div className={styles.top}>
           <span className={styles.label}>{label}</span>
@@ -91,7 +91,7 @@ function TextInput<T>({
         />
         <div className={styles.endComponent}>{endComponent}</div>
       </label>
-      {error ? <div className={styles.errorMessage}>{error}</div> : <div className={styles.adviseMessage}>{advise}</div>}
+      {error ? <div className={styles.errorMessage}>{error}</div> : advise && <div className={styles.adviseMessage}>{advise}</div>}
     </div>
   )
 }
