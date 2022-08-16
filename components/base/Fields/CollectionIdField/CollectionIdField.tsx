@@ -108,7 +108,7 @@ function CollectionIdField<T>({ control, error, isError, name, register, require
               isLoading={isLoading}
               label="Collection ID"
               noItemText="No personal collections found"
-              placeholder="Enter a collection ID for your NFT"
+              placeholder="Enter a collection ID"
               items={collections}
               onChange={onChange}
               value={value ? Number(value) : ''}
