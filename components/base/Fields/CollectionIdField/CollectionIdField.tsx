@@ -16,6 +16,7 @@ interface Props<T> {
   isError: boolean
   name: Path<T>
   register: UseFormRegister<T>
+  required?: boolean
 }
 
 type CollectionItemType = {
@@ -23,7 +24,7 @@ type CollectionItemType = {
   label: string
 }
 
-function CollectionIdField<T>({ control, error, isError, name, register }: Props<T>) {
+function CollectionIdField<T>({ control, error, isError, name, register, required = false }: Props<T>) {
   const { app } = useAppSelector((state) => state.app)
   const { user } = useAppSelector((state) => state.user)
   const { wssEndpoint } = app
@@ -103,7 +104,7 @@ function CollectionIdField<T>({ control, error, isError, name, register }: Props
           render={({ field: { onChange, value } }) => (
             <Select
               error={error}
-              insight="optionnal"
+              insight={required ? undefined : 'optionnal'}
               isLoading={isLoading}
               label="Collection ID"
               noItemText="No personal collections found"
@@ -121,13 +122,14 @@ function CollectionIdField<T>({ control, error, isError, name, register }: Props
   return (
     <Input
       error={error}
-      insight="optionnal"
+      insight={required ? undefined : 'optionnal'}
       isError={isError}
       label="Collection ID"
       min={0}
       name={name}
       placeholder="Enter a collection ID for your NFT"
       register={register}
+      required={required}
     />
   )
 }
