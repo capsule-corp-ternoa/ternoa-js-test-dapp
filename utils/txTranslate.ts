@@ -10,6 +10,8 @@ enum NFT {
   // Collection
   burnCollection = 'Collection burning',
   closeCollection = 'Collection closing',
+  createCollection = 'Collection creation',
+  limitCollection = 'Collection limit set',
 }
 
 export const TxTranslations = {

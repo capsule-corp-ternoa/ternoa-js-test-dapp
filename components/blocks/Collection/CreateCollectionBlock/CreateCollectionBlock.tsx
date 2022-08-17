@@ -1,6 +1,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import Tooltip from '@mui/material/Tooltip'
+import InfoIcon from '@mui/icons-material/Info'
 import { TransactionHashType } from 'ternoa-js'
 import { createCollectionTx } from 'ternoa-js/nft'
 
@@ -10,12 +12,29 @@ import Input from 'components/ui/Input'
 
 type IForm = {
   offchainData: string
-  limit: number
+  limit?: number
 }
 
 interface Props {
   signableCallback: (txHashHex: TransactionHashType) => void
 }
+
+const Tips = () => (
+  <Tooltip
+    title={
+      <>
+        <p>
+          The <b>Collection ID</b> field contains the id of the collection to limit.
+        </p>
+        <p>
+          The <b>Limit</b> input is optional and specified the limit of the collection. Limit must be greater or equal to 0 and lower or equal to 1 million.
+        </p>
+      </>
+    }
+  >
+    <InfoIcon />
+  </Tooltip>
+)
 
 const CreateCollectionBlock = ({ signableCallback }: Props) => {
   const {
@@ -24,9 +43,7 @@ const CreateCollectionBlock = ({ signableCallback }: Props) => {
     formState: { errors },
   } = useForm<IForm>({
     resolver: yupResolver(schema),
-    defaultValues: {
-      limit: 0,
-    },
+    defaultValues: {},
   })
 
   const onSubmit: SubmitHandler<IForm> = async ({ offchainData, limit }) => {
@@ -54,6 +71,7 @@ const CreateCollectionBlock = ({ signableCallback }: Props) => {
       codeSnippetTitle="Ternoa-JS: createCollection "
       summary="Create a new collection on blockchain with the provided details."
       title="Create Collection"
+      tooltip={<Tips />}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
@@ -67,13 +85,14 @@ const CreateCollectionBlock = ({ signableCallback }: Props) => {
         />
         <Input
           error={errors.limit?.message}
-          insight="optionnal"
+          insight="optional"
           isError={Boolean(errors.limit)}
           label="Limit"
           min={0}
           name="limit"
           placeholder="Enter a limit amounts of NFT"
           register={register}
+          type="number"
         />
         <Button text="Create Collection" type="submit" />
       </form>
@@ -85,5 +104,10 @@ export default CreateCollectionBlock
 
 const schema = yup.object({
   offchainData: yup.string().required('Please provide offchain data.').max(150, 'Only 150 characters are allowed'),
-  limit: yup.number().min(0, 'Limit must be greater or equal to 0').max(0, 'Limit must be lower or equal to 1 million'),
+  limit: yup
+    .number()
+    .transform((value) => (isNaN(value) ? undefined : value))
+    .nullable()
+    .min(0, 'Limit must be greater or equal to 0')
+    .max(1000000, 'Limit must be lower or equal to 1 million'),
 })

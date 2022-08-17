@@ -79,5 +79,6 @@ const schema = yup.object({
   id: yup
     .number()
     .transform((value) => (isNaN(value) ? -1 : value))
-    .min(0, 'Collection must be greater than or equal to 0'),
+    .min(0, 'Collection must be greater than or equal to 0')
+    .required('Collection ID is a required field'),
 })

@@ -32,7 +32,7 @@ const CreateNFT: NextPage = () => {
     handleSigningModalClose()
     setIsProgressModalOpen(true)
     try {
-      const api = await getRawApi()
+      const api = getRawApi()
       try {
         if (res.isInBlock) {
           const txHash = res.txHash

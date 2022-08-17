@@ -104,7 +104,7 @@ function CollectionIdField<T>({ control, error, isError, name, register, require
           render={({ field: { onChange, value } }) => (
             <Select
               error={error}
-              insight={required ? undefined : 'optionnal'}
+              insight={required ? undefined : 'optional'}
               isLoading={isLoading}
               label="Collection ID"
               noItemText="No personal collections found"
@@ -122,7 +122,7 @@ function CollectionIdField<T>({ control, error, isError, name, register, require
   return (
     <Input
       error={error}
-      insight={required ? undefined : 'optionnal'}
+      insight={required ? undefined : 'optional'}
       isError={isError}
       label="Collection ID"
       min={0}
