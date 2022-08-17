@@ -72,48 +72,48 @@ const HelperList = ({ onClick, width = '200px' }: Props) => {
       </ListItemButton>
       <Collapse in={NFT} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_NFT}CreateNFT`}>
+          <Link href={`${PATH_NFT}CreateNFT`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isCreateNFTPath ? 'primary' : undefined} fontFamily={isCreateNFTPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Create NFT
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_NFT}BurnNFT`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_NFT}BurnNFT`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isBurnNFTPath ? 'primary' : undefined} fontFamily={isBurnNFTPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Burn NFT
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_NFT}DelegateNFT`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_NFT}DelegateNFT`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isDelegateNFTPath ? 'primary' : undefined} fontFamily={isDelegateNFTPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Delegate NFT
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_NFT}SetRoyalty`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_NFT}SetRoyalty`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isSetRoyaltyPath ? 'primary' : undefined} fontFamily={isSetRoyaltyPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Set Royalty
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_NFT}TransferNFT`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_NFT}TransferNFT`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isTransferNFTPath ? 'primary' : undefined} fontFamily={isTransferNFTPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Transfer NFT
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_NFT}AddNftToCollection`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_NFT}AddNftToCollection`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isAddNftToCollectionPath ? 'primary' : undefined} fontFamily={isAddNftToCollectionPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Add NFT to Collection
               </Typography>
-            </Link>
-          </ListItemButton>
+            </ListItemButton>
+          </Link>
         </List>
       </Collapse>
       <ListItemButton onClick={() => handleClick('collection')} sx={{ justifyContent: 'space-between' }}>
@@ -122,36 +122,36 @@ const HelperList = ({ onClick, width = '200px' }: Props) => {
       </ListItemButton>
       <Collapse in={collection} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_COLLECTION}CreateCollection`}>
+          <Link href={`${PATH_COLLECTION}CreateCollection`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isCreateCollectionPath ? 'primary' : undefined} fontFamily={isCreateCollectionPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Create Collection
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_COLLECTION}LimitCollection`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_COLLECTION}LimitCollection`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <a title="Limit Collection">
                 <Typography color={isLimitCollectionPath ? 'primary' : undefined} fontFamily={isLimitCollectionPath ? 'Airbnb Cereal App Bold' : undefined}>
                   Limit Collection
                 </Typography>
               </a>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_COLLECTION}CloseCollection`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_COLLECTION}CloseCollection`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isCloseCollectionPath ? 'primary' : undefined} fontFamily={isCloseCollectionPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Close Collection
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_COLLECTION}BurnCollection`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_COLLECTION}BurnCollection`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isBurnCollectionPath ? 'primary' : undefined} fontFamily={isBurnCollectionPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Burn Collection
               </Typography>
-            </Link>
-          </ListItemButton>
+            </ListItemButton>
+          </Link>
         </List>
       </Collapse>
       <ListItemButton onClick={() => handleClick('marketplace')} sx={{ justifyContent: 'space-between' }}>
@@ -160,61 +160,61 @@ const HelperList = ({ onClick, width = '200px' }: Props) => {
       </ListItemButton>
       <Collapse in={marketplace} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_MARKETPLACE}CreateMarketplace`}>
+          <Link href={`${PATH_MARKETPLACE}CreateMarketplace`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isCreateMarketplacePath ? 'primary' : undefined} fontFamily={isCreateMarketplacePath ? 'Airbnb Cereal App Bold' : undefined}>
                 Create Marketplace
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_MARKETPLACE}SetMarketplaceConfiguration`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_MARKETPLACE}SetMarketplaceConfiguration`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography
                 color={isSetMarketplaceConfigurationPath ? 'primary' : undefined}
                 fontFamily={isSetMarketplaceConfigurationPath ? 'Airbnb Cereal App Bold' : undefined}
               >
                 Set Marketplace Configuration
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_MARKETPLACE}SetMarketplaceOwner`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_MARKETPLACE}SetMarketplaceOwner`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography
                 color={isSetMarketplaceOwnerPath ? 'primary' : undefined}
                 fontFamily={isSetMarketplaceOwnerPath ? 'Airbnb Cereal App Bold' : undefined}
               >
                 Set Marketplace Owner
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_MARKETPLACE}SetMarketplaceKind`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_MARKETPLACE}SetMarketplaceKind`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isSetMarketplaceKindPath ? 'primary' : undefined} fontFamily={isSetMarketplaceKindPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Set Marketplace Kind
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_MARKETPLACE}ListNFT`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_MARKETPLACE}ListNFT`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isListNFTPath ? 'primary' : undefined} fontFamily={isListNFTPath ? 'Airbnb Cereal App Bold' : undefined}>
                 List NFT
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_MARKETPLACE}UnlistNFT`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_MARKETPLACE}UnlistNFT`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isUnlistNFTPath ? 'primary' : undefined} fontFamily={isUnlistNFTPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Unlist NFT
               </Typography>
-            </Link>
-          </ListItemButton>
-          <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
-            <Link href={`${PATH_MARKETPLACE}BuyNFT`}>
+            </ListItemButton>
+          </Link>
+          <Link href={`${PATH_MARKETPLACE}BuyNFT`}>
+            <ListItemButton onClick={onClick} sx={{ pl: 4 }}>
               <Typography color={isBuyNFTPath ? 'primary' : undefined} fontFamily={isBuyNFTPath ? 'Airbnb Cereal App Bold' : undefined}>
                 Buy NFT
               </Typography>
-            </Link>
-          </ListItemButton>
+            </ListItemButton>
+          </Link>
         </List>
       </Collapse>
     </List>
