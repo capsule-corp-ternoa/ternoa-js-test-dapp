@@ -5,8 +5,8 @@ import { gql } from 'graphql-request'
 
 import Input from 'components/ui/Input'
 import Select from 'components/ui/Select'
-import { CollectionMetadataType } from 'interfaces'
-import { ICollectionEntities } from 'interfaces/queries'
+import { NFTMetadataType } from 'interfaces'
+import { INFTEntities } from 'interfaces/queries'
 import { useAppSelector } from 'redux/hooks'
 import { apiIndexer, fetchIPFSMetadata } from 'utils/data'
 
@@ -19,35 +19,33 @@ interface Props<T> {
   required?: boolean
 }
 
-type CollectionItemType = {
+type NFTItemType = {
   value: number
   label: string
 }
 
-function CollectionIdField<T>({ control, error, isError, name, register, required = false }: Props<T>) {
+function NFTIdField<T>({ control, error, isError, name, register, required = false }: Props<T>) {
   const { app } = useAppSelector((state) => state.app)
   const { user } = useAppSelector((state) => state.user)
   const { wssEndpoint } = app
   const { isConnectedPolkadot, polkadotWallet } = user
 
   const [isLoading, setLoading] = useState(false)
-  const [collections, setCollections] = useState<CollectionItemType[]>([])
+  const [NFTs, setNFTs] = useState<NFTItemType[]>([])
 
-  const queryUserCollections = (address: string) => gql`
+  const queryUserNFTs = (address: string) => gql`
   {
-    collectionEntities(
+    nftEntities(
       orderBy: [TIMESTAMP_CREATE_DESC]
       filter: {
         and: [
           {owner: { equalTo: "${address}" }}
-          {isClosed: {equalTo: false }}
-          {hasReachedLimit: {equalTo: false }}
         ]
       }
     ) {
       totalCount
       nodes {
-        collectionId
+        nftId
         offchainData
       }
     }
@@ -56,30 +54,30 @@ function CollectionIdField<T>({ control, error, isError, name, register, require
 
   useEffect(() => {
     let shouldUpdate = true
-    const loadCollections = async () => {
+    const loadNFTs = async () => {
       if (polkadotWallet !== undefined) {
         setLoading(true)
         try {
-          const { collectionEntities }: ICollectionEntities = await apiIndexer(wssEndpoint, queryUserCollections(polkadotWallet.address))
-          const collections: CollectionItemType[] = await Promise.all(
-            collectionEntities.nodes.map(async ({ collectionId, offchainData }) => {
+          const { nftEntities }: INFTEntities = await apiIndexer(wssEndpoint, queryUserNFTs(polkadotWallet.address))
+          const nfts: NFTItemType[] = await Promise.all(
+            nftEntities.nodes.map(async ({ nftId, offchainData }) => {
               try {
-                const res = await fetchIPFSMetadata<CollectionMetadataType>(offchainData)
-                const collectionTitle = res?.name || collectionId
+                const res = await fetchIPFSMetadata<NFTMetadataType>(offchainData)
+                const nftTitle = res?.title || nftId
                 return {
-                  value: Number(collectionId),
-                  label: collectionTitle,
+                  value: Number(nftId),
+                  label: nftTitle,
                 }
               } catch {
                 return {
-                  value: Number(collectionId),
-                  label: collectionId,
+                  value: Number(nftId),
+                  label: nftId,
                 }
               }
             })
           )
           if (shouldUpdate) {
-            setCollections(collections)
+            setNFTs(nfts)
             setLoading(false)
           }
         } catch (error) {
@@ -89,7 +87,7 @@ function CollectionIdField<T>({ control, error, isError, name, register, require
       }
     }
 
-    loadCollections()
+    loadNFTs()
     return () => {
       shouldUpdate = false
     }
@@ -106,10 +104,10 @@ function CollectionIdField<T>({ control, error, isError, name, register, require
               error={error}
               insight={required ? undefined : 'optional'}
               isLoading={isLoading}
-              label="Collection ID"
-              noItemText="No personal collections found"
-              placeholder="Enter a collection ID"
-              items={collections}
+              label="NFT ID"
+              noItemText="No personal NFTs found"
+              placeholder="Enter an NFT ID"
+              items={NFTs}
               onChange={onChange}
               value={value ? Number(value) : ''}
             />
@@ -124,14 +122,14 @@ function CollectionIdField<T>({ control, error, isError, name, register, require
       error={error}
       insight={required ? undefined : 'optional'}
       isError={isError}
-      label="Collection ID"
+      label="NFT ID"
       min={0}
       name={name}
-      placeholder="Enter a collection ID"
+      placeholder="Enter an NFT ID"
       register={register}
       required={required}
     />
   )
 }
 
-export default CollectionIdField
+export default NFTIdField

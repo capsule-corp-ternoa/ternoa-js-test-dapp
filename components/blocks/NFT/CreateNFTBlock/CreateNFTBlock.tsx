@@ -52,9 +52,10 @@ const CreateNFTBlock = ({ signableCallback }: Props) => {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<IForm>({
     resolver: yupResolver(schema),
+    mode: 'onChange',
     defaultValues: {
       isSoulbond: false,
       royalty: 0,
@@ -117,7 +118,7 @@ const CreateNFTBlock = ({ signableCallback }: Props) => {
           register={register}
         />
         <CheckBox error={errors.isSoulbond?.message} label="Is it a soulbond NFT ?" name="isSoulbond" register={register} />
-        <Button text="Mint NFT" type="submit" />
+        <Button disabled={isSubmitting || !isValid} text="Mint NFT" type="submit" />
       </form>
     </Box>
   )

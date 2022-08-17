@@ -77,3 +77,25 @@ export type CollectionMetadataType = {
     type: string
   }
 }
+
+export type NFTMetadataType = {
+  hash: string
+  title: string
+  description: string
+  image: string
+  image_file: {
+    hash: string
+    name: string
+    size: string
+    type: string
+  }
+  external_url: string
+  properties: {
+    media: {
+      hash: string
+      name: string
+      size: string
+      type: string
+    }
+  }
+}

@@ -1,10 +1,14 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import Tooltip from '@mui/material/Tooltip'
+import InfoIcon from '@mui/icons-material/Info'
 import { TransactionHashType } from 'ternoa-js'
+import { isValidAddress } from 'ternoa-js/blockchain'
 import { transferNftTx } from 'ternoa-js/nft'
 
 import Box from 'components/base/Box/Box'
+import NFTIdField from 'components/base/Fields/NFTIdField'
 import Button from 'components/ui/Button/Button'
 import Input from 'components/ui/Input'
 
@@ -17,16 +21,33 @@ interface Props {
   signableCallback: (txHashHex: TransactionHashType) => void
 }
 
+const Tips = () => (
+  <Tooltip
+    title={
+      <>
+        <p>
+          <b>NFT ID</b> contains the id of the NFT to transfer.
+        </p>
+        <p>
+          <b>Recipient</b> contains the Ternoa recipient address to which NFT will be transferred. NFT ownership will be loose.
+        </p>
+      </>
+    }
+  >
+    <InfoIcon />
+  </Tooltip>
+)
+
 const TransferNFTBlock = ({ signableCallback }: Props) => {
   const {
     register,
+    control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<IForm>({
     resolver: yupResolver(schema),
-    defaultValues: {
-      id: 0,
-    },
+    defaultValues: {},
+    mode: 'onChange',
   })
 
   const onSubmit: SubmitHandler<IForm> = async ({ id, recipient }) => {
@@ -54,29 +75,20 @@ const TransferNFTBlock = ({ signableCallback }: Props) => {
       codeSnippetTitle="Ternoa-JS: transferNFT"
       summary="Sends an NFT to someone"
       title="Transfer NFT"
+      tooltip={<Tips />}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          error={errors.id?.message}
-          isError={Boolean(errors.id)}
-          label="NFT ID"
-          min={0}
-          name="id"
-          placeholder="Enter id of NFT"
-          register={register}
-          required
-        />
-
+        <NFTIdField control={control} error={errors.id?.message} isError={Boolean(errors.id)} name="id" register={register} required />
         <Input
           error={errors.recipient?.message}
           isError={Boolean(errors.recipient)}
           label="Recipient"
           name="recipient"
-          placeholder="Enter destination account"
+          placeholder="Enter recipient Ternoa address"
           register={register}
           required
         />
-        <Button text="Transfer NFT" type="submit" />
+        <Button disabled={isSubmitting || !isValid} text="Transfer NFT" type="submit" />
       </form>
     </Box>
   )
@@ -85,6 +97,16 @@ const TransferNFTBlock = ({ signableCallback }: Props) => {
 export default TransferNFTBlock
 
 const schema = yup.object({
-  id: yup.number().required('Please provide an NFT ID.').min(0, 'NFT ID must be greater than or equal to 0'),
-  recipient: yup.string().required('Please set destination account'),
+  id: yup
+    .number()
+    .transform((value) => (isNaN(value) ? -1 : value))
+    .min(0, 'NFT ID must be greater than or equal to 0')
+    .required('NFT ID is a required field'),
+  recipient: yup
+    .string()
+    .test('Recipient Ternoa address', 'A valid Ternoa address must be entered', (item) => {
+      if (item) return isValidAddress(item)
+      return true
+    })
+    .transform((value) => (value === '' ? undefined : value)),
 })

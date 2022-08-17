@@ -1,12 +1,15 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import Tooltip from '@mui/material/Tooltip'
+import InfoIcon from '@mui/icons-material/Info'
 import { TransactionHashType } from 'ternoa-js'
 import { addNftToCollectionTx } from 'ternoa-js/nft'
 
 import Box from 'components/base/Box/Box'
+import CollectionIdField from 'components/base/Fields/CollectionIdField'
+import NFTIdField from 'components/base/Fields/NFTIdField'
 import Button from 'components/ui/Button/Button'
-import Input from 'components/ui/Input'
 
 type IForm = {
   nft_id: number
@@ -17,17 +20,33 @@ interface Props {
   signableCallback: (txHashHex: TransactionHashType) => void
 }
 
+const Tips = () => (
+  <Tooltip
+    title={
+      <>
+        <p>
+          <b>NFT ID</b> contains the id of the NFT to add to a collection.
+        </p>
+        <p>
+          <b>Collection ID</b> contains the id of the collection where the NFT will be added.
+        </p>
+      </>
+    }
+  >
+    <InfoIcon />
+  </Tooltip>
+)
+
 const AddNftToCollection = ({ signableCallback }: Props) => {
   const {
     register,
+    control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<IForm>({
     resolver: yupResolver(schema),
-    defaultValues: {
-      nft_id: 0,
-      collection_id: 0,
-    },
+    defaultValues: {},
+    mode: 'onChange',
   })
 
   const onSubmit: SubmitHandler<IForm> = async ({ nft_id, collection_id }) => {
@@ -55,29 +74,19 @@ const AddNftToCollection = ({ signableCallback }: Props) => {
       codeSnippetTitle="Ternoa-JS: addNFTToCollection"
       summary="Adds an NFT to an existing collection."
       title="Add NFT to collection"
+      tooltip={<Tips />}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          error={errors.nft_id?.message}
-          isError={Boolean(errors.nft_id)}
-          label="NFT ID"
-          min={0}
-          name="nft_id"
-          placeholder="Enter id of NFT"
-          register={register}
-          required
-        />
-        <Input
+        <NFTIdField control={control} error={errors.nft_id?.message} isError={Boolean(errors.nft_id)} name="nft_id" register={register} required />
+        <CollectionIdField
+          control={control}
           error={errors.collection_id?.message}
           isError={Boolean(errors.collection_id)}
-          label="Collection ID"
-          min={0}
           name="collection_id"
-          placeholder="Enter id of Collection"
           register={register}
           required
         />
-        <Button text="Add NFT to collection" type="submit" />
+        <Button disabled={isSubmitting || !isValid} text="Add NFT to collection" type="submit" />
       </form>
     </Box>
   )
@@ -86,6 +95,14 @@ const AddNftToCollection = ({ signableCallback }: Props) => {
 export default AddNftToCollection
 
 const schema = yup.object({
-  nft_id: yup.number().required('Please provide an NFT ID.').min(0, 'NFT ID must be greater than or equal to 0'),
-  collection_id: yup.number().required().min(0, 'Collection ID must be greater than or equal to 0'),
+  nft_id: yup
+    .number()
+    .transform((value) => (isNaN(value) ? -1 : value))
+    .min(0, 'NFT ID must be greater than or equal to 0')
+    .required('NFT ID is a required field'),
+  collection_id: yup
+    .number()
+    .transform((value) => (isNaN(value) ? -1 : value))
+    .min(0, 'Collection ID must be greater than or equal to 0')
+    .required('Collection ID is a required field'),
 })
