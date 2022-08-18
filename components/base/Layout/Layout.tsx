@@ -11,9 +11,11 @@ import Header from 'components/base/Header'
 import MobileHeader from 'components/base/Header/MobileHeader'
 import HelperList from 'components/base/HelperList/HelperList'
 import { reconnect } from 'helpers/polkadot'
-import { actions } from 'redux/app/actions'
-import { useAppDispatch } from 'redux/hooks'
+import { actions as appActions } from 'redux/app/actions'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { actions as userActions } from 'redux/user/actions'
 import HeaderNavigation from 'utils/_mocks/Header'
+import { loadUserCollections, loadUserNFTs } from 'utils/user'
 
 import styles from './Layout.module.scss'
 
@@ -24,6 +26,10 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { projectName, navItems } = HeaderNavigation()
   const dispatch = useAppDispatch()
+  const { app } = useAppSelector((state) => state.app)
+  const { user } = useAppSelector((state) => state.user)
+  const { wssEndpoint } = app
+  const { polkadotWallet } = user
   const router = useRouter()
 
   useEffect(() => {
@@ -31,11 +37,50 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
     try {
       const endpoint = getApiEndpoint()
-      dispatch(actions.setWssEndpoint(endpoint))
+      dispatch(appActions.setWssEndpoint(endpoint))
     } catch (error) {
       console.log(error)
     }
   }, [dispatch])
+
+  useEffect(() => {
+    let shouldUpdate = true
+    const loadNFTs = async (address: string) => {
+      dispatch(userActions.isNFTsFecthing(true))
+      try {
+        const NFTs = await loadUserNFTs(wssEndpoint, address)
+        if (shouldUpdate) {
+          dispatch(userActions.setUserNFTs(NFTs))
+          dispatch(userActions.isNFTsFecthing(false))
+        }
+      } catch (error) {
+        console.log(error)
+        dispatch(userActions.isNFTsFecthing(false))
+      }
+    }
+
+    const loadCollections = async (address: string) => {
+      dispatch(userActions.isCollectionsFecthing(true))
+      try {
+        const collections = await loadUserCollections(wssEndpoint, address)
+        if (shouldUpdate) {
+          dispatch(userActions.setUserCollections(collections))
+          dispatch(userActions.isCollectionsFecthing(false))
+        }
+      } catch (error) {
+        console.log(error)
+        dispatch(userActions.isCollectionsFecthing(false))
+      }
+    }
+
+    if (polkadotWallet !== undefined) {
+      loadNFTs(polkadotWallet.address)
+      loadCollections(polkadotWallet.address)
+    }
+    return () => {
+      shouldUpdate = false
+    }
+  }, [dispatch, polkadotWallet, wssEndpoint])
 
   return (
     <>

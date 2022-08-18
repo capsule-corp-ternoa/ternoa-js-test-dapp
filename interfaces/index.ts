@@ -3,6 +3,11 @@ import BN from 'bn.js'
 import type { Hash } from '@polkadot/types/interfaces'
 import { TxTranslations } from 'utils/txTranslate'
 
+export type SelectItemType = {
+  value: number
+  label: string
+}
+
 export interface PolkadotWallet {
   address: string
   injector: InjectedExtension
@@ -10,8 +15,12 @@ export interface PolkadotWallet {
 }
 
 export interface User {
+  isCollectionsFetching: boolean
   isConnectedPolkadot: boolean
+  isNFTsFetching: boolean
   polkadotWallet?: PolkadotWallet
+  NFTs: SelectItemType[]
+  collections: SelectItemType[]
 }
 
 export enum TransactionLifeCycleStatus {

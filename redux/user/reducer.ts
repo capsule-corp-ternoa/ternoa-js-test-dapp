@@ -4,7 +4,11 @@ import { AnyAction, Reducer } from 'redux'
 
 const initialState = {
   user: {
+    isCollectionsFetching: false,
     isConnectedPolkadot: false,
+    isNFTsFetching: false,
+    NFTs: [],
+    collections: [],
   },
 }
 
@@ -28,8 +32,52 @@ export const userReducer: Reducer<{ user: User }, AnyAction> = (state = initialS
         ...state,
         user: {
           ...state.user,
+          isCollectionsFetching: false,
           isConnectedPolkadot: false,
+          isNFTsFetching: false,
           polkadotWallet: undefined,
+          NFTs: [],
+          collections: [],
+        },
+      }
+    }
+    case 'USER_NFTS_FETCHING': {
+      const { value } = action
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          isNFTsFetching: value,
+        },
+      }
+    }
+    case 'USER_COLLECTIONS_FETCHING': {
+      const { value } = action
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          isCollectionsFetching: value,
+        },
+      }
+    }
+    case 'USER_SET_NFTS': {
+      const { value } = action
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          NFTs: value,
+        },
+      }
+    }
+    case 'USER_SET_COLLECTIONS': {
+      const { value } = action
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          collections: value,
         },
       }
     }
