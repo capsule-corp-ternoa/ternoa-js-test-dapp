@@ -14,6 +14,11 @@ enum NFT {
   limitCollection = 'Collection limit set',
 }
 
+enum Marketplace {
+  createMarketplace = 'Marketplace creation',
+}
+
 export const TxTranslations = {
   nft: NFT,
+  marketplace: Marketplace,
 }

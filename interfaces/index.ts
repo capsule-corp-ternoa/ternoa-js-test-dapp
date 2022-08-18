@@ -4,7 +4,7 @@ import type { Hash } from '@polkadot/types/interfaces'
 import { TxTranslations } from 'utils/txTranslate'
 
 export type SelectItemType = {
-  value: number
+  value: number | string
   label: string
 }
 

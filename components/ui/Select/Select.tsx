@@ -9,6 +9,7 @@ import styles from './Select.module.scss'
 
 interface Props<T> {
   advise?: string
+  defaultValue?: T
   error?: string
   insight?: string
   isLoading?: boolean
@@ -31,6 +32,7 @@ const useStyles = makeStyles(() => ({
 
 const Select = <T extends string | number | undefined>({
   advise,
+  defaultValue,
   error,
   isLoading,
   insight,
@@ -54,7 +56,7 @@ const Select = <T extends string | number | undefined>({
       <MuiSelect
         value={String(value)}
         displayEmpty
-        defaultValue=""
+        defaultValue={defaultValue ?? ''}
         renderValue={(value) => (value !== '' ? value : placeholder)}
         onChange={onChange}
         MenuProps={{ classes: { paper: classes.menuPaper } }}
@@ -88,11 +90,13 @@ const Select = <T extends string | number | undefined>({
           <Loader size="small" />
         ) : items.length > 0 ? (
           [
-            <MenuItem key="reset" value="">
-              <Typography m={'5px'} fontSize={'14px'} fontStyle="italic" textAlign={'center'}>
-                Empty
-              </Typography>
-            </MenuItem>,
+            defaultValue === undefined && (
+              <MenuItem key="reset" value="">
+                <Typography m={'5px'} fontSize={'14px'} fontStyle="italic" textAlign={'center'}>
+                  Empty
+                </Typography>
+              </MenuItem>
+            ),
             ...items.map(({ label, value }, index) => (
               <MenuItem key={index} value={value}>
                 {label}
