@@ -39,3 +39,21 @@ export const queryUserCollections = (address: string) => gql`
     }
   }
 `
+
+export const queryUserMarketplaces = (address: string) => gql`
+  {
+    marketplaceEntities(
+      filter: {
+        and: [
+          {owner: { equalTo: "${address}" }}
+        ]
+      }
+    ) {
+      totalCount
+      nodes {
+        marketplaceId
+        offchainData
+      }
+    }
+  }
+`

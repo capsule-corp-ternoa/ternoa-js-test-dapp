@@ -17,10 +17,12 @@ export interface PolkadotWallet {
 export interface User {
   isCollectionsFetching: boolean
   isConnectedPolkadot: boolean
+  isMarketplacesFetching: boolean
   isNFTsFetching: boolean
   polkadotWallet?: PolkadotWallet
   NFTs: SelectItemType[]
   collections: SelectItemType[]
+  marketplaces: SelectItemType[]
 }
 
 export enum TransactionLifeCycleStatus {
@@ -80,6 +82,17 @@ export type CollectionMetadataType = {
     type: string
   }
   banner_image_file: {
+    name: string
+    hash: string
+    size: string
+    type: string
+  }
+}
+
+export type MarketplaceMetadataType = {
+  name: string
+  logo_uri: string
+  logo_uri_file: {
     name: string
     hash: string
     size: string

@@ -8,6 +8,11 @@ export interface INFT {
   offchainData: string
 }
 
+export interface IMarketplace {
+  marketplaceId: string
+  offchainData: string
+}
+
 export interface ICollectionEntities {
   collectionEntities: {
     totalCount: number
@@ -19,5 +24,12 @@ export interface INFTEntities {
   nftEntities: {
     totalCount: number
     nodes: INFT[]
+  }
+}
+
+export interface IMarketplaceEntities {
+  marketplaceEntities: {
+    totalCount: number
+    nodes: IMarketplace[]
   }
 }

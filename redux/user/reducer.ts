@@ -6,9 +6,11 @@ const initialState = {
   user: {
     isCollectionsFetching: false,
     isConnectedPolkadot: false,
+    isMarketplacesFetching: false,
     isNFTsFetching: false,
     NFTs: [],
     collections: [],
+    marketplaces: [],
   },
 }
 
@@ -61,6 +63,16 @@ export const userReducer: Reducer<{ user: User }, AnyAction> = (state = initialS
         },
       }
     }
+    case 'USER_MARKETPLACES_FETCHING': {
+      const { value } = action
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          isMarketplacesFetching: value,
+        },
+      }
+    }
     case 'USER_SET_NFTS': {
       const { value } = action
       return {
@@ -78,6 +90,16 @@ export const userReducer: Reducer<{ user: User }, AnyAction> = (state = initialS
         user: {
           ...state.user,
           collections: value,
+        },
+      }
+    }
+    case 'USER_SET_MARKETPLACES': {
+      const { value } = action
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          marketplaces: value,
         },
       }
     }

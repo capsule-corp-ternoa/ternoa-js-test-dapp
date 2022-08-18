@@ -15,7 +15,7 @@ import { actions as appActions } from 'redux/app/actions'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { actions as userActions } from 'redux/user/actions'
 import HeaderNavigation from 'utils/_mocks/Header'
-import { loadUserCollections, loadUserNFTs } from 'utils/user'
+import { loadUserCollections, loadUserMarketplaces, loadUserNFTs } from 'utils/user'
 
 import styles from './Layout.module.scss'
 
@@ -73,9 +73,24 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       }
     }
 
+    const loadMarketplaces = async (address: string) => {
+      dispatch(userActions.isMarketplacesFecthing(true))
+      try {
+        const marketplaces = await loadUserMarketplaces(wssEndpoint, address)
+        if (shouldUpdate) {
+          dispatch(userActions.setUserMarketplaces(marketplaces))
+          dispatch(userActions.isMarketplacesFecthing(false))
+        }
+      } catch (error) {
+        console.log(error)
+        dispatch(userActions.isMarketplacesFecthing(false))
+      }
+    }
+
     if (polkadotWallet !== undefined) {
       loadNFTs(polkadotWallet.address)
       loadCollections(polkadotWallet.address)
+      loadMarketplaces(polkadotWallet.address)
     }
     return () => {
       shouldUpdate = false

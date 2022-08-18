@@ -37,7 +37,7 @@ const Tips = () => (
   <Tooltip
     title={
       <p>
-        The only required field is <b>Kind</b> which defines the marketplace kind type between Public or Private.{' '}
+        The only required field is <b>Kind</b> which defines the marketplace kind type: Public or Private.{' '}
         <ul>
           <li>
             A <b>Public Marketplace</b> allows any user to list NFTs into except blacklisted users.
@@ -63,6 +63,7 @@ const CreateMarketplaceBlock = ({ signableCallback }: Props) => {
     defaultValues: {
       marketplaceKind: MarketplaceKind.Public,
     },
+    mode: 'onChange',
   })
 
   const onSubmit: SubmitHandler<IForm> = async ({ marketplaceKind }) => {
