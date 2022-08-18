@@ -35,10 +35,11 @@ const CloseCollectionBlock = ({ signableCallback }: Props) => {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<IForm>({
     resolver: yupResolver(schema),
     defaultValues: {},
+    mode: 'onChange',
   })
 
   const onSubmit: SubmitHandler<IForm> = async ({ id }) => {
@@ -67,7 +68,7 @@ const CloseCollectionBlock = ({ signableCallback }: Props) => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <CollectionIdField control={control} error={errors.id?.message} isError={Boolean(errors.id)} name="id" register={register} required />
-        <Button text="Create Collection" type="submit" />
+        <Button disabled={isSubmitting || !isValid} text="Create Collection" type="submit" />
       </form>
     </Box>
   )

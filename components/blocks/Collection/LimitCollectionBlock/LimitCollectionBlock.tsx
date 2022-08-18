@@ -42,10 +42,11 @@ const LimitCollectionBlock = ({ signableCallback }: Props) => {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<IForm>({
     resolver: yupResolver(schema),
     defaultValues: {},
+    mode: 'onChange',
   })
 
   const onSubmit: SubmitHandler<IForm> = async ({ id, limit }) => {
@@ -85,7 +86,7 @@ const LimitCollectionBlock = ({ signableCallback }: Props) => {
           required
           type="number"
         />
-        <Button text="Limit Collection" type="submit" />
+        <Button disabled={isSubmitting || !isValid} text="Limit Collection" type="submit" />
       </form>
     </Box>
   )

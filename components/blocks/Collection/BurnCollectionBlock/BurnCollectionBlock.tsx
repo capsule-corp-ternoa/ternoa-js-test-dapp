@@ -35,10 +35,11 @@ const BurnCollectionBlock = ({ signableCallback }: Props) => {
     control,
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<IForm>({
     resolver: yupResolver(schema),
     defaultValues: {},
+    mode: 'onChange',
   })
 
   const onSubmit: SubmitHandler<IForm> = async ({ id }) => {
@@ -67,7 +68,7 @@ const BurnCollectionBlock = ({ signableCallback }: Props) => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <CollectionIdField control={control} error={errors.id?.message} isError={Boolean(errors.id)} name="id" register={register} required />
-        <Button text="Burn Collection" type="submit" />
+        <Button disabled={isSubmitting || !isValid} text="Burn Collection" type="submit" />
       </form>
     </Box>
   )

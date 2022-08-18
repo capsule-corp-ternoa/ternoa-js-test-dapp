@@ -40,10 +40,11 @@ const CreateCollectionBlock = ({ signableCallback }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<IForm>({
     resolver: yupResolver(schema),
     defaultValues: {},
+    mode: 'onChange',
   })
 
   const onSubmit: SubmitHandler<IForm> = async ({ offchainData, limit }) => {
@@ -94,7 +95,7 @@ const CreateCollectionBlock = ({ signableCallback }: Props) => {
           register={register}
           type="number"
         />
-        <Button text="Create Collection" type="submit" />
+        <Button disabled={isSubmitting || !isValid} text="Create Collection" type="submit" />
       </form>
     </Box>
   )
