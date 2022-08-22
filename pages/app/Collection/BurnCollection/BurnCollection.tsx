@@ -8,8 +8,14 @@ import ProgressModal from 'components/base/Modals/ProgressModal'
 import SigningModal from 'components/base/Modals/SigningModal'
 import { getRawApi, isTransactionSuccess } from 'ternoa-js'
 import { IExtrinsic, IResponse, RESPONSE_DEFAULT_STATE, TransactionLifeCycleStatus } from 'interfaces'
+import { useAppSelector, useAppDispatch } from 'redux/hooks'
+import { actions } from 'redux/user/actions'
 
 const BurnCollection: NextPage = () => {
+  const dispatch = useAppDispatch()
+  const { user } = useAppSelector((state) => state.user)
+  const { collections } = user
+
   const [isProgressModalOpen, setIsProgressModalOpen] = useState(false)
   const [isSigningModalOpen, setIsSigningModalOpen] = useState(false)
   const [response, setResponse] = useState<IResponse>(RESPONSE_DEFAULT_STATE)
@@ -31,16 +37,21 @@ const BurnCollection: NextPage = () => {
 
   const submittableCallback = async (res: ISubmittableResult) => {
     handleSigningModalClose()
-    setIsProgressModalOpen(true)
+    if (!res.isInBlock && !res.isFinalized) setIsProgressModalOpen(true)
     try {
-      const api = await getRawApi()
+      const api = getRawApi()
       try {
-        if (res.isInBlock) {
+        if (res.isInBlock && !res.isFinalized) {
           const txHash = res.txHash
           const { block } = await api.rpc.chain.getBlock(res.status.asInBlock)
           const blockNumber = block.header.number.toNumber()
           const extrinsic = block.extrinsics.filter((x) => x.hash.toHex() === txHash.toHex())[0]
+          const event = res.events.find((x) => x.event.method === 'CollectionBurned')
+          const collectionId = event && Number.parseInt(event.event.data[0].toString())
           const isSuccess = isTransactionSuccess(res).success
+          if (isSuccess && collectionId) {
+            dispatch(actions.setUserCollections(collections.filter(({ value }) => value !== collectionId)))
+          }
           setResponse({
             ...RESPONSE_DEFAULT_STATE,
             isTxSuccess: isSuccess,

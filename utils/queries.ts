@@ -26,8 +26,6 @@ export const queryUserCollections = (address: string) => gql`
       filter: {
         and: [
           {owner: { equalTo: "${address}" }}
-          {isClosed: {equalTo: false }}
-          {hasReachedLimit: {equalTo: false }}
         ]
       }
     ) {

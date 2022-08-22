@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -9,6 +10,7 @@ import { closeCollectionTx } from 'ternoa-js/nft'
 import Box from 'components/base/Box/Box'
 import CollectionIdField from 'components/base/Fields/CollectionIdField'
 import Button from 'components/ui/Button/Button'
+import { useAppSelector } from 'redux/hooks'
 
 type IForm = {
   id: number
@@ -31,11 +33,14 @@ const Tips = () => (
 )
 
 const CloseCollectionBlock = ({ signableCallback }: Props) => {
+  const { user } = useAppSelector((state) => state.user)
+  const { polkadotWallet } = user
   const {
     register,
     control,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
+    reset,
   } = useForm<IForm>({
     resolver: yupResolver(schema),
     defaultValues: {},
@@ -46,6 +51,10 @@ const CloseCollectionBlock = ({ signableCallback }: Props) => {
     const closeCollectionTxHex = await closeCollectionTx(id)
     signableCallback(closeCollectionTxHex)
   }
+
+  useEffect(() => {
+    reset()
+  }, [polkadotWallet, reset])
 
   return (
     <Box

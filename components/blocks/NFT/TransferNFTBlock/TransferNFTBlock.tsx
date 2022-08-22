@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -11,6 +12,7 @@ import Box from 'components/base/Box/Box'
 import NFTIdField from 'components/base/Fields/NFTIdField'
 import Button from 'components/ui/Button/Button'
 import Input from 'components/ui/Input'
+import { useAppSelector } from 'redux/hooks'
 
 type IForm = {
   id: number
@@ -39,11 +41,14 @@ const Tips = () => (
 )
 
 const TransferNFTBlock = ({ signableCallback }: Props) => {
+  const { user } = useAppSelector((state) => state.user)
+  const { NFTs, polkadotWallet } = user
   const {
     register,
     control,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
+    reset,
   } = useForm<IForm>({
     resolver: yupResolver(schema),
     defaultValues: {},
@@ -54,6 +59,10 @@ const TransferNFTBlock = ({ signableCallback }: Props) => {
     const transferNftTxHex = await transferNftTx(id, recipient)
     signableCallback(transferNftTxHex)
   }
+
+  useEffect(() => {
+    reset()
+  }, [NFTs, polkadotWallet, reset])
 
   return (
     <Box

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -14,6 +14,7 @@ import MarketplaceIdField from 'components/base/Fields/MarketplaceIdField'
 import Button from 'components/ui/Button/Button'
 import Select from 'components/ui/Select'
 import { SelectItemType } from 'interfaces'
+import { useAppSelector } from 'redux/hooks'
 
 type IForm = {
   id: number
@@ -61,11 +62,14 @@ const Tips = () => (
 )
 
 const SetMarketplaceKindBlock = ({ signableCallback }: Props) => {
+  const { user } = useAppSelector((state) => state.user)
+  const { marketplaces, polkadotWallet } = user
   const {
     register,
     control,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
+    reset,
   } = useForm<IForm>({
     resolver: yupResolver(schema),
     defaultValues: { marketplaceKind: MarketplaceKind.Public },
@@ -76,6 +80,11 @@ const SetMarketplaceKindBlock = ({ signableCallback }: Props) => {
     const setMarketplaceKindTxHex = await setMarketplaceKindTx(id, marketplaceKind)
     signableCallback(setMarketplaceKindTxHex)
   }
+
+  useEffect(() => {
+    reset()
+  }, [marketplaces, polkadotWallet, reset])
+
   return (
     <Box
       codeSnippet={`

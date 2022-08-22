@@ -7,8 +7,17 @@ import CreateCollectionBlock from 'components/blocks/Collection/CreateCollection
 import ProgressModal from 'components/base/Modals/ProgressModal'
 import SigningModal from 'components/base/Modals/SigningModal'
 import { IExtrinsic, IResponse, RESPONSE_DEFAULT_STATE, TransactionLifeCycleStatus } from 'interfaces'
+import { useAppSelector, useAppDispatch } from 'redux/hooks'
+import { actions } from 'redux/user/actions'
+import { loadUserCollections } from 'utils/user'
 
 const CreateCollection: NextPage = () => {
+  const dispatch = useAppDispatch()
+  const { app } = useAppSelector((state) => state.app)
+  const { user } = useAppSelector((state) => state.user)
+  const { wssEndpoint } = app
+  const { polkadotWallet } = user
+
   const [isProgressModalOpen, setIsProgressModalOpen] = useState(false)
   const [isSigningModalOpen, setIsSigningModalOpen] = useState(false)
   const [response, setResponse] = useState<IResponse>(RESPONSE_DEFAULT_STATE)
@@ -30,16 +39,27 @@ const CreateCollection: NextPage = () => {
 
   const submittableCallback = async (res: ISubmittableResult) => {
     handleSigningModalClose()
-    setIsProgressModalOpen(true)
+    if (!res.isInBlock && !res.isFinalized) setIsProgressModalOpen(true)
     try {
-      const api = await getRawApi()
+      const api = getRawApi()
       try {
-        if (res.isInBlock) {
+        if (res.isInBlock && !res.isFinalized) {
           const txHash = res.txHash
           const { block } = await api.rpc.chain.getBlock(res.status.asInBlock)
           const blockNumber = block.header.number.toNumber()
           const extrinsic = block.extrinsics.filter((x) => x.hash.toHex() === txHash.toHex())[0]
           const isSuccess = isTransactionSuccess(res).success
+          if (isSuccess && polkadotWallet) {
+            dispatch(actions.isCollectionsFecthing(true))
+            try {
+              const collections = await loadUserCollections(wssEndpoint, polkadotWallet.address)
+              dispatch(actions.setUserCollections(collections))
+              dispatch(actions.isCollectionsFecthing(false))
+            } catch (error) {
+              console.log(error)
+              dispatch(actions.isCollectionsFecthing(false))
+            }
+          }
           setResponse({
             ...RESPONSE_DEFAULT_STATE,
             isTxSuccess: isSuccess,

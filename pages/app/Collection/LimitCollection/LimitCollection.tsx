@@ -30,11 +30,11 @@ const LimitCollection: NextPage = () => {
 
   const submittableCallback = async (res: ISubmittableResult) => {
     handleSigningModalClose()
-    setIsProgressModalOpen(true)
+    if (!res.isInBlock && !res.isFinalized) setIsProgressModalOpen(true)
     try {
-      const api = await getRawApi()
+      const api = getRawApi()
       try {
-        if (res.isInBlock) {
+        if (res.isInBlock && !res.isFinalized) {
           const txHash = res.txHash
           const { block } = await api.rpc.chain.getBlock(res.status.asInBlock)
           const blockNumber = block.header.number.toNumber()
