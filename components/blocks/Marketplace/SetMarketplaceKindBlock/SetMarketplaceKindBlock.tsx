@@ -10,10 +10,10 @@ import { setMarketplaceKindTx } from 'ternoa-js/marketplace'
 import { MarketplaceKind } from 'ternoa-js/marketplace/enum'
 
 import Box from 'components/base/Box/Box'
+import MarketplaceIdField from 'components/base/Fields/MarketplaceIdField'
 import Button from 'components/ui/Button/Button'
 import Select from 'components/ui/Select'
 import { SelectItemType } from 'interfaces'
-import MarketplaceIdField from 'components/base/Fields/MarketplaceIdField'
 
 type IForm = {
   id: number
@@ -60,7 +60,7 @@ const Tips = () => (
   </Tooltip>
 )
 
-const SetNFTMarketplaceKindBlock = ({ signableCallback }: Props) => {
+const SetMarketplaceKindBlock = ({ signableCallback }: Props) => {
   const {
     register,
     control,
@@ -122,7 +122,7 @@ const SetNFTMarketplaceKindBlock = ({ signableCallback }: Props) => {
   )
 }
 
-export default SetNFTMarketplaceKindBlock
+export default SetMarketplaceKindBlock
 
 const schema = yup.object({
   id: yup

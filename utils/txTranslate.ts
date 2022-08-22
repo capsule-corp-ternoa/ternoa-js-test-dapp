@@ -17,6 +17,7 @@ enum NFT {
 enum Marketplace {
   createMarketplace = 'Marketplace creation',
   setMarketplaceKind = 'Set Marketplace kind',
+  setMarketplaceOwner = 'Set Marketplace owner',
 }
 
 export const TxTranslations = {
