@@ -54,6 +54,7 @@ function CollectionIdField<T>({ control, error, isError, name, register, require
       placeholder="Enter a collection ID"
       register={register}
       required={required}
+      type="number"
     />
   )
 }

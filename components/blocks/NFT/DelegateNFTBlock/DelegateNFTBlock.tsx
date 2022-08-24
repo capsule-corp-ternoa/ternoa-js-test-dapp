@@ -57,7 +57,6 @@ const DelegateNFTBlock = ({ signableCallback }: Props) => {
   })
 
   const onSubmit: SubmitHandler<IForm> = async ({ id, recipient }) => {
-    console.log({ recipient })
     const delegateNftTxHex = await delegateNftTx(id, recipient)
     signableCallback(delegateNftTxHex)
   }

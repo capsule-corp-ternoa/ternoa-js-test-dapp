@@ -10,6 +10,7 @@ import styles from './Select.module.scss'
 interface Props<T> {
   advise?: string
   defaultValue?: T
+  disabled?: boolean
   error?: string
   insight?: string
   isLoading?: boolean
@@ -21,18 +22,20 @@ interface Props<T> {
   noItemText?: string
   onChange?: (event: SelectChangeEvent<any>, child: React.ReactNode) => void
   placeholder?: string
+  renderValue?: ((value: string | NonNullable<T>) => React.ReactNode) | undefined
   value?: T
 }
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
-    maxHeight: 200,
+    maxHeight: '200px !important',
   },
 }))
 
 const Select = <T extends string | number | undefined>({
   advise,
   defaultValue,
+  disabled,
   error,
   isLoading,
   insight,
@@ -41,10 +44,11 @@ const Select = <T extends string | number | undefined>({
   noItemText,
   onChange,
   placeholder,
+  renderValue,
   value,
 }: Props<T>) => {
   const classes = useStyles({ value })
-
+  const defaultRenderValue = (value: string | NonNullable<T>) => (value !== '' ? value : placeholder)
   return (
     <div>
       {label && (
@@ -56,8 +60,9 @@ const Select = <T extends string | number | undefined>({
       <MuiSelect
         value={String(value)}
         displayEmpty
+        disabled={disabled}
         defaultValue={defaultValue ?? ''}
-        renderValue={(value) => (value !== '' ? value : placeholder)}
+        renderValue={renderValue ?? defaultRenderValue}
         onChange={onChange}
         MenuProps={{ classes: { paper: classes.menuPaper } }}
         sx={{
@@ -81,7 +86,7 @@ const Select = <T extends string | number | undefined>({
 
           ':hover': {
             fieldset: {
-              borderColor: '#26264c !important',
+              borderColor: disabled ? 'default' : '#26264c !important',
             },
           },
         }}

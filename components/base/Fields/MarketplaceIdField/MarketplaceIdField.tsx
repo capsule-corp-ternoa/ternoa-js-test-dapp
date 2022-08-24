@@ -54,6 +54,7 @@ function MarketplaceIdField<T>({ control, error, isError, name, register, requir
       placeholder="Enter a marketplace ID"
       register={register}
       required={required}
+      type="number"
     />
   )
 }

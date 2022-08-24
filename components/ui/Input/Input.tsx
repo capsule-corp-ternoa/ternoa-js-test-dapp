@@ -21,6 +21,7 @@ interface Props<T> {
   register: UseFormRegister<T>
   required?: boolean
   startIcon?: string
+  step?: number | string
   type?: React.HTMLInputTypeAttribute
   value?: string | number | readonly string[]
   advise?: string
@@ -44,6 +45,7 @@ function TextInput<T>({
   placeholder,
   register,
   required = false,
+  step,
   type = 'text',
   value,
 }: Props<T>) {
@@ -87,6 +89,7 @@ function TextInput<T>({
               evt.preventDefault()
             }
           }}
+          step={step}
           {...register(name, { disabled, max, min, maxLength, minLength, required })}
         />
         <div className={styles.endComponent}>{endComponent}</div>

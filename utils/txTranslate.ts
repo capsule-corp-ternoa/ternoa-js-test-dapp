@@ -15,7 +15,11 @@ enum NFT {
 }
 
 enum Marketplace {
+  buyNft = 'NFT buy',
   createMarketplace = 'Marketplace creation',
+  listNft = 'NFT list',
+  unlistNft = 'NFT unlist',
+  setMarketplaceConfiguration = 'Set Marketplace configuration',
   setMarketplaceKind = 'Set Marketplace kind',
   setMarketplaceOwner = 'Set Marketplace owner',
 }

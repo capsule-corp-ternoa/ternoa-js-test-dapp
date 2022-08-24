@@ -28,7 +28,8 @@ const Tips = () => (
     title={
       <>
         <p>
-          The only required field is <b>Offchain Data</b> which is related to NFT&apos;s metadata. It can be an IPFS Hash, an URL or plain text.
+          The only required field is <b>Offchain Data</b> which is related to NFT&apos;s metadata. It can be an IPFS Hash, an URL or plain text. (max: 150
+          characters)
         </p>
         <p>
           <b>Royalty</b> is the percentage of all second sales that the creator will receive. It is a decimal number in range [0, 100] with a default value set

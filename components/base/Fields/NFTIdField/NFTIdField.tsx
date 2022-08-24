@@ -54,6 +54,7 @@ function NFTIdField<T>({ control, error, isError, name, register, required = fal
       placeholder="Enter an NFT ID"
       register={register}
       required={required}
+      type="number"
     />
   )
 }
