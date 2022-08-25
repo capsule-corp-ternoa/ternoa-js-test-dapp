@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useAppSelector } from 'redux/hooks'
+import { Link as MuiLink } from '@mui/material'
+import LaunchIcon from '@mui/icons-material/Launch'
 import dynamic from 'next/dynamic'
 const Identicon = dynamic(() => import('@polkadot/react-identicon'), { ssr: false })
 
@@ -44,9 +46,28 @@ const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, link
                       <a title={item.label}>{item.label}</a>
                     </Link>
                   ) : (
-                    <a href={item.href} title={item.label} target="_blank" rel="noopener noreferrer" key={item.label}>
-                      {item.label}
-                    </a>
+                    <MuiLink
+                      href={item.href}
+                      title={item.label}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      key={item.label}
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        color: 'white',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      {item.label}{' '}
+                      <LaunchIcon
+                        sx={{
+                          width: '1.6rem',
+                          height: '1.6rem',
+                          marginLeft: '0.4rem',
+                        }}
+                      />
+                    </MuiLink>
                   )}
                 </li>
               ))}

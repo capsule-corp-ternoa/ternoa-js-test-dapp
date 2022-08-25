@@ -16,6 +16,17 @@
   padding-bottom: 3rem;
   border-bottom: 0.1rem solid $color-neutral100;
 
+  .topRight {
+    display: flex;
+    justify-content: space-between;
+
+    > * {
+      &:not(&:first-child) {
+        margin-left: 1.6rem;
+      }
+    }
+  }
+
   .socials {
     > * {
       &:not(&:first-child) {
