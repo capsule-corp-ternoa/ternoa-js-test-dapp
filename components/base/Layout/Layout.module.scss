@@ -1,0 +1,19 @@
+@import 'styles/base.scss';
+
+.root {
+  display: flex;
+}
+
+.mainContainer {
+  margin-left: 1.6rem;
+  width: 100%;
+}
+
+.sidebarContainer {
+  display: none;
+
+  @include lg {
+    max-height: 702px;
+    display: block;
+  }
+}

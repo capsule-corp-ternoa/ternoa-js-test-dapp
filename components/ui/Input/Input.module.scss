@@ -45,10 +45,6 @@
     margin: 0;
   }
 
-  @include xl {
-    padding: 2.4rem;
-  }
-
   &:hover {
     background: $color-primary400;
   }
@@ -67,10 +63,6 @@
 
   &.isEndComponent {
     padding: 1.6rem;
-
-    @include xl {
-      padding: 2.4rem;
-    }
   }
 }
 
@@ -89,9 +81,6 @@
   top: 50%;
   right: 1.6rem;
   transform: translate(0%, -50%);
-  @include xl {
-    right: 2.4rem;
-  }
 }
 
 .adviseMessage {

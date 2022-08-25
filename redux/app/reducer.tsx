@@ -1,15 +1,16 @@
 import { AnyAction, Reducer } from 'redux'
+import { ALPHANET_CHAIN_WSS, MAINNET_CHAIN_WSS } from 'utils/constants'
 
 const initialState = {
   app: {
-    wssEndpoint: 'wss://alphanet.ternoa.com',
+    wssEndpoint: 'wss://alphanet.ternoa.com' as const,
   },
 }
 
 export const appReducer: Reducer<
   {
     app: {
-      wssEndpoint: string
+      wssEndpoint: typeof ALPHANET_CHAIN_WSS | typeof MAINNET_CHAIN_WSS
     }
   },
   AnyAction

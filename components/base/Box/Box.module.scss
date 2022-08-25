@@ -19,11 +19,20 @@
 
 .title {
   color: $color-contrast;
+  display: flex;
+  align-items: center;
   font-family: $font-bold;
   font-size: 1.6rem;
+  margin: 0;
 
   @include xl {
     font-size: 2rem;
+  }
+
+  .tooltip {
+    display: flex;
+    align-items: center;
+    margin-left: 0.8rem;
   }
 }
 
@@ -38,34 +47,28 @@
 
 .body {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  margin-top: 6.4rem;
-  @include lg {
-    flex-direction: row;
-  }
+  gap: 3.2rem;
+  margin-top: 3.2rem;
 }
 
 .formContainer {
-  flex: 1 1 50%;
+  flex: 1;
 
   form {
     > * {
       &:not(:first-child) {
         margin-top: 3.2rem;
       }
-      &:last-child {
-        margin: 3.2rem auto;
-        @include lg {
-          margin: 3.2rem 0;
-        }
-      }
     }
   }
 }
 
 .codeSnippet {
-  @include lg {
+  display: none;
+
+  @include xl {
+    display: contents;
     margin-left: 8rem;
   }
 }

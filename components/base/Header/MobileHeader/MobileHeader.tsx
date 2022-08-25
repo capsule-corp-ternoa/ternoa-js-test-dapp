@@ -26,7 +26,6 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, li
           <Hamburger className={styles.button} />
         </button>
       </nav>
-
       <SideMenu ternoaLogo={ternoaLogo} projectName={projectName} isExpanded={isMenuExpanded} setIsExpanded={setIsMenuExpanded} links={links} />
     </>
   )
