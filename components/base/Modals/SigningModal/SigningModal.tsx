@@ -1,7 +1,7 @@
 import type { ISubmittableResult } from '@polkadot/types/types'
 import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { getRawApi } from 'ternoa-js'
+import { getRawApi, TransactionHashType } from 'ternoa-js'
 import QRCode from 'qrcode.react'
 
 import Polkadot from 'assets/svg/Providers/Polkadot'
@@ -24,7 +24,7 @@ export interface SigningModalProps {
   handleClose: () => void
   isOpen: boolean
   submittableCallback: (res: ISubmittableResult) => void
-  txHashHex: `0x${string}`
+  txHashHex: TransactionHashType
 }
 
 const SigningModal = ({ handleClose, isOpen, submittableCallback, txHashHex }: SigningModalProps) => {
@@ -118,7 +118,7 @@ const SigningModal = ({ handleClose, isOpen, submittableCallback, txHashHex }: S
           </div>
         </div>
       </Modal>
-      {isPolkadotModalOpen && <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />}
+      <PolkadotModal isOpen={isPolkadotModalOpen} closeModal={() => setIsPolkadotModalOpen(!isPolkadotModalOpen)} />
     </>
   )
 }

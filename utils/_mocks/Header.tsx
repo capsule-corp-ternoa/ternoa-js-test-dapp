@@ -5,8 +5,12 @@ export default function HeaderNavigation() {
   const projectName = 'ternoa-js-test-dapp'
   const navItems = [
     {
-      href: 'https://www.ternoa.com',
-      label: 'Ternoa.com',
+      href: '/app/NFT/CreateNFT',
+      label: 'Helpers',
+    },
+    {
+      href: 'https://www.npmjs.com/package/ternoa-js',
+      label: 'ternoa-js SDK',
     },
   ]
 

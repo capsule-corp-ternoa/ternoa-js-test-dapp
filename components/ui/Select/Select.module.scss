@@ -1,0 +1,34 @@
+@import 'styles/base.scss';
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+
+  .label {
+    color: $color-contrast;
+    font-family: $font-bold;
+    font-size: 1.6rem;
+  }
+
+  .insight {
+    color: $color-neutral100;
+    font-size: 1.2rem;
+    text-align: right;
+  }
+}
+
+.adviseMessage {
+  color: $color-neutral100;
+  font-size: 1.2rem;
+  text-align: left;
+  margin-top: 0.8rem;
+}
+
+.errorMessage {
+  color: $color-danger500;
+  font-size: 1.2rem;
+  text-align: left;
+  margin-top: 0.8rem;
+}

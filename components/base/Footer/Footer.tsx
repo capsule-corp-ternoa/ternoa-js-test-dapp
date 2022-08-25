@@ -34,12 +34,24 @@ const Footer: React.FC<FooterProps> = ({ projectName, isSocials, isCredentialCus
                 </a>
               </div>
             )}
-            {isTernoaOfficial && (
-              <a className={styles.link} href="https://www.ternoa.com" target="_blank" rel="noopener noreferrer" title="Ternoa official website">
-                ternoa.com
+            <div className={styles.topRight}>
+              <a
+                className={styles.link}
+                href="https://github.com/capsule-corp-ternoa/ternoa-js-test-dapp"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="ternoa-j-tes-dapp official github repo"
+              >
+                github repo
                 <ArrowRight />
               </a>
-            )}
+              {isTernoaOfficial && (
+                <a className={styles.link} href="https://www.ternoa.com" target="_blank" rel="noopener noreferrer" title="Ternoa official website">
+                  ternoa.com
+                  <ArrowRight />
+                </a>
+              )}
+            </div>
           </div>
         )}
 

@@ -30,7 +30,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  height: 100%;
   background: $color-radialGradient;
 }
 
@@ -69,7 +68,7 @@ button {
 
 .wrapper {
   width: 100%;
-  max-width: 128rem;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 2.4rem 1.6rem;
 
@@ -78,22 +77,20 @@ button {
   }
 
   @include md {
-    padding: 2.4rem 4rem;
+    padding: 2.4rem;
   }
 
   @include lg {
-    padding: 2.4rem 4rem;
-
     &:last-child {
       padding-bottom: 4.8rem;
     }
   }
 
-  @include xl {
-    padding: 2.4rem 6.4rem;
-  }
-
   @include xxl {
     max-width: 1440px;
   }
+}
+
+.initLoader {
+  height: 100vh !important;
 }
