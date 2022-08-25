@@ -88,21 +88,26 @@ const SetMarketplaceKindBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-    import { createNft } from "ternoa-js/nft";
-    import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
-  
-    const createMyFirstNFT = async () => {
-        try {
-            const account = await generateSeed()
-            const keyring = await getKeyringFromSeed(account.seed)
-            await createNft("My first NFT", 10, null, false, keyring)
-        } catch(error) {
-            console.error(error)
+      import { initializeApi } from "ternoa-js"
+      import { setMarketplaceKind } from "ternoa-js/marketplace"
+
+      ... //we asume the API instance is already initialize
+      ... //and your keyring is already created and provided with CAPS to support transactions fees. 
+      
+      const updateMarketplaceKind = async () => {
+        try { 
+
+          // Here you update your Marketplace's kind to MARKETPLACE_KIND
+          // MARKETPLACE_KIND can by set using MarketplaceKind enum from 'ternoa-js/marketplace/enum' (e.g. MarketplaceKind.Public)
+          const updatedMarketplaceKindSetEvent = await setMarketplaceKind(MARKETPLACE_ID, MARKETPLACE_KIND, keyring, WaitUntil.BlockInclusion)
+      
+        } catch (e) {
+          console.log(e)
         }
-    }
+      }
     `}
-      codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#createNft"
-      codeSnippetTitle="Ternoa-JS: createNFT"
+      codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#setMarketplaceKind"
+      codeSnippetTitle="Ternoa-JS: setMarketplaceKind"
       summary="Set the new marketplace kind on the chain"
       title="Set NFT Marketplace Kind"
       tooltip={<Tips />}

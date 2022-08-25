@@ -59,18 +59,27 @@ const BurnNFTBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-    import { createNft } from "ternoa-js/nft";
-    import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
-  
-    const createMyFirstNFT = async () => {
+      import { initializeApi } from "ternoa-js"
+      import { burnNft } from "ternoa-js/nft"
+      
+      const burnMyNFT = async () => {
         try {
-            const account = await generateSeed()
-            const keyring = await getKeyringFromSeed(account.seed)
-            await createNft("My first NFT", 10, null, false, keyring)
-        } catch(error) {
-            console.error(error)
+          // We initialize the API instance
+          await initializeApi()
+      
+          ... //we asume your keyring is already created and provided with CAPS to support transactions fees.  
+      
+          // Here we create, sign and submit the NFT transaction with your keyring
+          const burnedNFTEvent = await burnNft(YOUR_NFT_ID, keyring, WaitUntil.BlockInclusion)
+      
+          // Do something with the NFTBurnedEvent response
+          console.log(burnedNFTEvent);
+          ...
+      
+        } catch (e) {
+          console.log(e)
         }
-    }
+      }
     `}
       codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#burnNft"
       codeSnippetTitle="Ternoa-JS: burnNFT"

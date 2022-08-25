@@ -59,13 +59,20 @@ const BurnCollectionBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-      import { burnCollection } from "ternoa-js/nft";
-    
-      const burnMyCollection = async (collectionId: number, keyring: KeyringPair) => {
+      import { initializeApi } from "ternoa-js"
+      import { burnCollection } from "ternoa-js/nft"
+      
+      ... //we asume the API instance is already initialize
+      ... //and your keyring is already created and provided with CAPS to support transactions fees.  
+
+      const burnMyCollection = async () => {
         try {
-            await burnCollection(collectionId, keyring, WaitUntil.BlockInclusion)
-        } catch(error) {
-            console.error(error)
+
+          // Here we create, sign and submit the collection transaction with your keyring
+          const burnedCollectionEvent = await burnCollection(YOUR_COLLECTION_ID, keyring, WaitUntil.BlockInclusion)
+      
+        } catch (e) {
+          console.log(e)
         }
       }
     `}

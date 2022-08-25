@@ -31,8 +31,8 @@ function MarketplaceIdField<T>({ control, error, isError, name, register, requir
               insight={required ? undefined : 'optional'}
               isLoading={isMarketplacesFetching}
               label="Marketplace ID"
-              noItemText="No personal marketplaces found"
-              placeholder="Enter a marketplace ID"
+              noItemText="No personal marketplace found"
+              placeholder="Select a marketplace ID"
               items={marketplaces}
               onChange={onChange}
               value={value ? Number(value) : ''}

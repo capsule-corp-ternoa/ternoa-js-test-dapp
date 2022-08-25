@@ -187,18 +187,39 @@ const SetNFTMarketplaceConfigurationBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-    import { createNft } from "ternoa-js/nft";
-    import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
-  
-    const createMyFirstNFT = async () => {
-        try {
-            const account = await generateSeed()
-            const keyring = await getKeyringFromSeed(account.seed)
-            await createNft("My first NFT", 10, null, false, keyring)
-        } catch(error) {
-            console.error(error)
+      import { initializeApi } from "ternoa-js"
+      import { setMarketplaceConfiguration } from "ternoa-js/marketplace"
+
+      ... //we asume the API instance is already initialize
+      ... //and your keyring is already created and provided with CAPS to support transactions fees. 
+      
+      const updateMarketplaceConfiguration = async () => {
+        try { 
+
+          // Here you update your Marketplace's configuration settings for: COMMISSION_FEE, LISTING_FEE, ACCOUNT_LIST, OFFCHAIN_DATA
+          // Each parameter object can be build using MarketplaceConfigAction enum from 'ternoa-js/marketplace/enum' (e.g. MarketplaceConfigAction.Remove)
+          // COMMISSION_FEE and LISTING_FEE type can by build using MarketplaceConfigFeeType enum from 'ternoa-js/marketplace/enum' (e.g. MarketplaceConfigFeeType.Flat)
+          
+          // For example the No Operation (Noop) or the Remove action:
+          //    COMMISSION_FEE: MarketplaceConfigAction.Noop
+          //    OFFCHAIN_DATA: MarketplaceConfigAction.Remove
+          // For the Set action:
+          //    COMMISSION_FEE or LISTING_FEE: {
+          //      [MarketplaceConfigAction.Set]: { [MarketplaceConfigFeeType.Flat]: Number(123) },
+          //    }
+          //    OFFCHAIN_DATA: {
+          //      [MarketplaceConfigAction.Set]: 'Your Marketplace offchain data',
+          //    }
+          //    ACCOUNT_LIST: {
+          //      [MarketplaceConfigAction.Set]: [TERNOA_ADDRESS_1, TERNOA_ADDRESS_2],
+          //    }
+
+          const updatedMarketplaceConfigurationSetEvent = await setMarketplaceConfiguration(MARKETPLACE_ID, COMMISSION_FEE, LISTING_FEE, ACCOUNT_LIST, OFFCHAIN_DATA, keyring, WaitUntil.BlockInclusion)
+      
+        } catch (e) {
+          console.log(e)
         }
-    }
+      }
     `}
       codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#createNft"
       codeSnippetTitle="Ternoa-JS: createNFT"

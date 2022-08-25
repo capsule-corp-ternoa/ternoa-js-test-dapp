@@ -66,21 +66,25 @@ const SetMarketplaceOwnerBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-    import { createNft } from "ternoa-js/nft";
-    import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
-  
-    const createMyFirstNFT = async () => {
-        try {
-            const account = await generateSeed()
-            const keyring = await getKeyringFromSeed(account.seed)
-            await createNft("My first NFT", 10, null, false, keyring)
-        } catch(error) {
-            console.error(error)
+      import { initializeApi } from "ternoa-js"
+      import { setMarketplaceOwner } from "ternoa-js/marketplace"
+
+      ... //we asume the API instance is already initialize
+      ... //and your keyring is already created and provided with CAPS to support transactions fees. 
+      
+      const setNewMarketplaceOwner = async () => {
+        try { 
+
+          // Here you transfer your Marketplace to a specific NEW_OWNER, ownership will be lost
+          const newMarketplaceOwnerSetEvent = await setMarketplaceOwner(MARKETPLACE_ID, NEW_OWNER, keyring, WaitUntil.BlockInclusion)
+      
+        } catch (e) {
+          console.log(e)
         }
-    }
+      }
     `}
-      codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#createNft"
-      codeSnippetTitle="Ternoa-JS: createNFT"
+      codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#setMarketplaceOwner"
+      codeSnippetTitle="Ternoa-JS: setMarketplaceOwner"
       summary="Set the new marketplace owner on the chain."
       title="Set NFT Marketplace Owner"
       tooltip={<Tips />}

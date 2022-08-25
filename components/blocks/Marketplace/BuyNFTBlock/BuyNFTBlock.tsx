@@ -58,21 +58,25 @@ const BuyNFTBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-    import { createNft } from "ternoa-js/nft";
-    import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
-  
-    const createMyFirstNFT = async () => {
-        try {
-            const account = await generateSeed()
-            const keyring = await getKeyringFromSeed(account.seed)
-            await createNft("My first NFT", 10, null, false, keyring)
-        } catch(error) {
-            console.error(error)
+      import { initializeApi } from "ternoa-js"
+      import { buyNft } from "ternoa-js/marketplace"
+
+      ... //we asume the API instance is already initialize
+      ... //and your keyring is already created and provided with CAPS to support transactions fees. 
+      
+      const buyMyFirstNFT = async () => {
+        try { 
+
+          // Here we create, sign and submit the Marketplace NFT buying transaction with your keyring
+          const buyNFTEvent = await buyNft(NFT_ID, keyring, WaitUntil.BlockInclusion)
+      
+        } catch (e) {
+          console.log(e)
         }
-    }
+      }
     `}
-      codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#createNft"
-      codeSnippetTitle="Ternoa-JS: createNFT"
+      codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#buyNft"
+      codeSnippetTitle="Ternoa-JS: buyNft"
       summary="Buys an NFT on a marketplace"
       title="Buy NFT"
       tooltip={<Tips />}

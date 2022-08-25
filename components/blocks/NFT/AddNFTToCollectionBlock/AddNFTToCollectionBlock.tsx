@@ -66,18 +66,24 @@ const AddNftToCollection = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-    import { createNft } from "ternoa-js/nft";
-    import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
-    const createMyFirstNFT = async () => {
+      import { initializeApi } from "ternoa-js"
+      import { addNftToCollection } from "ternoa-js/nft"
+      
+      ... //we asume the API instance is already initialize
+      ... //and your keyring is already created and provided with CAPS to support transactions fees.
+
+      ... //you also need to own a collection
+
+      const addMyNFTToCollection = async () => {
         try {
-            const account = await generateSeed()
-            const keyring = await getKeyringFromSeed(account.seed)
-            await createNft("My first NFT", 10, null, false, keyring)
-            
-        } catch(error) {
-            console.error(error)
+
+          // Here you add your NFT to a specific collection that you own
+          const addedEvent = await addNftToCollection(YOUR_NFT_ID, COLLECTION_ID, keyring, WaitUntil.BlockInclusion)
+      
+        } catch (e) {
+          console.log(e)
         }
-    }
+      }
     `}
       codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#addNftToCollection"
       codeSnippetTitle="Ternoa-JS: addNFTToCollection"

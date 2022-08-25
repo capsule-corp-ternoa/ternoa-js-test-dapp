@@ -59,13 +59,20 @@ const CloseCollectionBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-      import { closeCollection } from "ternoa-js/nft";
-    
-      const closeMyCollection = async (collectionId: number, keyring: KeyringPair) => {
+      import { initializeApi } from "ternoa-js"
+      import { closeCollection } from "ternoa-js/nft"
+      
+      ... //we asume the API instance is already initialize
+      ... //and your keyring is already created and provided with CAPS to support transactions fees.  
+
+      const closeMyCollection = async () => {
         try {
-            await closeCollection(collectionId, keyring, WaitUntil.BlockInclusion)
-        } catch(error) {
-            console.error(error)
+
+          // Here we create, sign and submit the collection transaction with your keyring
+          const closedCollectionEvent = await closeCollection(YOUR_COLLECTION_ID, keyring, WaitUntil.BlockInclusion)
+      
+        } catch (e) {
+          console.log(e)
         }
       }
     `}

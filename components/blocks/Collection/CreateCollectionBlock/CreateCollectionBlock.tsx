@@ -55,18 +55,23 @@ const CreateCollectionBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-    import { createNft } from "ternoa-js/nft";
-    import { generateSeed, getKeyringFromSeed } from "ternoa-js/account"
-  
-    const createMyFirstNFT = async () => {
+      import { initializeApi } from "ternoa-js"
+      import { createCollection } from "ternoa-js/nft"
+      
+      ... //we asume the API instance is already initialize
+      ... //and your keyring is already created and provided with CAPS to support transactions fees.  
+
+      const createMyCollection = async () => {
         try {
-            const account = await generateSeed()
-            const keyring = await getKeyringFromSeed(account.seed)
-            await createNft("My first NFT", 10, null, false, keyring)
-        } catch(error) {
-            console.error(error)
+
+          // Here we create, sign and submit the collection transaction with your keyring
+          // COLLECTION_LIMIT defines the collection limit, it can be undefined and set later
+          const newCollectionEvent = await createCollection("My first collection", COLLECTION_LIMIT, keyring, WaitUntil.BlockInclusion)
+      
+        } catch (e) {
+          console.log(e)
         }
-    }
+      }
     `}
       codeSnippetLink="https://ternoa-js.ternoa.dev/modules.html#createCollection"
       codeSnippetTitle="Ternoa-JS: createCollection "

@@ -66,13 +66,20 @@ const LimitCollectionBlock = ({ signableCallback }: Props) => {
   return (
     <Box
       codeSnippet={`
-      import { limitCollection } from "ternoa-js/nft";
-    
-      const limitMyCollection = async (collectionId: number, limit: number, keyring: KeyringPair) => {
+      import { initializeApi } from "ternoa-js"
+      import { limitCollection } from "ternoa-js/nft"
+      
+      ... //we asume the API instance is already initialize
+      ... //and your keyring is already created and provided with CAPS to support transactions fees.  
+
+      const limitMyCollection = async () => {
         try {
-            await limitCollection(collectionId, limit, keyring, WaitUntil.BlockInclusion)
-        } catch(error) {
-            console.error(error)
+
+          // Here you limit your collection by COLLECTION_LIMIT
+          const limitedCollectionEvent = await limitCollection(YOUR_COLLECTION_ID, COLLECTION_LIMIT, keyring, WaitUntil.BlockInclusion)
+      
+        } catch (e) {
+          console.log(e)
         }
       }
     `}

@@ -31,8 +31,8 @@ function CollectionIdField<T>({ control, error, isError, name, register, require
               insight={required ? undefined : 'optional'}
               isLoading={isCollectionsFetching}
               label="Collection ID"
-              noItemText="No personal collections found"
-              placeholder="Enter a collection ID"
+              noItemText="No personal collection found"
+              placeholder="Select a collection ID"
               items={collections}
               onChange={onChange}
               value={value ? Number(value) : ''}
