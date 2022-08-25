@@ -48,7 +48,7 @@
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",
     "sass": "^1.51.0",
-    "ternoa-js": "^1.2.0-rc0",
+    "ternoa-js": "^1.2.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
