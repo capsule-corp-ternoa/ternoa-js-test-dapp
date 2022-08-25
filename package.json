@@ -9,6 +9,7 @@
     "polakdot",
     "design-system"
   ],
+  "license": "Apache-2.0",
   "author": "Victor Salomon",
   "contributors": [
     {
