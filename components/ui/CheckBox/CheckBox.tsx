@@ -1,5 +1,5 @@
 import React from 'react'
-import { Path, UseFormRegister } from 'react-hook-form'
+import { Path } from 'react-hook-form'
 
 import styles from './CheckBox.module.scss'
 
@@ -12,7 +12,7 @@ interface Props<T> {
   name: Path<T>
   onChange?: () => void
   readOnly?: boolean
-  register: UseFormRegister<T>
+  register: any
   required?: boolean
   value?: string
 }
