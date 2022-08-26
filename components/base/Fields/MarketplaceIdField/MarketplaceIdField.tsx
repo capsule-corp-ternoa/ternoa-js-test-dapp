@@ -1,5 +1,5 @@
 import React from 'react'
-import { Control, Controller, Path, UseFormRegister } from 'react-hook-form'
+import { Controller, Path } from 'react-hook-form'
 import FormControl from '@mui/material/FormControl'
 
 import Input from 'components/ui/Input'
@@ -7,11 +7,11 @@ import Select from 'components/ui/Select'
 import { useAppSelector } from 'redux/hooks'
 
 interface Props<T> {
-  control: Control<T, any>
+  control: any
   error?: string
   isError: boolean
   name: Path<T>
-  register: UseFormRegister<T>
+  register: any
   required?: boolean
 }
 

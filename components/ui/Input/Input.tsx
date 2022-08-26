@@ -1,4 +1,4 @@
-import { Path, UseFormRegister } from 'react-hook-form'
+import { Path } from 'react-hook-form'
 
 import styles from './Input.module.scss'
 
@@ -18,7 +18,7 @@ interface Props<T> {
   name: Path<T>
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   placeholder?: string
-  register: UseFormRegister<T>
+  register: any
   required?: boolean
   startIcon?: string
   step?: number | string
