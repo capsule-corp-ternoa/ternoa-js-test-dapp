@@ -30,7 +30,7 @@ const Home: NextPage = () => {
       <Typography variant="h2" mt="4rem">
         App Worklow 🏄‍♂️
       </Typography>
-      <Typography variant="body1" mt="2.4rem">
+      <Typography variant="body1" mt="2.4rem" component="div">
         The{' '}
         <Link href="/app/NFT/CreateNFT">
           <MuiLink href="/app/NFT/CreateNFT" title="Create NFT Helper" mr="0.4rem">
