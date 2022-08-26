@@ -111,7 +111,7 @@ export default SetMarketplaceOwnerBlock
 const schema = yup.object({
   id: yup
     .number()
-    .transform((value) => (isNaN(value) ? -1 : value))
+    .transform((value) => (isNaN(value) ? undefined : value))
     .min(0, 'Marketplace ID must be greater than or equal to 0')
     .required('Marketplace ID is a required field'),
   recipient: yup

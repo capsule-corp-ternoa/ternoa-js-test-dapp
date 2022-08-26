@@ -113,7 +113,7 @@ export default LimitCollectionBlock
 const schema = yup.object({
   id: yup
     .number()
-    .transform((value) => (isNaN(value) ? -1 : value))
+    .transform((value) => (isNaN(value) ? undefined : value))
     .min(0, 'Collection ID must be greater than or equal to 0')
     .required('Collection ID is a required field'),
   limit: yup
