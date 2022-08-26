@@ -126,12 +126,12 @@ export default ListNFTBlock
 const schema = yup.object({
   nft_id: yup
     .number()
-    .transform((value) => (isNaN(value) ? -1 : value))
+    .transform((value) => (isNaN(value) ? undefined : value))
     .min(0, 'NFT ID must be greater than or equal to 0')
     .required('NFT ID is a required field'),
   marketplace_id: yup
     .number()
-    .transform((value) => (isNaN(value) ? -1 : value))
+    .transform((value) => (isNaN(value) ? undefined : value))
     .min(0, 'Marketplace ID must be greater than or equal to 0')
     .required('Marketplace ID is a required field'),
   price: yup

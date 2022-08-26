@@ -139,7 +139,7 @@ export default CreateNFTBlock
 const schema = yup.object({
   collectionId: yup
     .number()
-    .transform((value) => (isNaN(value) ? -1 : value))
+    .transform((value) => (isNaN(value) ? undefined : value))
     .nullable(),
   isSoulbond: yup.boolean(),
   offchainData: yup.string().required('Please provide offchain data.').max(150, 'Only 150 characters are allowed'),
