@@ -140,8 +140,7 @@ const schema = yup.object({
   collectionId: yup
     .number()
     .transform((value) => (isNaN(value) ? -1 : value))
-    .nullable()
-    .min(0, 'Collection must be greater than or equal to 0'),
+    .nullable(),
   isSoulbond: yup.boolean(),
   offchainData: yup.string().required('Please provide offchain data.').max(150, 'Only 150 characters are allowed'),
   royalty: yup.number().min(0, 'Royalty must be greater or equal to 0').max(100, 'Royalty must be lower or equal to 100'),
