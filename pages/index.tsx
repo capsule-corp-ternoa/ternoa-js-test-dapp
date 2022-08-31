@@ -59,8 +59,22 @@ const Home: NextPage = () => {
         Contribution 🤝
       </Typography>
       <Typography variant="body1" mt="2.4rem">
-        ternoa-js SDK and the ternoa-js-test-dapp are open-source projects. Feel free to interact and move forward with us. If you have questions about anything
-        related to Ternoa-js, we will be please to help you. Open a discussion on our{' '}
+        ternoa-js SDK and the ternoa-js-test-dapp are open-source projects. Feel free to interact and move forward with us.
+      </Typography>
+      <Typography variant="body1" mt="2.4rem">
+        If you are interested in contributing to ternoa-js-test-dapp read our{' '}
+        <MuiLink
+          href="https://github.com/capsule-corp-ternoa/ternoa-js-test-dapp/blob/main/CONTRIBUTING.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="ternoa-js-test-dapp contributing guidelines"
+        >
+          contributing guidelines
+        </MuiLink>
+        .{' '}
+      </Typography>
+      <Typography variant="body1" mt="2.4rem">
+        If you have questions about anything related to Ternoa-js, we will be please to help you. Open a discussion on our{' '}
         <MuiLink
           href="https://github.com/capsule-corp-ternoa/ternoa-js/discussions"
           target="_blank"
