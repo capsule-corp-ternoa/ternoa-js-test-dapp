@@ -2,6 +2,7 @@
 
 The easiest and fastest way to discover and test Ternoa JS SDK.
 You can submit any transaction to the chain to manage your NFTs or familiarize yourself with our helpers with the code snippets.
+This application aims to be build by the community and is the perfect entry door to learn how to use Ternoa SDK, your contribution and interest are warm welcomed.
 
 ## ternoa-js SDK
 
@@ -18,6 +19,9 @@ npm install ternoa-js
 ## Contribution
 
 ternoa-js SDK and the ternoa-js-test-dapp are open-source projects. Feel free to interact and move forward with us.
+
+If you are interested in contributing to ternoa-js-test-dapp read our [contributing guidelines](https://github.com/capsule-corp-ternoa/ternoa-js-test-dapp/blob/main/CONTRIBUTING.md).
+
 If you have questions about anything related to Ternoa-js, we will be please to help you. Open a discussion on our [GitHub Discussions](https://github.com/capsule-corp-ternoa/ternoa-js/discussions). And if you find an issue, lets us know about it here in our [GitHub Issues](https://github.com/capsule-corp-ternoa/ternoa-js/issues) section.
 
 ### Getting Started the Ternoa JS Test Dapp
