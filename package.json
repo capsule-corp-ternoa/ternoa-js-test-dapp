@@ -22,7 +22,6 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md,html}\"",
-    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
