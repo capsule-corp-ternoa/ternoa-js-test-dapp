@@ -12,7 +12,8 @@ import { appTheme } from 'theme'
 import 'styles/main.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isSDKInitialized, setIsSDKInitialized] = useState<boolean>(false)
+  const [isSDKInitialized,
+    setIsSDKInitialized] = useState<boolean>(false)
 
   useEffect(() => {
     let shouldUpdate = true
