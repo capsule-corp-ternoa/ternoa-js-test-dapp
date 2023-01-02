@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import SideMenu from './SideMenu'
 import Hamburger from 'assets/svg/Components/Hamburger'
@@ -13,9 +13,27 @@ interface MobileHeaderProps {
 
 const MobileHeader: React.FC<MobileHeaderProps> = ({ projectName, ternoaLogo, links }) => {
   const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
+  const [navBackground, setNavBackground] = useState<undefined | string>(undefined)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const show = window.scrollY > 30
+      if (show) {
+        setNavBackground('headerScrolled')
+      } else {
+        setNavBackground(undefined)
+      }
+    }
+    document.addEventListener('scroll', handleScroll)
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <>
-      <nav className={`wrapper ${styles.nav}`}>
+      <nav className={`wrapper ${styles.nav} ${navBackground && styles[navBackground]}`}>
         <Link href="/">
           <a className={styles.logo} title={projectName}>
             {ternoaLogo}

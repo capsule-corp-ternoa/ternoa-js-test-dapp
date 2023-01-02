@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useAppSelector } from 'redux/hooks'
 import { Link as MuiLink } from '@mui/material'
@@ -25,10 +25,27 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ children, projectName, ternoaLogo, links }) => {
   const [isPolkadotModalOpen, setIsPolkadotModalOpen] = useState<boolean>(false)
   const { user } = useAppSelector((state) => state.user)
+  const [navBackground, setNavBackground] = useState<undefined | string>(undefined)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const show = window.scrollY > 30
+      if (show) {
+        setNavBackground('headerScrolled')
+      } else {
+        setNavBackground(undefined)
+      }
+    }
+    document.addEventListener('scroll', handleScroll)
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <>
-      <nav className={`wrapper ${styles.nav}`}>
+      <nav className={`wrapper ${styles.nav} ${navBackground && styles[navBackground]}`}>
         <Link href="/">
           <a className={styles.logo} title={projectName}>
             {ternoaLogo}
